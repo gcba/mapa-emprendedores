@@ -1,5 +1,4 @@
-var urlViz = "http://gcba.cartodb.com/api/v2/viz/c8554f80-c021-11e3-8981-0edbca4b5057/viz.json";
-
+var urlViz = "http://gcba.cartodb.com/api/v2/viz/e043bc9c-c0eb-11e3-b175-0e73339ffa50/viz.json";
 
 function main() {
 	cartodb.createVis('map', urlViz, {
