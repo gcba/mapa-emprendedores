@@ -1,5 +1,10 @@
 var urlViz = "http://gcba.cartodb.com/api/v2/viz/e043bc9c-c0eb-11e3-b175-0e73339ffa50/viz.json";
 
+
+
+/*
+ * Inicializacion del mapa
+ */
 function main() {
 	cartodb.createVis('map', urlViz, {
     	tiles_loader: true,
@@ -22,3 +27,27 @@ function main() {
 }
 
 window.onload = main;
+
+var sql = cartodb.SQL({ user: 'gcba' });  	
+
+/*
+ * Query SQL para el listado total.
+ */
+
+sql.execute("SELECT * FROM mapa_de_emprendedores_2014")
+
+ .done(function(data) {
+	for (var i = 0; i < data.total_rows; i++) {
+
+		$('#contenido').append("<div>Nombre: <span>" + 
+        	data.rows[i].nombre + 
+            "</span> - <span>Tipo: " + 
+            data.rows[i].tipo +
+            "<span></div></br>");
+	}
+ })
+ 
+  .error(function(errors) {
+    console.log(errors);
+  });
+  	
