@@ -1,2 +1,3 @@
 .project
-private/
+.sass-cache/
+node-modules/

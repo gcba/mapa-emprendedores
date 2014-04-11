@@ -1,4 +1,5 @@
 var urlViz = "http://gcba.cartodb.com/api/v2/viz/e043bc9c-c0eb-11e3-b175-0e73339ffa50/viz.json";
+var sql = cartodb.SQL({ user: 'gcba' });  	
 
 
 
@@ -26,28 +27,88 @@ function main() {
 	});
 }
 
-window.onload = main;
+/*
+ * Asigna listener a los botones de <nav> para mostrar
+ * u olcultar los paneles de empresas
+ */
+$("button").click(function(d){
+	switch (d.currentTarget.id){
+		case "listado_btn":
+			if ($('#contenidoListado').css('display')  == 'none'){
+					$('#contenidoBusqueda').css('display','none');
+					$('#contenidoListado').css('display','inline');
+					busquedaListado();					
+				}else{
+					$('#contenidoListado').css('display','none');
+			}	
+			break;
+		case "busqueda_btn":
+			if ($('#contenidoBusqueda').css('display')  == 'none'){
+					$('#contenidoListado').css('display','none');
+					$('#contenidoBusqueda').css('display','inline');
+					$('#resultadoBusqueda').html('');
+					$('#key').val('');
+					$('#key').focus();
+				}else{
+					$('#contenidoBusqueda').css('display','none');
+			}	
+			break;
+		
+	}
+});
 
-var sql = cartodb.SQL({ user: 'gcba' });  	
 
 /*
  * Query SQL para el listado total.
  */
+function busquedaListado(){
+	var q = "SELECT * FROM mapa_de_emprendedores_2014";
+	sql.execute(q)
+		.done(function(data) {
+			for (var i = 0; i < data.total_rows; i++) {
+				$('#contenidoListado').append("<div> <span>" + 
+	    	    	data.rows[i].nombre + 
+	        	    " (" + 
+	            	data.rows[i].tipo +
+					")");
+			}
+	 	})
+	 
+	 	.error(function(errors) {
+	 	   console.log("SQL ERR:",errors);
+		});
+}
 
-sql.execute("SELECT * FROM mapa_de_emprendedores_2014")
+/*
+ * Hace un query a la base de emprendedores con lo que se
+ * escriba en el input CASE SENSITIVE
+ */
+function busquedaKeyword(key){
+	var q = "SELECT * FROM mapa_de_emprendedores_2014 WHERE tags LIKE '%" + key + "%' OR nombre LIKE '%" + key +"%' OR tipo LIKE '%" + key +"%'";
+	sql.execute(q)
+		.done(function(data) {
+			$('#resultadoBusqueda').text("");
+			for (var i = 0; i < data.total_rows; i++) {
+				$('#resultadoBusqueda').append('<div> <span>' + 
+	    	    	data.rows[i].nombre + 
+	        	    ' (' + 
+	            	data.rows[i].tipo +
+					')');
+			}
+	 	})
+	 
+	 	.error(function(errors) {
+	 	   console.log("SQL ERR:",errors);
+		});
+}
 
- .done(function(data) {
-	for (var i = 0; i < data.total_rows; i++) {
+/*
+ * updatea la busqueda por keyword
+ */
+$("#key").keypress(function(){
+	busquedaKeyword($('#key').val());
+});
 
-		$('#contenido').append("<div>Nombre: <span>" + 
-        	data.rows[i].nombre + 
-            "</span> - <span>Tipo: " + 
-            data.rows[i].tipo +
-            "<span></div></br>");
-	}
- })
- 
-  .error(function(errors) {
-    console.log(errors);
-  });
-  	
+
+
+window.onload = main;
