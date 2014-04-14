@@ -84,7 +84,8 @@ function busquedaListado(){
  * escriba en el input CASE SENSITIVE
  */
 function busquedaKeyword(key){
-	var q = "SELECT * FROM mapa_de_emprendedores_2014 WHERE tags LIKE '%" + key + "%' OR nombre LIKE '%" + key +"%' OR tipo LIKE '%" + key +"%'";
+	key = key.toLowerCase();
+	var q = "SELECT * FROM mapa_de_emprendedores_2014 WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key +"%' OR LOWER(tipo) LIKE '%" + key +"%'";
 	sql.execute(q)
 		.done(function(data) {
 			$('#resultadoBusqueda').text("");
