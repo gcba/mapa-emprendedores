@@ -3,7 +3,7 @@ mapa-emprendedores
 
 ## Instalación
 
-Teniendo en cuenta que ASI bloquea el protocolo GIT internamente, es necesario pasar los modulos necesarios a https: Es posible hacer un [workaround](http://stackoverflow.com/questions/4891527/git-protocol-blocked-by-company-how-can-i-get-around-that/), utilizando el siguiente comando:
+Teniendo en cuenta que ASI bloquea el protocolo GIT internamente, es necesario pasar los modulos necesarios a `https://`. Es posible hacer un [workaround](http://stackoverflow.com/questions/4891527/git-protocol-blocked-by-company-how-can-i-get-around-that/), utilizando el siguiente comando:
 
 ```
 git config --global url."https://".insteadOf git://
