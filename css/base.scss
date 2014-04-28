@@ -27,9 +27,13 @@ nav{
   #busqueda_btn{
     background-image: url('../img/lupa.png');
   }
+  #agregar_btn{
+    background-image: url('../img/agregar.png');
+  }
+  
 }
 
-#contenidoListado, #contenidoBusqueda{
+#contenidoListado, #contenidoBusqueda, #formularioAlta{
   position: absolute;
   top: 10px;
   left: 60px;

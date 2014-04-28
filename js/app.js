@@ -36,21 +36,38 @@ $("button").click(function(d){
 		case "listado_btn":
 			if ($('#contenidoListado').css('display')  == 'none'){
 					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
 					$('#contenidoListado').css('display','inline');
 					busquedaListado();					
 				}else{
 					$('#contenidoListado').css('display','none');
+					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
 			}	
 			break;
 		case "busqueda_btn":
 			if ($('#contenidoBusqueda').css('display')  == 'none'){
 					$('#contenidoListado').css('display','none');
+					$('#formularioAlta').css('display','none');
 					$('#contenidoBusqueda').css('display','inline');
 					$('#resultadoBusqueda').html('');
 					$('#key').val('');
 					$('#key').focus();
 				}else{
+					$('#contenidoListado').css('display','none');
 					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
+			}	
+			break;
+		case "agregar_btn":
+			if ($('#formularioAlta').css('display')  == 'none'){
+					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','inline');
+					$('#contenidoListado').css('display','none');
+				}else{
+					$('#contenidoListado').css('display','none');
+					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
 			}	
 			break;
 		
