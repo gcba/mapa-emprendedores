@@ -1,0 +1,8 @@
+{
+  "name": "Mapa-de-Emprendedores",
+  "version": "0.0.2",
+  "main": "css/base.css",
+  "dependencies": {
+    "bootstrap-sass-official": "*"
+  }
+}

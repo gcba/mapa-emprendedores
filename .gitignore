@@ -1,3 +1,4 @@
 .project
 .sass-cache/
 node-modules/
+bower_components/
