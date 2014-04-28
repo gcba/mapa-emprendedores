@@ -1,3 +1,4 @@
+.git/
 .project
 .sass-cache/
-node-modules/
+node_modules/
