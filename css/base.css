@@ -22,8 +22,10 @@ nav {
     background-image: url("../img/lista.png"); }
   nav #busqueda_btn {
     background-image: url("../img/lupa.png"); }
+  nav #agregar_btn {
+    background-image: url("../img/agregar.png"); }
 
-#contenidoListado, #contenidoBusqueda {
+#contenidoListado, #contenidoBusqueda, #formularioAlta {
   position: absolute;
   top: 10px;
   left: 60px;
@@ -34,5 +36,5 @@ nav {
   display: none;
   padding: 10px;
   border: 1px solid black; }
-  #contenidoListado div span, #contenidoBusqueda div span {
+  #contenidoListado div span, #contenidoBusqueda div span, #formularioAlta div span {
     font-size: 10px; }
