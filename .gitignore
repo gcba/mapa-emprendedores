@@ -2,4 +2,7 @@
 .project
 .sass-cache/
 node_modules/
+<<<<<<< HEAD
 bower_components/
+=======
+>>>>>>> master
