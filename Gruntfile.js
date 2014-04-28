@@ -4,7 +4,8 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'css/base.css' : 'css/base.scss'
+					'css/base.css' : 'css/base.scss',
+					'css/bootstrap.css' : 'bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss'
 				}
 			}
 		},
