@@ -1,4 +1,4 @@
-var urlViz = "http://gcba.cartodb.com/api/v2/viz/e043bc9c-c0eb-11e3-b175-0e73339ffa50/viz.json";
+var urlViz = "http://gcba.cartodb.com/api/v2/viz/a5ca90ac-cf07-11e3-bc9f-0e230854a1cb/viz.json";
 var sql = cartodb.SQL({ user: 'gcba' });  	
 
 
@@ -62,7 +62,7 @@ $("button").click(function(d){
  * Query SQL para el listado total.
  */
 function busquedaListado(){
-	var q = "SELECT * FROM mapa_de_emprendedores_2014";
+	var q = "SELECT * FROM mapa_emprendedores";
 	sql.execute(q)
 		.done(function(data) {
 			for (var i = 0; i < data.total_rows; i++) {
@@ -85,7 +85,7 @@ function busquedaListado(){
  */
 function busquedaKeyword(key){
 	key = key.toLowerCase();
-	var q = "SELECT * FROM mapa_de_emprendedores_2014 WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key +"%' OR LOWER(tipo) LIKE '%" + key +"%'";
+	var q = "SELECT * FROM mapa_emprendedores WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key +"%' OR LOWER(tipo) LIKE '%" + key +"%'";
 	sql.execute(q)
 		.done(function(data) {
 			$('#resultadoBusqueda').text("");
