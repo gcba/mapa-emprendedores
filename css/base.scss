@@ -1,46 +1,57 @@
+$color-primary: #FFD300;
 
-html, body, #map {
-  font-family: Arial;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
+$navbar-default-bg: $color-primary;
 
-nav{
-  position: absolute;
-  top: 130px;
-  left: 20px;
-  text-align: left;
-  z-index: 999;
-  button{
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    border: 1px solid #999999;
-    box-shadow: 0px 0px 5px #888888;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  #listado_btn{
-    background-image: url('../img/lista.png');
-  }
-  #busqueda_btn{
-    background-image: url('../img/lupa.png');
-  }
-}
+@import "bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 
-#contenidoListado, #contenidoBusqueda{
-  position: absolute;
-  top: 10px;
-  left: 60px;
-  width: 30%;
-  height: 70%;
-  background-color: white;
-  overflow-y: scroll;
-  display: none;
-  padding: 10px;
-  border: 1px solid black;
-  div span{
-    font-size: 10px;
-  }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+// html, body, #map {
+//   font-family: Arial;
+//   height: 100%;
+//   padding: 0;
+//   margin: 0;
+// }
+
+// nav{
+//   position: absolute;
+//   top: 130px;
+//   left: 20px;
+//   text-align: left;
+//   z-index: 999;
+//   button{
+//     width: 30px;
+//     height: 30px;
+//     background-color: white;
+//     border: 1px solid #999999;
+//     box-shadow: 0px 0px 5px #888888;
+//     border-radius: 4px;
+//     cursor: pointer;
+//   }
+//   #listado_btn{
+//     background-image: url('../img/lista.png');
+//   }
+//   #busqueda_btn{
+//     background-image: url('../img/lupa.png');
+//   }
+// }
+
+// #contenidoListado, #contenidoBusqueda{
+//   position: absolute;
+//   top: 10px;
+//   left: 60px;
+//   width: 30%;
+//   height: 70%;
+//   background-color: white;
+//   overflow-y: scroll;
+//   display: none;
+//   padding: 10px;
+//   border: 1px solid black;
+//   div span{
+//     font-size: 10px;
+//   }
+// }
+
+footer {
+  
 }
