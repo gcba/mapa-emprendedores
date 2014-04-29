@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Buenos Aires - Mapa Emprendedores </title>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" href="http://www.buenosaires.gob.ar/sites/gcaba/files/favicon.ico" />
@@ -54,11 +54,13 @@
 
     <div id="map"></div>
 
-    <footer class="container">
-      <div class="row">
-              <div class="col-xs-6">Ministerio de Modernización</div>
-              <div class="col-xs-6">Ministerio de Desarrollo Económico</div>
-            </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6">Ministerio de Modernización</div>
+          <div class="col-xs-6">Ministerio de Desarrollo Económico</div>
+        </div>
+      </div>
     </footer>
 
 
@@ -70,9 +72,7 @@
 var map = L.map('map').setView([-34.61526795832458, -58.4033203125], 13);
 
   // set a base layer 
-  L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.map-0ub2e509/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
-  }).addTo(map);
+  L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.map-0ub2e509/{z}/{x}/{y}.png').addTo(map);
 
   // add the cartodb layer
   var layerUrl = 'http://gcba.cartodb.com/api/v2/viz/b5939330-cfbb-11e3-8106-0e10bcd91c2b/viz.json';

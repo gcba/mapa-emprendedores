@@ -1,4 +1,5 @@
 $color-primary: #FFD300;
+$footer-height: 110px;
 
 $navbar-default-bg: $color-primary;
 
@@ -52,6 +53,34 @@ $navbar-default-bg: $color-primary;
 //   }
 // }
 
-footer {
-  
+.leaflet-control-container {
+  .leaflet-left {
+
+  }
+  .leaflet-top {
+    top: 50px;
+  }
+}
+
+.cartodb-logo {
+  bottom: $footer-height !important;
+}
+
+
+html {
+  position: relative;
+  min-height: 100%;
+
+  body {
+    margin-bottom: $footer-height;
+  }
+
+  body > footer {
+    color: #FFF;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $footer-height; 
+    background-color: #333333;
+  }
 }

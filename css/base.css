@@ -5202,3 +5202,22 @@ button.close {
   top: 0;
   bottom: 0;
   width: 100%; }
+
+.leaflet-control-container .leaflet-top {
+  top: 50px; }
+
+.cartodb-logo {
+  bottom: 110px !important; }
+
+html {
+  position: relative;
+  min-height: 100%; }
+  html body {
+    margin-bottom: 110px; }
+  html body > footer {
+    color: #FFF;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #333333; }
