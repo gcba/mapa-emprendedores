@@ -2,7 +2,6 @@
 .project
 .sass-cache/
 node_modules/
-<<<<<<< HEAD
 bower_components/
-=======
->>>>>>> master
+.DS_Store
+src/
