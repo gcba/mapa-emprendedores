@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
     <link rel="stylesheet" href="css/base.css" />
 
-    <script src="lib/jquery-2.1.0.min.js"></script>
+
+	<!-- usig carga jQuery ??? -->
+	<script src="http://servicios.usig.buenosaires.gov.ar/usig-js/2.3/usig.AutoCompleterFull.min.js" type="text/javascript"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
-	<script src="http://servicios.usig.buenosaires.gov.ar/usig-js/2.3/usig.AutoCompleterFull.min.js" type="text/javascript"></script>
+
 
 
   </head>
@@ -116,6 +118,7 @@
   	
   	
     <script src="js/app.js"></script>
+
 	<script type="text/javascript">
 		$(function() {
 			var acCalle = new usig.AutoCompleter('input-direccion');
