@@ -67,8 +67,13 @@ Hacks para el mapa de CartoDB + Mapbox
   .leaflet-top {
     top: 50px;
   }
+  #agregar_btn{
+    background-image: url('../img/agregar.png');
+  }
+  
 }
 
+<<<<<<< HEAD
 .cartodb-logo {
   bottom: $footer-height !important;
 }
@@ -101,6 +106,21 @@ html {
     width: 100%;
     height: $footer-height; 
     background-color: #333333;
+=======
+#contenidoListado, #contenidoBusqueda, #formularioAlta{
+  position: absolute;
+  top: 10px;
+  left: 60px;
+  width: 30%;
+  height: 70%;
+  background-color: white;
+  overflow-y: scroll;
+  display: none;
+  padding: 10px;
+  border: 1px solid black;
+  div span{
+    font-size: 10px;
+>>>>>>> e4c1fce56706498a2a48f177bb459ee076330653
   }
 }
 

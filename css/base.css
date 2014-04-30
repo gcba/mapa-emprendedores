@@ -4979,6 +4979,7 @@ button.close {
   .carousel-control .icon-next {
     width: 30px;
     height: 30px;
+<<<<<<< HEAD
     margin-top: -15px;
     font-size: 30px; }
   .carousel-control .glyphicon-chevron-left,
@@ -5276,3 +5277,30 @@ html {
     width: 100%;
     height: 110px;
     background-color: #333333; }
+=======
+    background-color: white;
+    border: 1px solid #999999;
+    box-shadow: 0px 0px 5px #888888;
+    border-radius: 4px;
+    cursor: pointer; }
+  nav #listado_btn {
+    background-image: url("../img/lista.png"); }
+  nav #busqueda_btn {
+    background-image: url("../img/lupa.png"); }
+  nav #agregar_btn {
+    background-image: url("../img/agregar.png"); }
+
+#contenidoListado, #contenidoBusqueda, #formularioAlta {
+  position: absolute;
+  top: 10px;
+  left: 60px;
+  width: 30%;
+  height: 70%;
+  background-color: white;
+  overflow-y: scroll;
+  display: none;
+  padding: 10px;
+  border: 1px solid black; }
+  #contenidoListado div span, #contenidoBusqueda div span, #formularioAlta div span {
+    font-size: 10px; }
+>>>>>>> e4c1fce56706498a2a48f177bb459ee076330653

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var urlViz = "http://gcba.cartodb.com/api/v2/viz/a5ca90ac-cf07-11e3-bc9f-0e230854a1cb/viz.json";
+=======
+var urlViz = "http://gcba.cartodb.com/api/v2/viz/6b2c9166-d015-11e3-a1ad-0e73339ffa50/viz.json";
+>>>>>>> e4c1fce56706498a2a48f177bb459ee076330653
 var sql = cartodb.SQL({ user: 'gcba' });  	
 
 
@@ -36,21 +40,38 @@ $("button").click(function(d){
 		case "listado_btn":
 			if ($('#contenidoListado').css('display')  == 'none'){
 					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
 					$('#contenidoListado').css('display','inline');
 					busquedaListado();					
 				}else{
 					$('#contenidoListado').css('display','none');
+					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
 			}	
 			break;
 		case "busqueda_btn":
 			if ($('#contenidoBusqueda').css('display')  == 'none'){
 					$('#contenidoListado').css('display','none');
+					$('#formularioAlta').css('display','none');
 					$('#contenidoBusqueda').css('display','inline');
 					$('#resultadoBusqueda').html('');
 					$('#key').val('');
 					$('#key').focus();
 				}else{
+					$('#contenidoListado').css('display','none');
 					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
+			}	
+			break;
+		case "agregar_btn":
+			if ($('#formularioAlta').css('display')  == 'none'){
+					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','inline');
+					$('#contenidoListado').css('display','none');
+				}else{
+					$('#contenidoListado').css('display','none');
+					$('#contenidoBusqueda').css('display','none');
+					$('#formularioAlta').css('display','none');
 			}	
 			break;
 		

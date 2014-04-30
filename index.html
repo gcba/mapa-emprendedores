@@ -9,8 +9,32 @@
     <link rel="shortcut icon" href="http://www.buenosaires.gob.ar/sites/gcaba/files/favicon.ico" />
     <link rel="stylesheet" href="css/base.css" />
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
     <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+=======
+
+	<!-- usig carga jQuery ??? -->
+	<script src="http://servicios.usig.buenosaires.gov.ar/usig-js/2.3/usig.AutoCompleterFull.min.js" type="text/javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+
+
+
+  </head>
+  <body>
+  	<header>
+
+  	</header>
+    
+    <nav>
+    	<button id="listado_btn"> </button><br>
+    	<button id="busqueda_btn"> </button><br>
+    	<button id="agregar_btn"> </button>
+    </nav>
+    
+    <div id="map"> </div>
+>>>>>>> e4c1fce56706498a2a48f177bb459ee076330653
     
 
 </head>
@@ -37,6 +61,7 @@
         </div>
       </div>
     </footer>
+<<<<<<< HEAD
 
 
 
@@ -58,3 +83,103 @@ var map = L.map('map').setView([-34.61526795832458, -58.4033203125], 13);
 </body>
 
 </html>
+=======
+    
+    <!-- contenido puede estar hide y ser un div flotante por css -->
+ 	<div id="contenidoListado">Listado de todas las empresas </div>
+ 	<div id="contenidoBusqueda">Buscar tipo/nombre/tags: <input type="text" id="key"/>
+ 		<div id="resultadoBusqueda"> </div>
+  	</div>
+
+ 	<div id="formularioAlta">
+ 		Formulario de Alta:
+ 		<form id="altaDeEmprendedor">
+ 			<table>
+
+ 				<tr>
+ 					<td>Nombre:</td>
+ 					<td><input type="text" name="nombre"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Calle:</td>
+					<td><input type="text" id="input-direccion"></td>
+ 					
+ 				</tr>
+ 				<tr>
+ 					<td>Altura:</td>
+ 					<td><input type="text" name="altura"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Esquina:</td>
+					<td><input type="text" id="input-esquina"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Piso y Departamento</td>
+ 					<td><input type="text" name="piso_dpto"></td>
+ 				</tr>
+
+ 				<tr>
+ 					<td>Descripcion</td>
+ 					<td><input type="text" name="descripcion"></td>
+ 				</tr>
+
+ 				<tr>
+ 					<td>Inicio de actividades</td>
+ 					<td><input type="text" name="inicio_de_actividades"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Mail institucional</td>
+ 					<td><input type="text" name="mail_institucional"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Mail del responsable</td>
+ 					<td><input type="text" name="mail_responsable"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Responsable del proyecto</td>
+ 					<td><input type="text" name="responsable_proyecto"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Servicios</td>
+ 					<td><input type="text" name="servicios"></td>
+ 				</tr>
+
+ 				<tr>
+ 					<td>Tags</td>
+ 					<td><input type="text" name="tags"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Teléfono</td>
+ 					<td><input type="text" name="telefono"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Tipo</td>
+ 					<td><input type="text" name="tipo"></td>
+ 				</tr>
+ 				<tr>
+ 					<td>Web</td>
+ 					<td><input type="text" name="web"></td>
+ 				</tr>
+ 			</table>
+
+
+	 		</form>
+  	</div>
+
+  	
+  	
+    <script src="js/app.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			var acCalle = new usig.AutoCompleter('input-direccion');
+			var acEsquina = new usig.AutoCompleter('input-esquina');
+		});
+
+	</script>
+    
+    
+    
+  </body>
+</html>
+>>>>>>> e4c1fce56706498a2a48f177bb459ee076330653
