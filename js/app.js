@@ -1,4 +1,3 @@
-
 var urlViz = "http://gcba.cartodb.com/api/v2/viz/6b2c9166-d015-11e3-a1ad-0e73339ffa50/viz.json";
 var sql = cartodb.SQL({ user: 'gcba' });  	
 
