@@ -1,37 +1,13 @@
+
 var urlViz = "http://gcba.cartodb.com/api/v2/viz/6b2c9166-d015-11e3-a1ad-0e73339ffa50/viz.json";
 var sql = cartodb.SQL({ user: 'gcba' });  	
-
-
 
 /*
  * Inicializacion del mapa
  */
-function main() {
-	cartodb.createVis('map', urlViz, {
-    	tiles_loader: true,
-        center_lat: -34.610060,
-        center_lon: -58.439307,
-        zoom: 11
-    })
-    .done(function(vis, layers) {
-    	layers[1].setInteraction(true);
-		layers[1].on('featureOver', function(e, pos, latlng, data) {
-		cartodb.log.log(e, pos, latlng, data);
-		});
 
-    	map = vis.getNativeMap();
-    })
-  
-    .error(function(err) {
-      console.log(err);
-	});
-}
-
-/*
- * Asigna listener a los botones de <nav> para mostrar
- * u olcultar los paneles de empresas
- */
 $("button").click(function(d){
+	console.log("pase por aqui");
 	switch (d.currentTarget.id){
 		case "listado_btn":
 			if ($('#contenidoListado').css('display')  == 'none'){
@@ -73,7 +49,6 @@ $("button").click(function(d){
 		
 	}
 });
-
 
 /*
  * Query SQL para el listado total.
@@ -128,5 +103,3 @@ $("#key").keypress(function(){
 });
 
 
-
-window.onload = main;
