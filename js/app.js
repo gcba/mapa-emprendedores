@@ -46,7 +46,15 @@ $("button").click(function(d){
 					$('#formularioAlta').css('display','none');
 			}	
 			break;
-		
+		case "nuevo_registro": 
+			var columnas = 'altura,calle,cartodb_georef_status,descripcion,esquina,inicio_de_actividades,mail_institucional,mail_responsable,nombre,piso_dpto,responsable_proyecto,servicios,tags,telefono,tipo,web';
+			var valores = '126,Malabia,true,nuevo registro,,1978,,,Aemprendimiento,4toB,,Consultoria,consultoria,4856-9999,Aceleradora,';
+			var url = "http://gcba.cartodb.com/api/v2/sql?q=INSERT INTO mapa_emprendedores (" + columnas + ") VALUES (" + valores + ")&api_key=15ea5821068feecc0584c70d07355848537c2182";
+			// $.post( url ); NO FUNCA
+			// http://gcba.cartodb.com/api/v2/sql?q=INSERT INTO mapa_emprendedores ( altura , calle , cartodb_georef_status , descripcion , esquina , inicio_de_actividades , mail_institucional , mail_responsable , nombre , piso_dpto , responsable_proyecto , servicios , tags , telefono , tipo , web ) VALUES ( "126" , "Malabia" , "true" , "nuevo registro" , "", "1978" , "" , "" , "Aemprendimiento" , "4toB" , "" , "Consultoria" , "consultoria" , "4856-9999" , "Aceleradora" , "")&api_key=15ea5821068feecc0584c70d07355848537c2182
+
+
+			break;
 	}
 });
 
