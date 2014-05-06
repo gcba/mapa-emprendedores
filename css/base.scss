@@ -63,9 +63,10 @@ opacity:.7
 
 .search {
   position: absolute;
-  z-index: 10000;
+  z-index: 1;
   top: 50%;
   left: 33%;
+  overflow: hidden;
  
   .icon-addon {
     position: relative;

@@ -45,7 +45,9 @@ $("button").click(function(d){
 					$('#formularioAlta').css('display','none');
 			}	
 			break;
-		
+		case "list-view":
+			busquedaListado();	
+			break;
 	}
 });
 
@@ -53,15 +55,19 @@ $("button").click(function(d){
  * Query SQL para el listado total.
  */
 function busquedaListado(){
+
+	var contenido = $('#modal-list .modal-body');
+
 	var q = "SELECT * FROM mapa_emprendedores";
 	sql.execute(q)
 		.done(function(data) {
 			for (var i = 0; i < data.total_rows; i++) {
-				$('#contenidoListado').append("<div> <span>" + 
+				contenido.append("<div> <span>" + 
 	    	    	data.rows[i].nombre + 
 	        	    " (" + 
 	            	data.rows[i].tipo +
 					")");
+				contenido.children('.loading').remove();
 			}
 	 	})
 	 
@@ -69,6 +75,29 @@ function busquedaListado(){
 	 	   console.log("SQL ERR:",errors);
 		});
 }
+
+function listarTipos(){
+
+	var contenido = $('#modal-list .modal-body');
+
+	var q = "SELECT * FROM mapa_emprendedores";
+	sql.execute(q)
+		.done(function(data) {
+			for (var i = 0; i < data.total_rows; i++) {
+				contenido.append("<div> <span>" + 
+	    	    	data.rows[i].nombre + 
+	        	    " (" + 
+	            	data.rows[i].tipo +
+					")");
+				contenido.children('.loading').remove();
+			}
+	 	})
+	 
+	 	.error(function(errors) {
+	 	   console.log("SQL ERR:",errors);
+		});
+}
+
 
 /*
  * Hace un query a la base de emprendedores con lo que se
