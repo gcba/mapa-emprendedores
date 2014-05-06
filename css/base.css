@@ -5246,6 +5246,59 @@ button.close {
 .navbar-floating {
   float: right;
   margin-right: 20px; }
+  .navbar-floating .input-group .icon-addon .form-control {
+    border-radius: 0; }
+
+.search {
+  position: absolute;
+  z-index: 10000;
+  top: 50%;
+  left: 33%; }
+  .search .icon-addon {
+    position: relative;
+    color: #555;
+    display: block; }
+    .search .icon-addon:after, .search .icon-addon:before {
+      display: table;
+      content: " "; }
+    .search .icon-addon:after {
+      clear: both; }
+    .search .icon-addon.addon-md .glyphicon, .search .icon-addon .glyphicon, .search .icon-addon.addon-md .fa, .search .icon-addon .fa {
+      position: absolute;
+      z-index: 2;
+      left: 10px;
+      font-size: 14px;
+      width: 20px;
+      margin-left: -2.5px;
+      text-align: center;
+      padding: 10px 0;
+      top: 1px; }
+    .search .icon-addon.addon-lg .form-control {
+      line-height: 1.33;
+      height: 46px;
+      font-size: 18px;
+      padding: 10px 16px 10px 40px; }
+    .search .icon-addon.addon-sm .form-control {
+      height: 30px;
+      padding: 5px 10px 5px 28px;
+      font-size: 12px;
+      line-height: 1.5; }
+    .search .icon-addon.addon-lg .fa, .search .icon-addon.addon-lg .glyphicon {
+      font-size: 18px;
+      margin-left: 0;
+      left: 11px;
+      top: 4px; }
+    .search .icon-addon.addon-md .form-control, .search .icon-addon .form-control {
+      padding-left: 30px;
+      float: left;
+      font-weight: normal; }
+    .search .icon-addon.addon-sm .fa, .search .icon-addon.addon-sm .glyphicon {
+      margin-left: 0;
+      font-size: 12px;
+      left: 5px;
+      top: -1px; }
+    .search .icon-addon .form-control:focus + .glyphicon, .search .icon-addon:hover .glyphicon, .search .icon-addon .form-control:focus + .fa, .search .icon-addon:hover .fa {
+      color: #2580db; }
 
 /* 
 
