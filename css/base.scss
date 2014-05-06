@@ -1,7 +1,9 @@
 $color-primary: #FFD300;
-$footer-height: 110px;
+$footer-height: 60px;
 
-$navbar-default-bg: $color-primary;
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/" !default;
+
+// $navbar-default-bg: $color-primary;
 
 @font-face{font-family:"Gotham";src:url('fonts/gotham.eot');src:url('fonts/gotham.eot?#iefix') format('embedded-opentype'),url('fonts/gotham.woff') format('woff'),url('fonts/gotham.ttf') format('truetype'),url('fonts/gotham.svg#Gotham-Medium') format('svg');font-weight:normal;font-style:normal}
 
@@ -16,8 +18,7 @@ $font-family-sans-serif:  "Gotham", "Helvetica Neue", Helvetica, Arial, sans-ser
   height:50px;
   padding:10px 0;
   overflow:visible;
-  background-color:#FFD300;
-  box-shadow:0 0 6px #000
+  background-color: $color-primary;
 }
 
 .header-inner {
@@ -51,6 +52,10 @@ filter:alpha(opacity=70);
 opacity:.7
 }
 
+.navbar-floating {
+  float: right;
+  margin-right: 20px
+}
 
 /* 
 
@@ -62,7 +67,7 @@ Hacks para el mapa de CartoDB + Mapbox
 
 .leaflet-control-container {
   .leaflet-left {
-
+  
   }
   .leaflet-top {
     top: 50px;
@@ -72,8 +77,6 @@ Hacks para el mapa de CartoDB + Mapbox
   }
   
 }
-
-<<<<<<< HEAD
 .cartodb-logo {
   bottom: $footer-height !important;
 }
@@ -106,26 +109,18 @@ html {
     width: 100%;
     height: $footer-height; 
     background-color: #333333;
-=======
-#contenidoListado, #contenidoBusqueda, #formularioAlta{
-  position: absolute;
-  top: 10px;
-  left: 60px;
-  width: 30%;
-  height: 70%;
-  background-color: white;
-  overflow-y: scroll;
-  display: none;
-  padding: 10px;
-  border: 1px solid black;
-  div span{
-    font-size: 10px;
->>>>>>> e4c1fce56706498a2a48f177bb459ee076330653
   }
 }
 
+
 footer {
-  .ministerio {}
-  .modernizacion {}
-  .desarrollo-economico {}
+  .ministerio {
+    padding: 20px 50px;
+  }
+  .modernizacion {
+    text-align: left; 
+  }
+  .desarrollo-economico {
+    text-align: right;
+  }
 }
