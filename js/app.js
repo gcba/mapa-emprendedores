@@ -57,9 +57,10 @@ function busquedaKeyword(key) {
 	key = key.toLowerCase();
 	var q = "SELECT * FROM mapa_emprendedores WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key + "%' OR LOWER(tipo) LIKE '%" + key + "%'";
 	sql.execute(q).done(function(data) {
-		$('#resultadoBusqueda').text("");
+		$('#busquedaList').text("");
 		for (var i = 0; i < data.total_rows; i++) {
-			$('#resultadoBusqueda').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')');
+			console.log(data.rows[i].nombre);
+			$('#busquedaList').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')</span></div>');
 		}
 	}).error(function(errors) {
 		console.log("SQL ERR:", errors);
@@ -106,7 +107,7 @@ generateTypeList();
 /*
  * updatea la busqueda por keyword
  */
-$("#key").keypress(function() {
-	busquedaKeyword($('#key').val());
+$("#busquedaEmprendedores").keypress(function() {
+	busquedaKeyword($('#busquedaEmprendedores').val());
 });
 
