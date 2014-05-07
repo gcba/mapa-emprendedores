@@ -77,12 +77,14 @@ function generateTypeList() {
 	var tipoForm = $('#tipo_frm');
 
 	sql.execute(queryList).done(function(data) {
+	contenido.append("<li><a href='#'> Ver Todos </a></li>");
 		for (var i = 0; i < data.total_rows; i++) {
 
 			tipoForm.append("<option>" + data.rows[i].tipo + "</option>");
 
 			contenido.append("<li><a href='#'>" + data.rows[i].tipo + "</a></li>");
 		}
+
 	}).error(function(errors) {
 		console.log("SQL ERR:", errors);
 	});
