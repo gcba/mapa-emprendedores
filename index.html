@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="lib/favicon.ico" />
 
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
-
+    
     <link rel="stylesheet" href="css/base.css" />
 
     
@@ -17,36 +17,9 @@
     <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
     
     <script src="lib/jquery-2.1.0.min.js"></script>
-    <script src="lib/bootstrap.min.js" type="text/javascript"></script>
-    
-    <script type="infowindow/html" id="infowindow_template">
-      <div class="cartodb-popup header yellow">
-        <a href="#close" class="cartodb-popup-close-button close">x</a>
-        <div class="cartodb-popup-header">
-        </div>
-        <div class="cartodb-popup-content-wrapper">
-          <div class="cartodb-popup-content">
-            <h4>Custom title</h4>
-            <p>{{calle}}</p>
-            <p>{{altura}}</p>
-            <h4>tipo</h4>
-            <p>{{tipo}}</p>
-            <h4>responsable_proyecto</h4>
-            <p>{{responsable_proyecto}}</p>
-            <h4>web</h4>
-            <p>{{web}}</p>
-            <h4>descripcion</h4>
-            <p>{{descripcion}}</p>
-            <h4>servicios</h4>
-            <p>{{servicios}}</p>
-            <h4>tags</h4>
-            <p>{{tags}}</p>
-          </div>
-        </div>
-        <div class="cartodb-popup-tip-container">
-        </div>
-      </div>
-    </script>
+	<script src="lib/bootstrap.min.js" type="text/javascript"></script>
+    <!-- script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script -->
+
 
 
   </head>
@@ -137,9 +110,15 @@
 
 
 
+<script>
+
+    window.onload = function() {
+        cartodb.createVis('map', 'http://gcba.cartodb.com/api/v2/viz/196d1632-d0ad-11e3-bbd2-0e230854a1cb/viz.json');
+    };
+
+</script>
 
 <script src="js/app.js" type="text/javascript"></script>
-<script src="js/custom.js" type="text/javascript"></script>
 </body>
 
 

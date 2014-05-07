@@ -1,52 +1,16 @@
 var urlViz = "http://gcba.cartodb.com/api/v2/viz/6b2c9166-d015-11e3-a1ad-0e73339ffa50/viz.json";
-var sql = cartodb.SQL({ user: 'gcba' });  	
+var sql = cartodb.SQL({
+	user : 'gcba'
+});
 
 /*
  * Inicializacion del mapa
  */
 
-$("button").click(function(d){
-	console.log("pase por aqui");
-	switch (d.currentTarget.id){
-		case "listado_btn":
-			if ($('#contenidoListado').css('display')  == 'none'){
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-					$('#contenidoListado').css('display','inline');
-					busquedaListado();					
-				}else{
-					$('#contenidoListado').css('display','none');
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-			}	
-			break;
-		case "busqueda_btn":
-			if ($('#contenidoBusqueda').css('display')  == 'none'){
-					$('#contenidoListado').css('display','none');
-					$('#formularioAlta').css('display','none');
-					$('#contenidoBusqueda').css('display','inline');
-					$('#resultadoBusqueda').html('');
-					$('#key').val('');
-					$('#key').focus();
-				}else{
-					$('#contenidoListado').css('display','none');
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-			}	
-			break;
-		case "agregar_btn":
-			if ($('#formularioAlta').css('display')  == 'none'){
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','inline');
-					$('#contenidoListado').css('display','none');
-				}else{
-					$('#contenidoListado').css('display','none');
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-			}	
-			break;
+$("button").click(function(d) {
+	switch (d.currentTarget.id) {
 		case "list-view":
-			busquedaListado();	
+			busquedaListado();
 			break;
 	}
 });
@@ -54,91 +18,93 @@ $("button").click(function(d){
 /*
  * Query SQL para el listado total.
  */
-function busquedaListado(){
+
+function busquedaListado() {
 
 	var contenido = $('#modal-list .modal-body');
 
 	var q = "SELECT * FROM mapa_emprendedores";
-	sql.execute(q)
-		.done(function(data) {
-			for (var i = 0; i < data.total_rows; i++) {
-				contenido.append("<div> <span>" + 
-	    	    	data.rows[i].nombre + 
-	        	    " (" + 
-	            	data.rows[i].tipo +
-					")");
-				contenido.children('.loading').remove();
-			}
-	 	})
-	 
-	 	.error(function(errors) {
-	 	   console.log("SQL ERR:",errors);
-		});
+	sql.execute(q).done(function(data) {
+		for (var i = 0; i < data.total_rows; i++) {
+			contenido.append("<div> <span>" + data.rows[i].nombre + " (" + data.rows[i].tipo + ")");
+			contenido.children('.loading').remove();
+		}
+	}).error(function(errors) {
+		console.log("SQL ERR:", errors);
+	});
 }
 
-function listarTipos(){
+function listarTipos() {
 
 	var contenido = $('#modal-list .modal-body');
 
 	var q = "SELECT * FROM mapa_emprendedores";
-	sql.execute(q)
-		.done(function(data) {
-			for (var i = 0; i < data.total_rows; i++) {
-				contenido.append("<div> <span>" + 
-	    	    	data.rows[i].nombre + 
-	        	    " (" + 
-	            	data.rows[i].tipo +
-					")");
-				contenido.children('.loading').remove();
-			}
-	 	})
-	 
-	 	.error(function(errors) {
-	 	   console.log("SQL ERR:",errors);
-		});
+	sql.execute(q).done(function(data) {
+		for (var i = 0; i < data.total_rows; i++) {
+			contenido.append("<div> <span>" + data.rows[i].nombre + " (" + data.rows[i].tipo + ")");
+			contenido.children('.loading').remove();
+		}
+	}).error(function(errors) {
+		console.log("SQL ERR:", errors);
+	});
 }
-
 
 /*
  * Hace un query a la base de emprendedores con lo que se
  * escriba en el input CASE SENSITIVE
  */
-function busquedaKeyword(key){
+function busquedaKeyword(key) {
 	key = key.toLowerCase();
-	var q = "SELECT * FROM mapa_emprendedores WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key +"%' OR LOWER(tipo) LIKE '%" + key +"%'";
-	sql.execute(q)
-		.done(function(data) {
-			$('#resultadoBusqueda').text("");
-			for (var i = 0; i < data.total_rows; i++) {
-				$('#resultadoBusqueda').append('<div> <span>' + 
-	    	    	data.rows[i].nombre + 
-	        	    ' (' + 
-	            	data.rows[i].tipo +
-					')');
-			}
-	 	})
-	 
-	 	.error(function(errors) {
-	 	   console.log("SQL ERR:",errors);
-		});
+	var q = "SELECT * FROM mapa_emprendedores WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key + "%' OR LOWER(tipo) LIKE '%" + key + "%'";
+	sql.execute(q).done(function(data) {
+		$('#resultadoBusqueda').text("");
+		for (var i = 0; i < data.total_rows; i++) {
+			$('#resultadoBusqueda').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')');
+		}
+	}).error(function(errors) {
+		console.log("SQL ERR:", errors);
+	});
 }
 
-function generateTypeList(){
+/*
+ * Llena el selector de FILTRAR EMPRENDIMIENTOS mediante un query
+ * a la base de datos por el campo tipo
+ */
+function generateTypeList() {
 	var queryList = "SELECT distinct tipo FROM mapa_emprendedores";
 
-	sql.execute(queryList)
-		.done(function(data){
-			console.log(data);
-		})
+	var contenido = $('#lista-emprendimientos');
+	var tipoForm = $('#tipo_frm');
+
+	sql.execute(queryList).done(function(data) {
+		for (var i = 0; i < data.total_rows; i++) {
+
+			tipoForm.append("<option>" + data.rows[i].tipo + "</option>");
+
+			contenido.append("<li><a href='#'>" + data.rows[i].tipo + "</a></li>");
+		}
+	}).error(function(errors) {
+		console.log("SQL ERR:", errors);
+	});
 }
 
+function generateYears() {
+	var currentTime = new Date();
+	var desde = 1990, hasta = currentTime.getFullYear();
+
+	var contenido = $('#acti_frm');
+	for (var i = desde; i <= hasta; i++) {
+		contenido.append("<option>" + i + "</option>");
+	}
+}
+
+generateYears();
 generateTypeList();
 
 /*
  * updatea la busqueda por keyword
  */
-$("#key").keypress(function(){
+$("#key").keypress(function() {
 	busquedaKeyword($('#key').val());
 });
-
 
