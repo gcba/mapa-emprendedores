@@ -123,6 +123,17 @@ function busquedaKeyword(key){
 		});
 }
 
+function generateTypeList(){
+	var queryList = "SELECT distinct tipo FROM mapa_emprendedores";
+
+	sql.execute(queryList)
+		.done(function(data){
+			console.log(data);
+		})
+}
+
+generateTypeList();
+
 /*
  * updatea la busqueda por keyword
  */
