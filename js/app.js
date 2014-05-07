@@ -98,8 +98,6 @@ function busquedaKeyword(key) {
 				$('#busquedaList').append('<a class="list-group-item">' + data.rows[i].nombre + '<span class="badge">' + data.rows[i].tipo + '</span></a>');
 			}
 			
-			
-			
 		}).error(function(errors) {
 			console.log("SQL ERR:", errors);
 		});
