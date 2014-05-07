@@ -12,13 +12,28 @@ $("button").click(function(d) {
 		case "list-view":
 			busquedaListado();
 			break;
+		case "agregar-btn":
+			escriboEnCartoDB();
+			break;
 	}
 });
+
+
+/*
+ * Escribe lo que está en el formulario en la la base de datos de CartoDB.
+ */
+function escriboEnCartoDB() {
+
+
+}
+
+
+
+
 
 /*
  * Query SQL para el listado total.
  */
-
 function busquedaListado() {
 
 	var contenido = $('#modal-list .modal-body');
