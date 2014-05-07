@@ -59,7 +59,6 @@ function busquedaKeyword(key) {
 	sql.execute(q).done(function(data) {
 		$('#busquedaList').text("");
 		for (var i = 0; i < data.total_rows; i++) {
-			console.log(data.rows[i].nombre);
 			$('#busquedaList').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')</span></div>');
 		}
 	}).error(function(errors) {
@@ -107,7 +106,7 @@ generateTypeList();
 /*
  * updatea la busqueda por keyword
  */
-$("#busquedaEmprendedores").keypress(function() {
+$("#busquedaEmprendedores").keydown(function() {
 	busquedaKeyword($('#busquedaEmprendedores').val());
 });
 
