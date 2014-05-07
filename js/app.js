@@ -6,45 +6,7 @@ var sql = cartodb.SQL({ user: 'gcba' });
  */
 
 $("button").click(function(d){
-	console.log("pase por aqui");
 	switch (d.currentTarget.id){
-		case "listado_btn":
-			if ($('#contenidoListado').css('display')  == 'none'){
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-					$('#contenidoListado').css('display','inline');
-					busquedaListado();					
-				}else{
-					$('#contenidoListado').css('display','none');
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-			}	
-			break;
-		case "busqueda_btn":
-			if ($('#contenidoBusqueda').css('display')  == 'none'){
-					$('#contenidoListado').css('display','none');
-					$('#formularioAlta').css('display','none');
-					$('#contenidoBusqueda').css('display','inline');
-					$('#resultadoBusqueda').html('');
-					$('#key').val('');
-					$('#key').focus();
-				}else{
-					$('#contenidoListado').css('display','none');
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-			}	
-			break;
-		case "agregar_btn":
-			if ($('#formularioAlta').css('display')  == 'none'){
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','inline');
-					$('#contenidoListado').css('display','none');
-				}else{
-					$('#contenidoListado').css('display','none');
-					$('#contenidoBusqueda').css('display','none');
-					$('#formularioAlta').css('display','none');
-			}	
-			break;
 		case "list-view":
 			busquedaListado();	
 			break;
@@ -54,6 +16,7 @@ $("button").click(function(d){
 /*
  * Query SQL para el listado total.
  */
+
 function busquedaListado(){
 
 	var contenido = $('#modal-list .modal-body');
@@ -123,16 +86,51 @@ function busquedaKeyword(key){
 		});
 }
 
+/*
+ * Llena el selector de FILTRAR EMPRENDIMIENTOS mediante un query  
+ * a la base de datos por el campo tipo
+ */
 function generateTypeList(){
 	var queryList = "SELECT distinct tipo FROM mapa_emprendedores";
 
+	var contenido = $('#lista-emprendimientos');
+	var tipoForm = $('#tipo_frm');
+
 	sql.execute(queryList)
-		.done(function(data){
-			console.log(data);
-		})
+		.done(function(data) {
+			for (var i = 0; i < data.total_rows; i++) {
+
+				tipoForm.append("<option>" + 
+	    	    	data.rows[i].tipo +
+					"</option>");
+
+				contenido.append("<li><a href='#'>" + 
+	    	    	data.rows[i].tipo +
+					"</a></li>");
+			}
+	 	})
+	 	.error(function(errors) {
+	 	   console.log("SQL ERR:",errors);
+		});
 }
 
+
+function generateYears (){
+	var currentTime = new Date();
+	var desde = 1990,
+		hasta = currentTime.getFullYear();
+
+	var contenido = $('#acti_frm');
+	for (var i = desde; i <= hasta; i++) {
+		contenido.append("<option>" + 
+	    	i +
+			"</option>");
+	}
+}			
+
+generateYears ();
 generateTypeList();
+
 
 /*
  * updatea la busqueda por keyword
@@ -140,5 +138,4 @@ generateTypeList();
 $("#key").keypress(function(){
 	busquedaKeyword($('#key').val());
 });
-
 

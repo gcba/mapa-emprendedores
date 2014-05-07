@@ -46,17 +46,11 @@
                   Filtrar emprendimientos
                   <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Organización</a></li>
-                  <li><a href="#">Incubadora</a></li>
-                  <li><a href="#">Espacio de coworking</a></li>
-                  <li><a href="#">Emprendimiento</a></li>
-                  <li><a href="#">Fondo de inversión</a></li>
-                  <li><a href="#">Makerspace</a></li>
-                  <li><a href="#">Universidad</a></li>
+                <ul class="dropdown-menu" id="lista-emprendimientos">
+                	<!-- genero tipos dinamicamente -->
                 </ul>
               </div>
-              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Sugerir lugar</button>
+              <button type="button" class="btn btn-default" id="form-view" data-toggle="modal" data-target="#modal-form" ><span class="glyphicon glyphicon-plus"></span> Sugerir lugar</button>
             </div>
         </div>
         
@@ -83,6 +77,8 @@
 
     <div id="map"> </div>
 
+
+<!-- Modal List -->
 <div class="modal fade" id="modal-list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">>
   <div class="modal-dialog">
     <div class="modal-content">
@@ -96,6 +92,101 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- Modal form -->
+<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title">Agregar emprendimiento</h4>
+			</div>
+			<div class="modal-body">
+				<p class="loading">
+
+			<form role="form">
+			
+			  <div class="form-group">
+			    <label for="nombre_frm">Nombre</label>
+			    <input type="text" id="nombre_frm" class="form-control" placeholder="Nombre del emprendimiento">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="direccion_frm">Direccion</label>
+			    <input type="text" id="direccion_frm" class="form-control" placeholder="Calle y altura o esquina">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="piso_frm">Piso y departamento</label>
+			    <input type="text" id="piso_frm" class="form-control" placeholder="Piso y departamento">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="desc_frm">Descripción</label>
+				<textarea class="form-control" rows="3" id="desc_frm" placeholder="">Ingrese una breve descripción del emprendimiento</textarea>
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="acti_frm">Inicio de actividades</label>
+			    <select class="form-control" id="acti_frm">
+				</select>
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="mailIns_frm">Mail institucional</label>
+			    <input type="email" class="form-control" id="mailIns_frm" placeholder="E-mail">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="mailRes_frm">Mail del responsable</label>
+			    <input type="email" class="form-control" id="mailRes_frm" placeholder="E-mail del responsable">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="resp_frm">Responsable del proyecto</label>
+			    <input type="text" id="resp_frm" class="form-control" placeholder="Nombre del responsable">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="resp_frm">Servicios</label>
+			    <input type="text" id="serv_frm" class="form-control" placeholder="Sevicios">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="tags_frm">Tags</label>
+			    <input type="text" id="tags_frm" class="form-control" placeholder="Tags separados por coma">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="tele_frm">Teléfono</label>
+			    <input type="text" id="tele_frm" class="form-control" placeholder="Telefonos">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="tipo_frm">Tipo</label>
+			    <select class="form-control" id="tipo_frm">
+				</select>
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="web_frm">Web</label>
+			    <input type="text" id="web_frm" class="form-control" placeholder="HTTP://">
+			  </div>
+			
+			
+			  <button type="submit" class="btn btn-default">Enviar</button>
+			</form>
+
+
+
+				</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 <footer>
   <div class="container">
