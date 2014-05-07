@@ -54,16 +54,24 @@ function listarTipos() {
  * escriba en el input CASE SENSITIVE
  */
 function busquedaKeyword(key) {
-	key = key.toLowerCase();
-	var q = "SELECT * FROM mapa_emprendedores WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key + "%' OR LOWER(tipo) LIKE '%" + key + "%'";
-	sql.execute(q).done(function(data) {
-		$('#busquedaList').text("");
-		for (var i = 0; i < data.total_rows; i++) {
-			$('#busquedaList').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')</span></div>');
-		}
-	}).error(function(errors) {
-		console.log("SQL ERR:", errors);
-	});
+	if ( $('#busquedaEmprendedores').val() == ''){
+			$('#busquedaList').text("");
+			console.log ( $('#busquedaEmprendedores').val() );
+	}else{
+		key = key.toLowerCase();
+		var q = "SELECT * FROM mapa_emprendedores WHERE LOWER(tags) LIKE '%" + key + "%' OR LOWER(nombre) LIKE '%" + key + "%' OR LOWER(tipo) LIKE '%" + key + "%'";
+		sql.execute(q).done(function(data) {
+			$('#busquedaList').text("");
+			for (var i = 0; i < data.total_rows; i++) {
+				$('#busquedaList').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')</span></div>');
+			}
+			
+			
+			
+		}).error(function(errors) {
+			console.log("SQL ERR:", errors);
+		});
+	}
 }
 
 /*
@@ -106,7 +114,9 @@ generateTypeList();
 /*
  * updatea la busqueda por keyword
  */
-$("#busquedaEmprendedores").keydown(function() {
+
+//si vacio entonces nada
+$("#busquedaEmprendedores").keyup(function() {
 	busquedaKeyword($('#busquedaEmprendedores').val());
 });
 
