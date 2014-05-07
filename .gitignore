@@ -6,3 +6,4 @@ bower_components/
 .DS_Store
 src/
 testing/
+viz.json
