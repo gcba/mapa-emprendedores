@@ -63,7 +63,7 @@ function busquedaKeyword(key) {
 		sql.execute(q).done(function(data) {
 			$('#busquedaList').text("");
 			for (var i = 0; i < data.total_rows; i++) {
-				$('#busquedaList').append('<div> <span>' + data.rows[i].nombre + ' (' + data.rows[i].tipo + ')</span></div>');
+				$('#busquedaList').append('<a class="list-group-item">' + data.rows[i].nombre + '<span class="badge">' + data.rows[i].tipo + '</span></a>');
 			}
 			
 			

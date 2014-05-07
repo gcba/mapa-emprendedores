@@ -5347,3 +5347,6 @@ footer .modernizacion {
   text-align: left; }
 footer .desarrollo-economico {
   text-align: right; }
+
+.list-group {
+  height: 201px; }
