@@ -29,12 +29,14 @@ $("form").submit(function() {
 			$("#nombre_frm").val() + "','" +
 			$("#tags_frm").val() + "'" ;
 	
-	//$.post("") 	// http://{account}.cartodb.com/api/v2/sql?q=INSERT INTO test_table (column_name, column_name_2, the_geom) VALUES ('this is a string', 11, ST_SetSRID(ST_Point(-110, 43),4326))&api_key={Your API key}
-
-	console.log(valores);
+	var url = "http://" + cuenta + ".cartodb.com/api/v2/sql?q=INSERT INTO " + tabla + " (" + columnas + ") VALUES (" + valores + ")&api_key=" + apikey; 
+	$.post(url);
+		
+	
+	
 	$('#modal-form').modal('hide');		
 				
-	return false;
+	return false; // para que Chrome no recargue la página
 });
 	
 	
