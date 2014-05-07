@@ -153,9 +153,20 @@ Hacks para el mapa de CartoDB + Mapbox
   bottom: $footer-height !important;
 }
 
+.cartodb-tiles-loader {
 
+}
 
+.cartodb-zoom {
+  margin: 70px 0 0 20px !important;
+  width: 30px !important;
+}
 
+.cartodb-tiles-loader .loader {
+  top: 120px !important;
+  width: 30px !important;
+  height: 30px !important;
+}
 /* 
 
 Sticky footer
