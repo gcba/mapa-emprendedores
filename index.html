@@ -1,24 +1,24 @@
-<html lang="es">	
-<head>
-    <title>Buenos Aires - Mapa Emprendedores </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<html lang="es">
+	<head>
+		<title>Buenos Aires - Mapa Emprendedores </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link rel="shortcut icon" href="lib/favicon.ico" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="shortcut icon" href="lib/favicon.ico" />
 
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 
-    <link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/base.css" />
 
-    
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
-    <![endif]-->
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
-    
-    <script src="lib/jquery-2.1.0.min.js"></script>
-    <script src="lib/bootstrap.min.js" type="text/javascript"></script>
-    
+		<!--[if lte IE 8]>
+		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
+		<![endif]-->
+		<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+
+		<script src="lib/jquery-2.1.0.min.js"></script>
+		<script src="lib/bootstrap.min.js" type="text/javascript"></script>
+		<!-- script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script -->
+
     <script type="infowindow/html" id="infowindow_template">
       <div class="cartodb-popup">
         <a href="#close" class="cartodb-popup-close-button close">x</a>
@@ -48,98 +48,193 @@
     </script>
 
 
-  </head>
+	</head>
 
-<body>
-    <header>
-        
-        <div class="navbar navbar-default navbar-static-top" id="top" role="banner">
-            <div class="header-gcba">
-                  <div class="header-inner">
-                    <div class="container">
-                      <a href="http://buenosaires.gob.ar" target="_blank"><div class="logo"></div></a>
-                      <h2 class="slogan">En todo estás vos</h2>
-                    </div>
-                  </div>
-            </div>
-        </div>
+	<body>
+		<header>
 
-        <div class="navbar navbar-static-top navbar-floating">
-            <div class="btn-group btn-group">
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-list" id="list-view"><span class="glyphicon glyphicon-th-list"></span> Lista</button>
-              <div class="btn-group btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Filtrar emprendimientos
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Organización</a></li>
-                  <li><a href="#">Incubadora</a></li>
-                  <li><a href="#">Espacio de coworking</a></li>
-                  <li><a href="#">Emprendimiento</a></li>
-                  <li><a href="#">Fondo de inversión</a></li>
-                  <li><a href="#">Makerspace</a></li>
-                  <li><a href="#">Universidad</a></li>
-                </ul>
-              </div>
-              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Sugerir lugar</button>
-            </div>
-        </div>
-        
+			<div class="navbar navbar-default navbar-static-top" id="top" role="banner">
+				<div class="header-gcba">
+					<div class="header-inner">
+						<div class="container">
+							<a href="http://buenosaires.gob.ar" target="_blank"><div class="logo"></div></a>
+							<h2 class="slogan">En todo estás vos</h2>
+						</div>
+					</div>
+				</div>
+			</div>
 
-    </header>
-    
-    
-    <div class="search">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="icon-addon addon-lg">
-                            <input type="text" placeholder="Buscar emprendedores por nombre, descripción o tag" class="form-control" id="email">
-                            <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+			<div class="navbar navbar-static-top navbar-floating">
+				<div class="btn-group btn-group">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-list" id="list-view">
+						<span class="glyphicon glyphicon-th-list"></span> Lista
+					</button>
+					<div class="btn-group btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							Filtrar emprendimientos
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" id="lista-emprendimientos">
+							<!-- genero tipos dinamicamente -->
+						</ul>
+					</div>
+					<button type="button" class="btn btn-default" id="form-view" data-toggle="modal" data-target="#modal-form" >
+						<span class="glyphicon glyphicon-plus"></span> Sugerir lugar
+					</button>
+				</div>
+			</div>
 
+		</header>
 
+		<div class="search">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<div class="icon-addon addon-lg">
+								<input type="text" placeholder="Buscar emprendedores por nombre, descripción o tag" class="form-control" id="busquedaEmprendedores">
+								<label for="busquedaEmprendedores" class="glyphicon glyphicon-search" rel="tooltip" title="busquedaEmprendedores"></label>
+								<span class="help-block" id="busquedaList"></span>								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div id="map"> </div>
+		<div id="map"></div>
 
-<div class="modal fade" id="modal-list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Listado de emprendimientos</h4>
-      </div>
-      <div class="modal-body">
-        <p class="loading">Cargando&hellip;</p>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+		<!-- Modal List -->
+		<div class="modal fade" id="modal-list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title">Listado de emprendimientos</h4>
+					</div>
+					<div class="modal-body">
+						<p class="loading">
+							Cargando&hellip;
+						</p>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6 ministerio modernizacion">Ministerio de Modernización</div>
-      <div class="col-xs-6 ministerio desarrollo-economico">Ministerio de Desarrollo Económico</div>
-    </div>
-  </div>
-</footer>
+		<!-- Modal form -->
+		<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title">Agregar emprendimiento</h4>
+					</div>
+					<div class="modal-body">
+						<p class="loading">
 
+							<form role="form">
 
+								<div class="form-group">
+									<label for="nombre_frm">Nombre</label>
+									<input type="text" id="nombre_frm" class="form-control" placeholder="Nombre del emprendimiento">
+								</div>
 
+								<div class="form-group">
+									<label for="direccion_frm">Direccion</label>
+									<input type="text" id="direccion_frm" class="form-control" placeholder="Calle y altura o esquina">
+								</div>
 
+								<div class="form-group">
+									<label for="piso_frm">Piso y departamento</label>
+									<input type="text" id="piso_frm" class="form-control" placeholder="Piso y departamento">
+								</div>
 
+								<div class="form-group">
+									<label for="desc_frm">Descripción</label>
+									<textarea class="form-control" rows="3" id="desc_frm" placeholder="">Ingrese una breve descripción del emprendimiento</textarea>
+								</div>
 
-<script src="js/app.js" type="text/javascript"></script>
-<script src="js/custom.js" type="text/javascript"></script>
-</body>
+								<div class="form-group">
+									<label for="acti_frm">Inicio de actividades</label>
+									<select class="form-control" id="acti_frm"></select>
+								</div>
 
+								<div class="form-group">
+									<label for="mailIns_frm">Mail institucional</label>
+									<input type="email" class="form-control" id="mailIns_frm" placeholder="E-mail">
+								</div>
+
+								<div class="form-group">
+									<label for="mailRes_frm">Mail del responsable</label>
+									<input type="email" class="form-control" id="mailRes_frm" placeholder="E-mail del responsable">
+								</div>
+
+								<div class="form-group">
+									<label for="resp_frm">Responsable del proyecto</label>
+									<input type="text" id="resp_frm" class="form-control" placeholder="Nombre del responsable">
+								</div>
+
+								<div class="form-group">
+									<label for="resp_frm">Servicios</label>
+									<input type="text" id="serv_frm" class="form-control" placeholder="Sevicios">
+								</div>
+
+								<div class="form-group">
+									<label for="tags_frm">Tags</label>
+									<input type="text" id="tags_frm" class="form-control" placeholder="Tags separados por coma">
+								</div>
+
+								<div class="form-group">
+									<label for="tele_frm">Teléfono</label>
+									<input type="tel" id="tele_frm" class="form-control" placeholder="Telefonos">
+								</div>
+
+								<div class="form-group">
+									<label for="tipo_frm">Tipo</label>
+									<select class="form-control" id="tipo_frm"></select>
+								</div>
+
+								<div class="form-group">
+									<label for="web_frm">Web</label>
+									<input type="url" id="web_frm" class="form-control" placeholder="HTTP://">
+								</div>
+
+								<button type="submit" class="btn btn-default">
+									Enviar
+								</button>
+							</form>
+
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6 ministerio modernizacion">
+						Ministerio de Modernización
+					</div>
+					<div class="col-xs-6 ministerio desarrollo-economico">
+						Ministerio de Desarrollo Económico
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			window.onload = function() {
+				cartodb.createVis('map', 'http://gcba.cartodb.com/api/v2/viz/196d1632-d0ad-11e3-bbd2-0e230854a1cb/viz.json');
+			};
+
+		</script>
+
+		<script src="js/app.js" type="text/javascript"></script>
+	</body>
 
 </html>
