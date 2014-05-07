@@ -6,29 +6,46 @@ var sql = cartodb.SQL({
 /*
  * Inicializacion del mapa
  */
+$("form").submit(function() {
+	// Estilo de INSERT 
+	// http://{account}.cartodb.com/api/v2/sql?q=INSERT INTO test_table (column_name, column_name_2, the_geom) VALUES ('this is a string', 11, ST_SetSRID(ST_Point(-110, 43),4326))&api_key={Your API key}
+
+	var cuenta = "gcba",
+		columnas = "telefono,descripcion,servicios,inicio_de_actividades,calle,piso_dpto,tipo,web,responsable_proyecto,mail_responsable,mail_institucional,nombre,tags",
+		tabla = "mapa_emprendedores",
+		apikey = "15ea5821068feecc0584c70d07355848537c2182",
+		valores=  "'" +
+			$("#tele_frm").val() + "','" + 
+			$("#desc_frm").val() + "','" +
+			$("#serv_frm").val() + "','" +
+			$("#acti_frm").val() + "','" +
+			$("#direccion_frm").val() + "','" +
+			$("#piso_frm").val() + "','" +
+			$("#tipo_frm").val() + "','" +
+			$("#web_frm").val() + "','" +
+			$("#resp_frm").val() + "','" +
+			$("#mailRes_frm").val() + "','" +
+			$("#mailIns_frm").val() + "','" +
+			$("#nombre_frm").val() + "','" +
+			$("#tags_frm").val() + "'" ;
+	
+	//$.post("") 	// http://{account}.cartodb.com/api/v2/sql?q=INSERT INTO test_table (column_name, column_name_2, the_geom) VALUES ('this is a string', 11, ST_SetSRID(ST_Point(-110, 43),4326))&api_key={Your API key}
+
+	console.log(valores);
+	$('#modal-form').modal('hide');		
+				
+	return false;
+});
+	
+	
 
 $("button").click(function(d) {
 	switch (d.currentTarget.id) {
 		case "list-view":
 			busquedaListado();
 			break;
-		case "agregar-btn":
-			escriboEnCartoDB();
-			break;
 	}
 });
-
-
-/*
- * Escribe lo que está en el formulario en la la base de datos de CartoDB.
- */
-function escriboEnCartoDB() {
-
-
-}
-
-
-
 
 
 /*
