@@ -6,18 +6,25 @@ var sql = cartodb.SQL({
 /*
  * Inicializacion del mapa
  */
+
+/*
+ * En el submit del form agrega un punto
+ */
+ 
 $("form").submit(function() {
 	// Estilo de INSERT 
 	// http://{account}.cartodb.com/api/v2/sql?q=INSERT INTO test_table (column_name, column_name_2, the_geom) VALUES ('this is a string', 11, ST_SetSRID(ST_Point(-110, 43),4326))&api_key={Your API key}
 
 	var cuenta = "gcba",
-		columnas = "telefono,descripcion,servicios,inicio_de_actividades,calle,piso_dpto,tipo,web,responsable_proyecto,mail_responsable,mail_institucional,nombre,tags",
+		columnas = "the_geom,telefono,descripcion,servicios,inicio_de_actividades,calle,piso_dpto,tipo,web,responsable_proyecto,mail_responsable,mail_institucional,nombre,tags,cartodb_georef_status,pendiente_revision",
 		tabla = "mapa_emprendedores",
-		apikey = "15ea5821068feecc0584c70d07355848537c2182",
-//		valores=  "''POINT(" +
-	//		$("#latLong_frm").val() + ")' :: geometry','" + 
+		apikey = "15ea5821068feecc0584c70d07355848537c2182";
 
+
+		var tempLatLong = $("#latLong_frm").val();
+		tempLatLong = tempLatLong.replace(",", " ");
 		valores=  "'" +
+			"SRID=4326;POINT(" + tempLatLong + ")','" +
 			$("#tele_frm").val() + "','" + 
 			$("#desc_frm").val() + "','" +
 			$("#serv_frm").val() + "','" +
@@ -30,19 +37,15 @@ $("form").submit(function() {
 			$("#mailRes_frm").val() + "','" +
 			$("#mailIns_frm").val() + "','" +
 			$("#nombre_frm").val() + "','" +
-			$("#tags_frm").val() + "'" ;
+			$("#tags_frm").val() + "','true',false" ;
 	
 	var url = "http://" + cuenta + ".cartodb.com/api/v2/sql?q=INSERT INTO " + tabla + " (" + columnas + ") VALUES (" + valores + ")&api_key=" + apikey; 
 	$.post(url);
-		
-	
-	
+
 	$('#modal-form').modal('hide');		
 				
 	return false; // para que Chrome no recargue la página
 });
-	
-	
 
 $("button").click(function(d) {
 	switch (d.currentTarget.id) {
@@ -60,7 +63,7 @@ function busquedaListado() {
 
 	var contenido = $('#modal-list .modal-body');
 
-	var q = "SELECT * FROM mapa_emprendedores";
+	var q = "SELECT * FROM mapa_emprendedores WHERE pendiente_revision = true";
 	console.log("vacio tipos");
 	contenido.children('div').remove();
 	sql.execute(q).done(function(data) {
