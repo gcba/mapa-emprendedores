@@ -25,7 +25,7 @@ function buscarDireccion() {
 				position : results[0].geometry.location				
 			});
 			console.log();
-			$("#latLong_frm").val(marker.position.A  + "," + marker.position.k);
+			$("#latLong_frm").val(marker.position.A  + "," +  marker.position.k);
 		} else {
 			alert('Geocode fallo por: ' + status);
 		}

@@ -14,6 +14,9 @@ $("form").submit(function() {
 		columnas = "telefono,descripcion,servicios,inicio_de_actividades,calle,piso_dpto,tipo,web,responsable_proyecto,mail_responsable,mail_institucional,nombre,tags",
 		tabla = "mapa_emprendedores",
 		apikey = "15ea5821068feecc0584c70d07355848537c2182",
+//		valores=  "''POINT(" +
+	//		$("#latLong_frm").val() + ")' :: geometry','" + 
+
 		valores=  "'" +
 			$("#tele_frm").val() + "','" + 
 			$("#desc_frm").val() + "','" +
@@ -58,21 +61,8 @@ function busquedaListado() {
 	var contenido = $('#modal-list .modal-body');
 
 	var q = "SELECT * FROM mapa_emprendedores";
-	sql.execute(q).done(function(data) {
-		for (var i = 0; i < data.total_rows; i++) {
-			contenido.append("<div> <span>" + data.rows[i].nombre + " (" + data.rows[i].tipo + ")");
-			contenido.children('.loading').remove();
-		}
-	}).error(function(errors) {
-		console.log("SQL ERR:", errors);
-	});
-}
-
-function listarTipos() {
-
-	var contenido = $('#modal-list .modal-body');
-
-	var q = "SELECT * FROM mapa_emprendedores";
+	console.log("vacio tipos");
+	contenido.children('div').remove();
 	sql.execute(q).done(function(data) {
 		for (var i = 0; i < data.total_rows; i++) {
 			contenido.append("<div> <span>" + data.rows[i].nombre + " (" + data.rows[i].tipo + ")");
