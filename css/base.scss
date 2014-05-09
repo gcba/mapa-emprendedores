@@ -13,7 +13,7 @@ $font-family-sans-serif:  "Gotham", "Helvetica Neue", Helvetica, Arial, sans-ser
 
 #map { position:absolute; top:0; bottom:0; width:100%; }
 
-
+      
 .header-gcba {
   height:50px;
   padding:10px 0;
@@ -211,3 +211,9 @@ footer {
 .list-group {
   height: 201px;
 }
+
+#minimapa {
+        height: 150px;
+        width: 100%;
+        border: 1px #c0c0c0 solid;
+      }
