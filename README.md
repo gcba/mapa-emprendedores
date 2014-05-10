@@ -19,5 +19,5 @@ Utilizamos `bower` para traer Bootstrap 3 SASS usando [`bootstrap-sass-official`
 npm install
 npm update -g bower
 bower install
-grunt serve
+grunt watch
 ```
