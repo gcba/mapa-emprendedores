@@ -1,7 +1,12 @@
-.git/
-.project
-.sass-cache/
-node_modules/
+src/
+assets/
 bower_components/
+node_modules/
+.sass-cache/
+.git/
+libs/cartodb.config.php
+.DS_Store
 testing/
-css/bootstrap.css
+src/
+css/base.css
+reference/

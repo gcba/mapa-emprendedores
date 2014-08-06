@@ -1,11 +1,18 @@
+'use strict';
+
+/**
+ * @module grunt
+ */
+
+/** @module SASS y SASS Watch para compilar código CSS. */
+
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		sass: {
 			dist: {
 				files: {
-					'css/base.css' : 'css/base.scss',
-					'css/bootstrap.css' : 'bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss'
+					'css/base.css' : 'css/base.scss'
 				}
 			}
 		},
