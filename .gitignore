@@ -1,0 +1,9 @@
+src/
+libs/cartodb.config.php
+.git/
+.project
+.sass-cache/
+node_modules/
+bower_components/
+testing/
+css/bootstrap.css
