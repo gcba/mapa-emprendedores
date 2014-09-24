@@ -217,7 +217,7 @@
 
                                     <div class="btn btn-default siguiente" onclick="validoPaso(1)"> Siguiente </div>
 
-                                    <span class="aviso paso1"> Por favor complete <b>todos</b> los campos </span>
+                                    <span class="aviso paso1"> Revise los campos en rojo e intente nuevamente </span>
 
                                 </div>
 
@@ -284,7 +284,7 @@
 
                                     <div class="btn btn-default siguiente" onclick="validoPaso(3)"> Siguiente </div>
 
-                                    <span class="aviso paso3"> Por favor verifique los campos completados sean correctos y vuelva a intentar </span>
+                                    <span class="aviso paso3"> Revise los campos en rojo e intente nuevamente </span>
 
                                 </div>
 
