@@ -59,7 +59,7 @@
                         <button type="button" class="btn btn-default" value="filtrar">Filtrar</button>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default" value="crear">Crear</button>
+                        <button type="button" class="btn btn-default" value="crear">Registrate</button>
                     </div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default" value="acerca">Acerca</button>
