@@ -20,26 +20,23 @@
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
     <![endif]-->
 
-
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:domain" content="">
-    <meta name="twitter:site" content="">
-    <meta name="twitter:creator" content="">
-    <meta name="twitter:image:src" content="">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:title" content="">
-    <meta name="twitter:url" content="">
+    <meta name="twitter:domain" content="http://buenosaires.gob.ar">
+    <meta name="twitter:site" content="@BAemprende">
+    <meta name="twitter:creator" content="@BAemprende">
+    <meta name="twitter:image:src" content="http://i.imgur.com/HRYMnPY.png">
+    <meta name="twitter:description" content="Explorá la plataforma que agrupa a todos los actores que forman parte del ecosistema: emprendimientos, inversores, aceleradoras, incubadoras y más. Sumate, vos también podés ser parte.">
+    <meta name="twitter:title" content="Mapa Emprendedor de la Ciudad de Buenos Aires">
+    <meta name="twitter:url" content="http://buenosaires.gob.ar/areas/des_economico/mapa-emprendedor/">
 
-    <meta property="og:title" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:title" content="Mapa Emprendedor de la Ciudad de Buenos Aires"/>
+    <meta property="og:site_name" content="Mapa Emprendedor"/>
+    <meta property="og:description" content=" Explorá la plataforma que agrupa a todos los actores que forman parte del ecosistema: emprendimientos, inversores, aceleradoras, incubadoras y más. Sumate, vos también podés ser parte."/>
+    <meta property="og:image" content="http://i.imgur.com/vLGqraF.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="250" />
     <meta property="og:image:height" content="250" />
-    <meta property="og:url" content="">
-
-
+    <meta property="og:url" content="http://buenosaires.gob.ar/areas/des_economico/mapa-emprendedor/">
 
     <link rel="icon" href="favicon.ico"/>
 </head>
@@ -215,6 +212,9 @@
                                         </select>
                                     </div>
 
+                                        
+
+
                                     <div class="btn btn-default siguiente" onclick="validoPaso(1)"> Siguiente </div>
 
                                     <span class="aviso paso1"> Por favor complete <b>todos</b> los campos </span>
@@ -319,6 +319,12 @@
                                         <input type="button" onclick="javascript:finalizacion();" class="btn btn-success siguiente" value="Enviar datos">
 
                                         <span class="aviso paso4"> Por favor verifique que el código esté bien ingresado </span>
+
+
+                                        <div id="containerPreloader">
+                                            <div id="preloader"></div>
+                                        </div>
+
 
                                     </div>
                                 </div>

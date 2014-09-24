@@ -113,6 +113,8 @@ function siguienteFormulario(muestro, oculto){
     $(".aviso").attr("style", "display:none");
     $(oculto).attr("class", "pasoNoActivo");
     $(muestro).attr("class", "pasoActivo");
+    $("#containerPreloader").attr("style", "display:none");
+    
     return false;    
 }
 
@@ -247,6 +249,7 @@ function finalizacion() {
 
     tipo_sigla_frm 
     $("#tipo_frm option:selected").text()
+    $("#containerPreloader").attr("style", "display:inline");
 
 
      $.post("proceso.php",{ 
@@ -275,10 +278,13 @@ function finalizacion() {
         data = $.trim( data );
             if(data == "B"){
                 $(".aviso").attr("style", "display:none");
+                $("#containerPreloader").attr("style", "display:none");
                 siguienteFormulario('#paso5' ,'#paso4');
             }else{
                 nuevoCaptcha();
                 $(".aviso").attr("style", "display:inline");
+                $("#containerPreloader").attr("style", "display:none");
+
             }
 
         });
@@ -298,5 +304,6 @@ function nuevoCaptcha(){
  */
 function volverAlta (){
     resetAllFields ();
+    $("#containerPreloader").attr("style", "display:none");
     siguienteFormulario('#paso1' ,'#paso5');
 }
