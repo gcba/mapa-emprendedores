@@ -169,12 +169,12 @@
 -->
                                     <div class="form-group">
                                         <label for="acti_frm">Inicio de actividades</label>
-                                        <input type="text" id="acti_frm" name="acti_frm" class="form-control" placeholder="Año de inicio" >
+                                        <input type="text" id="acti_frm" name="acti_frm" class="form-control" placeholder="Año de inicio (Ej. 1990)" >
                                     </div>
 
                                     <div class="form-group">
                                         <label for="tags_frm">Tags</label>
-                                        <input type="text" id="tags_frm" name="tags_frm" class="form-control" placeholder="Tags separados por coma" >
+                                        <input type="text" id="tags_frm" name="tags_frm" class="form-control" placeholder="Tags separados por coma  (Ej. impresion, coaching, etc...)" >
                                     </div>
 
                                     <div class="form-group">
@@ -224,13 +224,13 @@
                                 <div id="paso2" class="pasoNoActivo"><!-- Paso 2 - Ubicacion -->
                                     <div class="form-group">
                                         <label for="direccion_frm">Dirección</label>
-                                        <input type="text" id="direccion_frm" name="direccion_frm" class="form-control" placeholder="Calle y altura o esquina">
+                                        <input type="text" id="direccion_frm" name="direccion_frm" class="form-control" placeholder="Calle, Ciudad, Provincia">
                                         <div class="btn btn-danger validar" onclick="buscarDireccion()"> Validar la dirección </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="piso_frm">Piso y departamento</label>
-                                        <input type="text" id="piso_frm" name="piso_frm" class="form-control" placeholder="Piso y departamento">
+                                        <input type="text" id="piso_frm" name="piso_frm" class="form-control" placeholder="Piso y departamento (Ej. 2do F)">
                                         <input type="text" id="latlon_frm" name="latlon_frm" hidden value="">
                                         <input type="text" id="lat_frm" name="lat_frm" hidden value="">
                                         <input type="text" id="lon_frm" name="lon_frm" hidden value="">
@@ -253,7 +253,7 @@
                                 <div id="paso3" class="pasoNoActivo"> <!-- Paso 3 - Datos de contacto -->
                                     <div class="form-group">
                                         <label for="mailIns_frm">Mail institucional</label>
-                                        <input type="email" class="form-control" id="mailIns_frm" name="mailIns_frm" placeholder="E-mail">
+                                        <input type="email" class="form-control" id="mailIns_frm" name="mailIns_frm" placeholder="ejemplo@ejemplo.com">
                                     </div>
 
                                     <div class="form-group">
@@ -268,12 +268,12 @@
 
                                     <div class="form-group">
                                         <label for="resp_frm">Responsable del proyecto</label>
-                                        <input type="text" id="resp_frm" name="resp_frm" class="form-control" placeholder="Nombre del responsable">
+                                        <input type="text" id="resp_frm" name="resp_frm" class="form-control" placeholder="Nombre y apellido">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="mailRes_frm">Mail del responsable</label>
-                                        <input type="email" class="form-control" id="mailRes_frm" name="mailRes_frm" placeholder="E-mail del responsable">
+                                        <input type="email" class="form-control" id="mailRes_frm" name="mailRes_frm" placeholder="ejemplo@ejemplo.com">
                                     </div>
 
                                     <div class="form-group">
