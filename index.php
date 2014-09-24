@@ -161,11 +161,12 @@
                                         <textarea class="form-control" rows="3" id="desc_frm" name="desc_frm"> </textarea>
                                     </div>
 
+<!--
                                     <div class="form-group">
                                         <label for="resp_frm">Servicios</label>
                                         <input type="text" id="serv_frm" name="serv_frm" class="form-control" placeholder="Sevicios" >
                                     </div>
-
+-->
                                     <div class="form-group">
                                         <label for="acti_frm">Inicio de actividades</label>
                                         <input type="text" id="acti_frm" name="acti_frm" class="form-control" placeholder="Año de inicio" >
@@ -248,7 +249,6 @@
                                     <span class="aviso paso2"> Por favor complete la direccion y luego valídela</span>
 
                                 </div>
-
                                 
                                 <div id="paso3" class="pasoNoActivo"> <!-- Paso 3 - Datos de contacto -->
                                     <div class="form-group">
@@ -278,7 +278,6 @@
 
                                     <div class="form-group">
 
-
                                     </div>
 
                                     <div class="btn btn-default anterior" onclick="siguienteFormulario('#paso2','#paso3')"> Anterior </div>
@@ -303,7 +302,6 @@
                                                 Recargar imagen
                                             </span>
 
-
                                         </div><br>
 
                                         <input type="text" name="captcha" id="captcha_txt"  class="form-control" autocomplete="off"/><br />
@@ -316,12 +314,7 @@
 
                                         <p>AL HACER CLIC EN "ENVIAR DATOS", USTED ENTIENDE Y ACEPTA LAS BASES Y CONDICIONES.</p>
 
-
-
-
                                         <div class="btn btn-default anterior" onclick="siguienteFormulario('#paso3','#paso4')"> Anterior </div>
-
-                                        
 
                                         <input type="button" onclick="javascript:finalizacion();" class="btn btn-success siguiente" value="Enviar datos">
 
@@ -341,13 +334,10 @@
 
                                     </div>
 
-
-
                                 </div>
 
-
-
                             </form>
+
                     </div>
 
                     <div id="acerca">
@@ -412,8 +402,6 @@
         <div class="cartodb-popup-tip-container"></div>
       </div>
     </script>
-
-
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

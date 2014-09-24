@@ -49,7 +49,7 @@ $nombre_frm = urlencode($_POST['nombre_frm']);
 $piso_frm =	 urlencode($_POST['piso_frm']);
 $resp_frm =	 urlencode($_POST['resp_frm']);
 $sector_frm = urlencode($_POST['sector_frm']);
-$serv_frm = urlencode($_POST['serv_frm']);
+// $serv_frm = urlencode($_POST['serv_frm']);
 $tags_frm =  urlencode($_POST['tags_frm']);
 $tele_frm = 	urlencode($_POST['tele_frm']);
 $tipo_frm = urlencode($_POST['tipo_frm']);
@@ -72,8 +72,8 @@ if (!empty($_REQUEST['captcha_txt'])) {
         echo "M";
     }else{
         echo "B";
-        $columnas_db = "nombre,descripcion,servicios,inicio_de_actividades,tags,pendiente_revision,tipo,sector,calle,piso_dpto,lat,lon,mail_institucional,telefono,web,responsable_proyecto,mail_responsable,sector_sigla,tipo_sigla";
-        $campos_post = $nombre_frm . "','" . $desc_frm . "','" . $serv_frm . "','" . $acti_frm . "','" . $tags_frm . "','" . $pendiente_revision . "','" . $tipo_frm . "','" . $sector_frm . "','" . $direccion_frm . "','" . $piso_frm . "','" . $lat_frm . "','" . $lon_frm . "','" . $mailIns_frm . "','" . $tele_frm . "','" . $web_frm . "','" . $resp_frm . "','" . $mailRes_frm . "','" . $sector_sigla . "','" . $tipo_sigla . "'";  
+        $columnas_db = "nombre,descripcion,inicio_de_actividades,tags,pendiente_revision,tipo,sector,calle,piso_dpto,lat,lon,mail_institucional,telefono,web,responsable_proyecto,mail_responsable,sector_sigla,tipo_sigla";
+        $campos_post = $nombre_frm . "','" . $desc_frm . "','" . $acti_frm . "','" . $tags_frm . "','" . $pendiente_revision . "','" . $tipo_frm . "','" . $sector_frm . "','" . $direccion_frm . "','" . $piso_frm . "','" . $lat_frm . "','" . $lon_frm . "','" . $mailIns_frm . "','" . $tele_frm . "','" . $web_frm . "','" . $resp_frm . "','" . $mailRes_frm . "','" . $sector_sigla . "','" . $tipo_sigla . "'";  
         $SQLQ = "INSERT%20INTO%20mapa_emprendedor%20(". $columnas_db .")%20VALUES%20('" . $campos_post .  ")" . $api_key;
         $url = "http://gcba.cartodb.com/api/v2/sql?q=" . $SQLQ ;
         $ch = curl_init();

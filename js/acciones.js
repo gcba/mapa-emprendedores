@@ -186,7 +186,7 @@ function seleccionoMarkers( tipo ){  // e.target.value
 function resetAllFields (){
     $("#nombre_frm").val("");
     $("#desc_frm").val("");
-    $("#serv_frm").val("");
+    //$("#serv_frm").val("");
     $("#acti_frm").val("");
     $("#tags_frm").val("");
     $("#tipo_frm").val("Seleccione");
@@ -253,7 +253,7 @@ function finalizacion() {
         captcha_txt: $("#captcha_txt").val(),
         nombre_frm:  $("#nombre_frm").val(),
         desc_frm: $("#desc_frm").val(),
-        serv_frm: $("#serv_frm").val(),
+        //serv_frm: $("#serv_frm").val(),
         acti_frm: $("#acti_frm").val(),
         tags_frm: $("#tags_frm").val(),
         tipo_frm: $("#tipo_frm option:selected").text(),

@@ -21,8 +21,8 @@ function validoPaso(nro){
             if (dato.length > 1 && dato.length <= 30) { pantallaValidada.push(true); } else {pantallaValidada.push(false);}
             dato  = $("#desc_frm").val();
             if (dato.length > 10 && dato.length < 145)  { pantallaValidada.push(true); } else {pantallaValidada.push(false);}
-            dato  = $("#serv_frm").val();
-            if (dato.length > 2)  { pantallaValidada.push(true); } else {pantallaValidada.push(false);}
+            //dato  = $("#serv_frm").val();
+            //if (dato.length > 2)  { pantallaValidada.push(true); } else {pantallaValidada.push(false);}
             dato  = parseInt($("#acti_frm").val());
             if (dato > 1900 && dato <= actualidad)  { pantallaValidada.push(true); } else {pantallaValidada.push(false);}
             dato  = $("#tags_frm").val();

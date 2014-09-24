@@ -58,7 +58,7 @@
 	}
 
 	if($action == "listarRegistro") {
-		$result = $cartodb->runSql("SELECT cartodb_id , the_geom , nombre , descripcion , calle, direccion_normalizada, inicio de actividades , web FROM mapa_emprendedor",true);
+		$result = $cartodb->runSql("SELECT cartodb_id , the_geom , nombre , descripcion , calle, direccion_normalizada, inicio_de_actividades , web FROM mapa_emprendedor",true);
 		echo json_encode($result);
 	}
 
