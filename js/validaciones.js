@@ -13,6 +13,8 @@
  * @param       int
  */
 function validoPaso(nro) {
+    $('*').removeClass("alert-danger");
+
     var pantallaValidada = new Array();
     var dato;
     var actualidad = new Date().getFullYear();
@@ -22,12 +24,14 @@ function validoPaso(nro) {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#nombre_frm').addClass("alert-danger");
         }
         dato = $("#desc_frm").val();
         if (dato.length > 10 && dato.length < 145) {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#desc_frm').addClass("alert-danger");
         }
         //dato  = $("#serv_frm").val();
         //if (dato.length > 2)  { pantallaValidada.push(true); } else {pantallaValidada.push(false);}
@@ -35,6 +39,8 @@ function validoPaso(nro) {
         if (dato > 1900 && dato <= actualidad) {
             pantallaValidada.push(true);
         } else {
+            $('#acti_frm').addClass("alert-danger");
+            console.log("no valida");
             pantallaValidada.push(false);
         }
         //dato  = $("#tags_frm").val();
@@ -44,12 +50,14 @@ function validoPaso(nro) {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#tipo_frm').addClass("alert-danger");
         }
         dato = $("#sector_frm").val();
         if (dato != "Seleccione") {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#sector_frm').addClass("alert-danger");
         }
         validarFormulario(pantallaValidada, "#paso1");
     }
@@ -60,6 +68,7 @@ function validoPaso(nro) {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#direccion_frm').addClass("alert-danger");
         }
         validarFormulario(pantallaValidada, "#paso2");
     }
@@ -70,12 +79,14 @@ function validoPaso(nro) {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#mailIns_frm').addClass("alert-danger");
         }
         dato = $("#mailRes_frm").val();
         if (validarEmail(dato)) {
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);
+            $('#mailRes_frm').addClass("alert-danger");
         }
         validarFormulario(pantallaValidada, "#paso3");
         nuevoCaptcha();
@@ -88,6 +99,7 @@ function validoPaso(nro) {
  */
 
 function validarFormulario(validacion, paso) {
+
     if (validacion.indexOf(false) < 0) {
         switch (paso) {
             case "#paso1":

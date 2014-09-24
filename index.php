@@ -171,7 +171,7 @@
 
                                     <div class="form-group">
                                         <label for="tags_frm">Tags</label>
-                                        <input type="text" id="tags_frm" name="tags_frm" class="form-control" placeholder="Tags separados por coma  (Ej. impresion, coaching, etc...)" >
+                                        <input type="text" id="tags_frm" name="tags_frm" class="form-control" placeholder="(Ej. impresion, coaching, etc.)" >
                                     </div>
 
                                     <div class="form-group">

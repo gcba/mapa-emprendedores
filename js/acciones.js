@@ -114,7 +114,6 @@ function siguienteFormulario(muestro, oculto){
     $(oculto).attr("class", "pasoNoActivo");
     $(muestro).attr("class", "pasoActivo");
     $("#containerPreloader").attr("style", "display:none");
-    
     return false;    
 }
 
@@ -132,6 +131,8 @@ function seleccionoMarkers( tipo ){  // e.target.value
     if (tipo === "TSEC"){ // toggle por todosSEC
         $('#sector_ftr button').removeClass("activo");
         $('#sector_ftr button[value="' +  tipo + '"]').addClass("activo");
+
+
     }
 
     if (tipo !== "TSEC" && tipo !== "TIN") { // toggle el seleccionado
