@@ -194,8 +194,6 @@
                                         </select>
                                     </div>
 
-
-
                                     <div class="btn btn-default siguiente" onclick="validoPaso(1)"> Siguiente </div>
 
                                     <span class="aviso paso1"> Por favor complete <b>todos</b> los campos </span>
@@ -377,6 +375,8 @@
             <p>{{localidad}}</p>
             <h4>servicios</h4>
             <p>{{servicios}}</p>
+            <h4>Página web</h4>
+            <a href="{{web}}" target="_blank"><p>{{web}}</p></a>
             <h4>tags</h4>
             <p>{{tags}}</p>
           </div>
@@ -384,8 +384,6 @@
         <div class="cartodb-popup-tip-container"></div>
       </div>
     </script>
-
-    
 
 </body>
 </html>
