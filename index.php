@@ -96,7 +96,6 @@
                                 <button type="button" value="ACE" class="btn btn-default">Aceleradora</button>
                                 <button type="button" value="EMP" class="btn btn-default">Emprendimiento</button>
                                 <button type="button" value="ESP" class="btn btn-default">Espacio de Coworking</button>
-                                <button type="button" value="FON" class="btn btn-default">Fondo de Inversión</button>
                                 <button type="button" value="GOB" class="btn btn-default">Gobierno Nacional</button>
                                 <button type="button" value="INC" class="btn btn-default">Incubadora</button>
                                 <button type="button" value="INV" class="btn btn-default">Inversor</button>
@@ -162,7 +161,6 @@
                                             <option value="ACE">Aceleradora</option>
                                             <option value="EMP">Emprendimiento</option>
                                             <option value="ESP">Espacio de Coworking</option>
-                                            <option value="FON">Fondo de Inversión</option>
                                             <option value="GOB">Gobierno Nacional</option>
                                             <option value="INC">Incubadora</option>
                                             <option value="INV">Inversor</option>
@@ -294,6 +292,10 @@
                                         
                                         <p>Al decidir formar parte del mapa del ecosistema emprendedor de la C.A.B.A., presto consentimiento a la publicación de los datos de mi emprendimiento en dicho mapa.</p>
 
+                                        <p>AL HACER CLIC EN "ENVIAR DATOS", USTED ENTIENDE Y ACEPTA LAS BASES Y CONDICIONES.</p>
+
+
+
 
                                         <div class="btn btn-default anterior" onclick="siguienteFormulario('#paso3','#paso4')"> Anterior </div>
 
@@ -332,6 +334,10 @@
                         <p>Con esta herramienta nos proponemos fomentar el intercambio y las relaciones entre la comunidad, así como mostrar el alto potencial y desarrollo que está teniendo la actividad emprendedora en Buenos Aires.</p>
                         <p>El Mapa va a estar integrado por las instituciones, organizaciones, empresas, espacios de trabajo colaborativo, aceleradoras, incubadoras e inversores que conforman el ecosistema. En una segunda instancia, incluiremos toda la oferta de la actividad emprendedores de la Ciudad (eventos, capacitaciones, programas, etc.)</p>
                         <p>Te invitamos a ser parte de esta iniciativa que co-creamos con todos los emprendedores porteños.</p>
+                        <p>&nbsp;</p>
+
+                        <p><a href="http://cartodb.com/" target="_blank"><img src="css/img/logos_simple_cartodb_light.png"></a></p>
+
                     </div>
 
                 </div>
