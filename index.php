@@ -19,6 +19,28 @@
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
     <![endif]-->
+
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:image:src" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:url" content="">
+
+    <meta property="og:title" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="250" />
+    <meta property="og:image:height" content="250" />
+    <meta property="og:url" content="">
+
+
+
     <link rel="icon" href="favicon.ico"/>
 </head>
 
