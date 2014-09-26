@@ -1,5 +1,5 @@
 src/
-libs/*
+libs/cartodb.config.php
 .git/
 .project
 .sass-cache/
