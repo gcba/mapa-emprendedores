@@ -88,7 +88,7 @@ function verDetallesEmpresa(idEmpresa){
 
     var sql_statement = "SELECT * FROM mapa_emprendedor WHERE cartodb_id = " + nro[1];
 
-    $.getJSON('http://gcba.cartodb.com/api/v2/sql/?q='+sql_statement, function(data) {
+    $.getJSON('http://baemprende.cartodb.com/api/v2/sql/?q='+sql_statement, function(data) {
         // zoom al marker
         capas.setZoom(16);
         capas.setCenter([data.rows[0].lat, data.rows[0].lon]);

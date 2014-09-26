@@ -19,7 +19,7 @@ var capas;
 var capaInfowindows;
 // var de sql para las busquedas
 var sql = cartodb.SQL({
-    user: 'gcba'
+    user: 'baemprende'
 });
 
 
@@ -34,8 +34,8 @@ function mapToPosition(lat,lon){
 
 /**
 * @abstract     Instancia el mapa
-*/
-var visualizacion = cartodb.createVis(mapa, 'http://gcba.cartodb.com/api/v2/viz/3aabb182-0dd4-11e4-9d39-0e73339ffa50/viz.json')
+*/      
+var visualizacion = cartodb.createVis(mapa, 'http://baemprende.cartodb.com/api/v2/viz/af30750a-458e-11e4-bf5b-0e10bcd91c2b/viz.json')
     .done(function(vis,layers) {
         capas = vis.map;
         capaInfowindows = layers[1];

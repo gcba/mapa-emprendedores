@@ -38,7 +38,7 @@ if (!$cartodb->authorized) {
 * @abstract     Agarro las variables del formulario HTML y las encodeo en URL
 */
 
-$api_key = "&api_key=15ea5821068feecc0584c70d07355848537c2182";
+$api_key = "&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
 $acti_frm = urlencode($_POST['acti_frm']);
 $desc_frm = urlencode($_POST['desc_frm']);
 $direccion_frm = urlencode($_POST['direccion_frm']);
