@@ -65,7 +65,6 @@
     </div>
     <div id="contenidos">
 
-
         <div id="mapa"></div>
 
         <div id="sidebar"> 
@@ -157,7 +156,6 @@
                                         <label for="desc_frm">Descripción</label>
                                         <textarea class="form-control" rows="3" id="desc_frm" name="desc_frm"> </textarea>
                                     </div>
-
 <!--
                                     <div class="form-group">
                                         <label for="resp_frm">Servicios</label>
@@ -211,9 +209,6 @@
                                             <option value="OTRO">Otro</option>
                                         </select>
                                     </div>
-
-                                        
-
 
                                     <div class="btn btn-default siguiente" onclick="validoPaso(1)"> Siguiente </div>
 
@@ -307,8 +302,8 @@
                                         <input type="text" name="captcha" id="captcha_txt"  class="form-control" autocomplete="off"/><br />
 
                                         <input type="text" id="sector_sigla_frm" name="sector_sigla_frm" hidden value="">
+ 
                                         <input type="text" id="tipo_sigla_frm" name="tipo_sigla_frm" hidden value="">
-                                        
                                         
                                         <p>Al decidir formar parte del mapa del ecosistema emprendedor de la C.A.B.A., presto consentimiento a la publicación de los datos de mi emprendimiento en dicho mapa.</p>
 
@@ -319,7 +314,6 @@
                                         <input type="button" onclick="javascript:finalizacion();" class="btn btn-success siguiente" value="Enviar datos">
 
                                         <span class="aviso paso4"> Por favor verifique que el código esté bien ingresado </span>
-
 
                                         <div id="containerPreloader">
                                             <div id="preloader"></div>
@@ -367,47 +361,6 @@
     <script type="text/javascript" src="js/acciones.js"></script>
     <script type="text/javascript" src="js/init.js"></script>
     <script type="text/javascript" src="js/validaciones.js"></script>
-
-    <script type="infowindow/html" id="client_infowindow_template">
-      <div class="cartodb-popup emprendedores">
-        <a href="#close" class="cartodb-popup-close-button close">x</a>
-        <div class="cartodb-popup-content-wrapper">
-          <div class="cartodb-popup-content">
-
-            <div class="row">
-              <div class="label">
-                <label>Nombre</label>
-              </div>
-              <div class="info">
-                <p>{{nombre}}</p>
-              </div>
-            </div>
-
-            <h4>calle</h4>
-            <p>{{calle}}</p>
-            {{#piso_dpto}}
-              <h4>piso_dpto</h4>
-              <p>{{piso_dpto}}</p>
-            {{/piso_dpto}}
-            {{#telefono}}
-              <h4>telefono</h4>
-              <p>{{telefono}}</p>
-            {{/telefono}}
-            <p>{{tipo}}</p>
-            <p>{{descripcion}}</p>
-            <h4>localidad</h4>
-            <p>{{localidad}}</p>
-            <h4>servicios</h4>
-            <p>{{servicios}}</p>
-            <h4>Página web</h4>
-            <a href="{{web}}" target="_blank"><p>{{web}}</p></a>
-            <h4>tags</h4>
-            <p>{{tags}}</p>
-          </div>
-        </div>
-        <div class="cartodb-popup-tip-container"></div>
-      </div>
-    </script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

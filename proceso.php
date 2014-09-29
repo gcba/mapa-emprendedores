@@ -75,13 +75,14 @@ if (!empty($_REQUEST['captcha_txt'])) {
         $columnas_db = "nombre,descripcion,inicio_de_actividades,tags,pendiente_revision,tipo,sector,calle,piso_dpto,lat,lon,mail_institucional,telefono,web,responsable_proyecto,mail_responsable,sector_sigla,tipo_sigla";
         $campos_post = $nombre_frm . "','" . $desc_frm . "','" . $acti_frm . "','" . $tags_frm . "','" . $pendiente_revision . "','" . $tipo_frm . "','" . $sector_frm . "','" . $direccion_frm . "','" . $piso_frm . "','" . $lat_frm . "','" . $lon_frm . "','" . $mailIns_frm . "','" . $tele_frm . "','" . $web_frm . "','" . $resp_frm . "','" . $mailRes_frm . "','" . $sector_sigla . "','" . $tipo_sigla . "'";  
         $SQLQ = "INSERT%20INTO%20mapa_emprendedor%20(". $columnas_db .")%20VALUES%20('" . $campos_post .  ")" . $api_key;
-        $url = "http://gcba.cartodb.com/api/v2/sql?q=" . $SQLQ ;
+        $url = "http://baemprende.cartodb.com/api/v2/sql?q=" . $SQLQ ;
+        echo ($url);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url); 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
         $output = curl_exec($ch);   
         curl_close($ch);
-
+        
     }
     $request_captcha = htmlspecialchars($_REQUEST['captcha_txt']);
     unset($_SESSION['captcha']);

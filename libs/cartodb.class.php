@@ -348,3 +348,5 @@ class CartoDBClient {
     return $arr;
   }
 }
+
+?>
