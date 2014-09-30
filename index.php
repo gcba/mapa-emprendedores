@@ -307,7 +307,7 @@
                                         
                                         <p>Al decidir formar parte del mapa del ecosistema emprendedor de la C.A.B.A., presto consentimiento a la publicación de los datos de mi emprendimiento en dicho mapa.</p>
 
-                                        <p>AL HACER CLIC EN "ENVIAR DATOS", USTED ENTIENDE Y ACEPTA LAS BASES Y CONDICIONES.</p>
+                                        <p>AL HACER CLIC EN "ENVIAR DATOS", USTED ENTIENDE Y ACEPTA LAS <a href="http://www.buenosaires.gob.ar/emprendedores/terminos-y-condiciones" target="_blank">BASES Y CONDICIONES</a>.</p>
 
                                         <div class="btn btn-default anterior" onclick="siguienteFormulario('#paso3','#paso4')"> Anterior </div>
 

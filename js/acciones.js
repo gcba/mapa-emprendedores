@@ -253,6 +253,12 @@ function finalizacion() {
     $("#containerPreloader").attr("style", "display:inline");
 
 
+    var url_a_enviar = $("#web_frm").val();
+    if (url_a_enviar[0] === "w" || url_a_enviar[0] === "W" ){
+        url_a_enviar = "http://" + $("#web_frm").val();
+    }
+
+
      $.post("proceso.php",{ 
         captcha_txt: $("#captcha_txt").val(),
         nombre_frm:  $("#nombre_frm").val(),
@@ -270,7 +276,7 @@ function finalizacion() {
         mailIns_frm: $("#mailIns_frm").val(),
         mailRes_frm: $("#mailRes_frm").val(),
         tele_frm: $("#tele_frm").val(),
-        web_frm: $("#web_frm").val(),
+        web_frm: URL_A_ENVIAR,
         resp_frm: $("#resp_frm").val(),
         sector_sigla_frm: $("#sector_frm").val(),
         tipo_sigla_frm: $("#tipo_frm").val()
