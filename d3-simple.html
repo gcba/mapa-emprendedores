@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.calle {
+  stroke: #333;
+  fill: none;
+  stroke-width: 1.01px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.barrio {
+  fill: #fff;
+  stroke: red;
+  opacity: 0.5;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+
+var width = 1500,
+    height = 1500;
+
+var projection = d3.geo.mercator()
+    .scale(280000);
+
+var zoom = d3.behavior.zoom()
+    .translate([0, 0])
+    .scale(1)
+    .scaleExtent([1, 8])
+    .on("zoom", zoomed);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height);
+    // .on("click", reset);
+
+var callesBA = svg.append("g");
+
+var barriosBA = svg.append("g");
+
+
+// svg
+//     .call(zoom) // delete this line to disable free zooming
+//     .call(zoom.event);
+
+d3.json("data/caba.json", function(error, topo) {
+  var calles = topojson.feature(topo, topo.objects.calles),
+      callesgeo = calles.features;
+      
+
+  var barrios = topojson.feature(topo, topo.objects.barrios),
+      barriosgeo = barrios.features,
+      bounds = path.bounds(barrios);
+
+  // var tipo = d3.extent(callesgeo, function(d, i) {
+  //         return d.properties.tipo_c
+  //     });
+
+  // console.log(barrios);
+
+  projection
+      .translate([width / 2 - (bounds[0][0] + bounds[1][0]) / 2 + 500, height / 2 - (bounds[0][1] + bounds[1][1]) / 2]);
+
+  callesBA.selectAll("path")
+      .data(callesgeo).enter()
+      .append("path")
+      .attr("class", "calle")
+      .attr("d", path);        
+      // .on("mouseover", functionCall) // just a little example of what's available in terms of interaction
+      // .on("mouseout", fcuntionCall) // 
+
+  // svg.append("path")
+  //     .datum(calles)
+  //     .attr("class", "state")
+  //     .attr("d", path);
+
+  barriosBA.selectAll("path")
+      .data(barriosgeo).enter()
+      .append("path")
+      .attr("class", "barrio")
+      .attr("d", path); 
+
+  // svg.append("path")
+  //     .datum(topojson.mesh(topo, topo.objects.calles, function(a, b) { return a !== b; }))
+  //     .attr("class", "county-border")
+  //     .attr("d", path);
+});
+
+function zoomed() {
+  callesBA.style("stroke-width", 1.5 / d3.event.scale + "px");
+  callesBA.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  barriosBA.style("stroke-width", 1.5 / d3.event.scale + "px");
+  barriosBA.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
+
+</script>
