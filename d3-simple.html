@@ -54,15 +54,15 @@ svg.append("rect")
     // .on("click", reset);
 
 var callesBA = svg.append("g");
-
 var barriosBA = svg.append("g");
 
 
-// svg
-//     .call(zoom) // delete this line to disable free zooming
-//     .call(zoom.event);
+svg
+    .call(zoom) // delete this line to disable free zooming
+    .call(zoom.event);
 
 d3.json("data/caba.json", function(error, topo) {
+  // Traigo caba.json, un archivo topojson con 2 capas, barrios y calles segmentadas. Ver Makefile.
   var calles = topojson.feature(topo, topo.objects.calles),
       callesgeo = calles.features;
       
@@ -71,11 +71,11 @@ d3.json("data/caba.json", function(error, topo) {
       barriosgeo = barrios.features,
       bounds = path.bounds(barrios);
 
-  // var tipo = d3.extent(callesgeo, function(d, i) {
-  //         return d.properties.tipo_c
-  //     });
+  var tipo = d3.extent(callesgeo, function(d, i) {
+          return d.properties.id
+      });
 
-  // console.log(barrios);
+  console.log(tipo);
 
   projection
       .translate([width / 2 - (bounds[0][0] + bounds[1][0]) / 2 + 500, height / 2 - (bounds[0][1] + bounds[1][1]) / 2]);
@@ -83,7 +83,9 @@ d3.json("data/caba.json", function(error, topo) {
   callesBA.selectAll("path")
       .data(callesgeo).enter()
       .append("path")
-      .attr("class", "calle")
+      .attr("class", function(d,i){
+          return d.properties.id + " calle";
+      })
       .attr("d", path);        
       // .on("mouseover", functionCall) // just a little example of what's available in terms of interaction
       // .on("mouseout", fcuntionCall) // 
@@ -99,13 +101,12 @@ d3.json("data/caba.json", function(error, topo) {
       .attr("class", "barrio")
       .attr("d", path); 
 
-  // svg.append("path")
-  //     .datum(topojson.mesh(topo, topo.objects.calles, function(a, b) { return a !== b; }))
-  //     .attr("class", "county-border")
-  //     .attr("d", path);
+
 });
 
 function zoomed() {
+
+  // Mejorar esto! 
   callesBA.style("stroke-width", 1.5 / d3.event.scale + "px");
   callesBA.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
   barriosBA.style("stroke-width", 1.5 / d3.event.scale + "px");

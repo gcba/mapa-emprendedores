@@ -1,12 +1,5 @@
-barrios.zip:
-	curl -o barrios.zip 'https://recursos-data.buenosaires.gob.ar/ckan2/barrios/barrios.zip'
-
-barrios.shp: barrios.zip
-	unzip barrios.zip
-	touch barrios.shp
-
-barrios.json: barrios.shp
-	ogr2ogr -t_srs WGS84 -f GeoJSON barrios.json barrios.shp
+barrios.json:
+	curl -o barrios.json 'https://davo.cartodb.com/api/v2/sql?filename=barrios&q=SELECT+*+FROM+barrios&format=geojson'
 
 calles.json:
 	curl -o calles.json 'https://davo.cartodb.com/api/v2/sql?filename=calles_segmentadas&q=SELECT+*+FROM+calles_segmentadas&format=geojson'
