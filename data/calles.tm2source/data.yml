@@ -1,0 +1,37 @@
+_prefs: 
+  disabled: []
+  inspector: false
+  mapid: gcbadata.8f7ef092
+  rev: s-5a001129
+  saveCenter: true
+attribution: ''
+center: 
+  - -58.4651
+  - -34.6343
+  - 10
+description: ''
+Layer: 
+  - id: calles_para_cartodb_2
+    Datasource: 
+      file: /Users/davo/Downloads/calles para cartodb 2.geojson
+      layer: OGRGeoJSON
+      type: ogr
+    description: ''
+    fields: 
+      ID: Number
+      ALT_DERFIN: Number
+      ALT_DERINI: Number
+      ALT_IZQFIN: Number
+      ALT_IZQINI: Number
+      CODIGO: Number
+      NOMANTER: String
+      NOMOFICIAL: String
+      OBSERVA: String
+      SENTIDO: String
+      TIPO_C: String
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+maxzoom: 17
+minzoom: 10
+name: Calles de Buenos Aires

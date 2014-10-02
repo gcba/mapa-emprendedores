@@ -1,0 +1,1 @@
+UPDATE luminarias SET status = floor(random() * 2)
