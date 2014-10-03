@@ -4,7 +4,7 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
+var routes = require('./routes/routes.js');
 var http = require('http');
 var path = require('path');
 var CartoDB = require('cartodb');
@@ -40,6 +40,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/mapa', routes.mapa);
 
 var client = new CartoDB({
 	user:secret.user,
@@ -63,6 +64,7 @@ io.sockets.on('connection', function(socket){
 		client.on('connect', function(){
 			client.query("SELECT * FROM campanas_colocadas", function(err, data){
 				console.log("emit update...");
+//				socket.emit('update', data.rows);
 				socket.emit("update", change(data.rows));
 				console.log("updated emited");
 			});
