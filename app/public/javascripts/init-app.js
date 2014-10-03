@@ -5,7 +5,7 @@
 	var socket = io.connect('http://localhost');
 
 	socket.on('connected', function(){
-		console.log("conectado");
+		// console.log("conectado");
 	});
 
 	socket.on('update', function(data){
@@ -13,10 +13,10 @@
 	});
 
 	socket.on('disconnect', function () {
-		console.log('Desconectado!');
+		// console.log('Desconectado!');
 	});
 
-	console.log("build mapa")
+	// console.log("build mapa")
 
 	var width = 1500,
 		height = 1500;
@@ -52,7 +52,7 @@
 	.call(zoom.event);
 
 	d3.json("data/caba.json", function(error, topo) {
-	console.log(topo.objects.calles)
+	// console.log(topo.objects.calles)
  	// Traigo caba.json, un archivo topojson con 2 capas, barrios y calles segmentadas. Ver Makefile.
 
 	var calles = topojson.feature(topo, topo.objects.calles),
@@ -66,7 +66,7 @@
 		return d.properties.id
 	});
 
-	console.log(tipo);
+	// console.log(tipo);
 
 	projection
 		.translate([width / 2 - (bounds[0][0] + bounds[1][0]) / 2 + 500, height / 2 - (bounds[0][1] + bounds[1][1]) / 2]);

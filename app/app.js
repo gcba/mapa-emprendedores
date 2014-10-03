@@ -39,7 +39,6 @@ app.get('/', routes.index);
 app.get('/mapa', routes.mapa);
 require('./services/socket.js')(io);
 
-// listen app
 server.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
