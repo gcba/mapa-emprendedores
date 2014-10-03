@@ -2,13 +2,13 @@ _prefs:
   disabled: []
   inspector: false
   mapid: gcbadata.8f7ef092
-  rev: s-5a001129
+  rev: s-afa1625d
   saveCenter: true
 attribution: ''
 center: 
-  - -58.4651
-  - -34.6343
-  - 10
+  - -58.4624
+  - -34.598
+  - 16
 description: ''
 Layer: 
   - id: calles_para_cartodb_2
@@ -32,6 +32,6 @@ Layer:
     properties: 
       "buffer-size": 8
     srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
-maxzoom: 17
-minzoom: 10
+maxzoom: 16
+minzoom: 13
 name: Calles de Buenos Aires

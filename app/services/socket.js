@@ -31,7 +31,6 @@ module.exports = function(io) {
 				});
 			});
 			client.connect()
-			//client.pipe(savefile)
 		}, 50000);
 	});
 
