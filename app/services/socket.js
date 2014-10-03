@@ -1,5 +1,6 @@
 var CartoDB = require('cartodb');
 var secret = require('./secrets.js');
+var savefile = require('fs').createWriteStream(__dirname + '/result-query.json');
 
 var client = new CartoDB({
 	user:secret.user,
@@ -31,7 +32,7 @@ module.exports = function(io) {
 				});
 			});
 			client.connect()
-			//client.pipe(file)
+			//client.pipe(savefile)
 		}, 30000);
 	});
 
