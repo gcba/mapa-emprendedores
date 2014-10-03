@@ -40,8 +40,6 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 8])
     .on("zoom", zoomed);
 
-
-
 var path = d3.geo.path()
     .projection(projection);
 
@@ -66,7 +64,8 @@ svg
 d3.json("data/caba.json", function(error, topo) {
   // Traigo caba.json, un archivo topojson con 2 capas, barrios y calles segmentadas. Ver Makefile.
   var calles = topojson.feature(topo, topo.objects.calles),
-      callesgeo = calles.features; 
+      callesgeo = calles.features;
+      
 
   var barrios = topojson.feature(topo, topo.objects.barrios),
       barriosgeo = barrios.features,
