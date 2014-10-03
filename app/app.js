@@ -62,7 +62,7 @@ io.sockets.on('connection', function(socket){
 	socket.emit('connected');
 	setInterval(function(){
 		client.on('connect', function(){
-			client.query("SELECT * FROM campanas_colocadas", function(err, data){
+			client.query("SELECT * FROM puntos_nagio", function(err, data){
 				console.log("emit update...");
 //				socket.emit('update', data.rows);
 				socket.emit("update", change(data.rows));
