@@ -1,5 +1,11 @@
 npm install
+
+RUN MODO DEBUG
+
+server side
 DEBUG=* node app.js
 
-client side 
+or
+
+client side
 localStorage.debug="socket.io-client:socket"
