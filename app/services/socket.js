@@ -24,7 +24,7 @@ module.exports = function(io) {
 		socket.emit('connected');
 		setInterval(function(){
 			client.on('connect', function(){
-				client.query("SELECT * FROM puntos_nagio WHERE {interval} < updated_at", {interval: "current_timestamp-interval'1 minute'"}, function(err, data){
+				client.query("SELECT * FROM campanas_colocadas WHERE {interval} < updated_at", {interval: "current_timestamp-interval'1 minute'"}, function(err, data){
 					console.log("emit update...");
 					socket.emit("update", data);
 					console.log("updated emited");
@@ -32,7 +32,7 @@ module.exports = function(io) {
 			});
 			client.connect()
 			//client.pipe(savefile)
-		}, 5000);
+		}, 50000);
 	});
 
 }
