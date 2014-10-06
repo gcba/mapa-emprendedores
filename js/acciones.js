@@ -276,7 +276,7 @@ function finalizacion() {
         mailIns_frm: $("#mailIns_frm").val(),
         mailRes_frm: $("#mailRes_frm").val(),
         tele_frm: $("#tele_frm").val(),
-        web_frm: URL_A_ENVIAR,
+        web_frm: url_a_enviar,
         resp_frm: $("#resp_frm").val(),
         sector_sigla_frm: $("#sector_frm").val(),
         tipo_sigla_frm: $("#tipo_frm").val()

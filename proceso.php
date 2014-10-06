@@ -11,20 +11,8 @@
  *
  */
 
-
-
-/**
-* @abstract     Clase de creada por CartoDB para establecer comunicación su API.
-* @package      https://github.com/Vizzuality/cartodbclient-php
-*/
 require_once 'libs/cartodb.class.php';
-
-/**
-* @abstract     Setup de credenciales de autenticación contra la API de CartoDB para tablas privadas.
-*/
 require_once 'libs/cartodb.config.php';
-
-
 
 $config = getConfig();
 $cartodb = new CartoDBClient($config);
@@ -32,11 +20,6 @@ $cartodb = new CartoDBClient($config);
 if (!$cartodb->authorized) {
   error_log("uauth");
 }
-
-
-/**
-* @abstract     Agarro las variables del formulario HTML y las encodeo en URL
-*/
 
 $api_key = "&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
 $acti_frm = urlencode($_POST['acti_frm']);
@@ -54,18 +37,13 @@ $tags_frm =  urlencode($_POST['tags_frm']);
 $tele_frm = 	urlencode($_POST['tele_frm']);
 $tipo_frm = urlencode($_POST['tipo_frm']);
 $web_frm =	 urlencode($_POST['web_frm']);
-$pendiente_revision = "FALSE";
+$pendiente_revision = "false";
 $sector_sigla = urlencode($_POST['sector_sigla_frm']);
 $tipo_sigla = urlencode($_POST['tipo_sigla_frm']);
 $lat_frm = urlencode($_POST['lat_frm']);
 $lon_frm = urlencode($_POST['lon_frm']);
 
 $geom = "ST_SetSRID(ST_MakePoint(" . $latlon_frm . "),4326)";
-
-
-/**
-* @abstract     Valido Captcha y escribo en base mediante cURL
-*/
 
 if (!empty($_REQUEST['captcha_txt'])) {
     if (empty($_SESSION['captcha']) || trim(strtolower($_REQUEST['captcha_txt'])) != $_SESSION['captcha']) {
@@ -81,11 +59,11 @@ if (!empty($_REQUEST['captcha_txt'])) {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
         $output = curl_exec($ch);   
         curl_close($ch);
-
     }
     $request_captcha = htmlspecialchars($_REQUEST['captcha_txt']);
     unset($_SESSION['captcha']);
 }
+
 
 ?>
 
