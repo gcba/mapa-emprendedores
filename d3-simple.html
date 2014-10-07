@@ -112,11 +112,9 @@ d3.json("data/caba.json", function(error, topo) {
       .attr("cy", function (d,i){
         return projection(nagiosgeo[i].geometry.coordinates)[1]
       })
-      .attr("r", 5)
+      .attr("r", 3)
       .style("fill", "red")
-      .style("fill-opacity", 0.5)
-      .style("stroke", "red")
-      .style("stroke-opacity", 0.1)
+      .style("fill-opacity", 0.5);
 
 });
 
