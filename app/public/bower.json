@@ -1,0 +1,14 @@
+{
+  "name": "visuzalicion-cucc",
+  "version": "1",
+  "description": "visualiza apagones",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ]
+}
