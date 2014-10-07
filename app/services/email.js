@@ -1,18 +1,21 @@
 var 
   MailListener = require("mail-listener2")
   , config = require('../config.json')
-  //, mongoose = require('mongoose')
-  , pubsub = require('../lib/pubsub').pubsub;
+  , mongoose = require('mongoose')
+  , pubsub = require('../lib/pubsub').pubsub
+  , mongoose = require('mongoose');
+
 
 var Email = function(_normalizador){
   
-  var mailListener = {};
-  // ,Report = mongoose.model('Report');
+  var mailListener = {}
+    , Report = require('../models');
 
   pubsub.on('newTaxonomy', function(){
     console.log('new newTaxonomy');
     restart();
   });
+  
   var start = function(){
 
     console.log('Start Email service');
@@ -42,11 +45,7 @@ var Email = function(_normalizador){
       console.log(err);
     });
 
-    mailListener.on("mail", function(mail, seqno, attributes){
-      console.log(email);
-      console.log(seqno);
-      console.log(attributes);
-    });
+    mailListener.on("mail", onNewMail);
 
     mailListener.start();
 
@@ -61,12 +60,18 @@ var Email = function(_normalizador){
       mailListener.stop();
   };
 
-  var onNewMail = function(mail){
-    //var r = new Report();
+  var onNewMail = function(mail, seqno, attributes){
 
-    //r.text = mail.subject + ': ' + mail.text;
-    //r.origin = "EMAIL";
-    //console.log(mail);
+    var ReportSave = new Report({
+      "text": mail.subject + ': ' + mail.text,
+      "origin" : "EMAIL"
+
+    }).save();
+
+    console.log(mail);
+    console.log(seqno);
+    console.log(attributes);
+
     //console.log(mail.subject + ': ' + mail.text);
     //pubsub.emit('reports.received', mail);
   }
