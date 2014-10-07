@@ -1,3 +1,6 @@
+hospitales.json:
+	curl -o hospitales.json 'https://recursos-data.buenosaires.gob.ar/ckan2/hospitales/hospitales.csv'
+
 barrios.json:
 	curl -o barrios.json 'https://davo.cartodb.com/api/v2/sql?filename=barrios&q=SELECT+*+FROM+barrios&format=geojson'
 
