@@ -85,12 +85,12 @@ d3.json("data/caba.json", function(error, topo) {
   projection
       .translate([width / 2 - (bounds[0][0] + bounds[1][0]) / 2 + 500, height / 2 - (bounds[0][1] + bounds[1][1]) / 2]);
 
-  // callesBA.selectAll("path")
-  //     .data(callesgeo).enter()
-  //     .append("path")
-  //     .attr("class", function(d,i){
-  //         return d.properties.id + " calle";
-  //     })
+  callesBA.selectAll("path")
+      .data(callesgeo).enter()
+      .append("path")
+      .attr("class", function(d,i){
+          return d.properties.id + " calle";
+      })
   //     .attr("d", path);
   //     // .on("mouseover", functionCall) 
   //     // .on("mouseout", fcuntionCall) 
