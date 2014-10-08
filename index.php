@@ -156,12 +156,7 @@
                                         <label for="desc_frm">Descripción</label>
                                         <textarea class="form-control" rows="3" id="desc_frm" name="desc_frm"> </textarea>
                                     </div>
-<!--
-                                    <div class="form-group">
-                                        <label for="resp_frm">Servicios</label>
-                                        <input type="text" id="serv_frm" name="serv_frm" class="form-control" placeholder="Sevicios" >
-                                    </div>
--->
+
                                     <div class="form-group">
                                         <label for="acti_frm">Inicio de actividades</label>
                                         <input type="text" id="acti_frm" name="acti_frm" class="form-control" placeholder="Año de inicio (Ej. 1990)" >
@@ -345,9 +340,14 @@
                         <p>Con esta herramienta nos proponemos fomentar el intercambio y las relaciones entre la comunidad, así como mostrar el alto potencial y desarrollo que está teniendo la actividad emprendedora en Buenos Aires.</p>
                         <p>El Mapa va a estar integrado por las instituciones, organizaciones, empresas, espacios de trabajo colaborativo, aceleradoras, incubadoras e inversores que conforman el ecosistema. En una segunda instancia, incluiremos toda la oferta de la actividad emprendedores de la Ciudad (eventos, capacitaciones, programas, etc.)</p>
                         <p>Te invitamos a ser parte de esta iniciativa que co-creamos con todos los emprendedores porteños.</p>
-                        <p>&nbsp;</p>
-
-                        <p><a href="http://cartodb.com/" target="_blank"><img src="css/img/logos_simple_cartodb_light.png"></a></p>
+						<div class="container credits">
+	                        <div class="row">
+	                        	<div class="col-6">
+	                        		<p>Mapa Emprendedor utiliza <br><a href="http://cartodb.com/" target="_blank"><img src="css/img/logos_simple_cartodb_light.png"></a></p>
+	                        		<p>Para colaborar con este proyecto <br><a href="https://github.com/gcba/mapa-emprendedores" target="_blank"><img src="css/img/logos_simple_github_light.png"></a></p>
+	                        	</div>
+	                        </div>
+                        </div>
 
                     </div>
 
