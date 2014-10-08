@@ -21,44 +21,56 @@
 	<body>
 		<div id="map"></div>
 
-
-
-
-
-
-
 	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
-
 	<script>
-	  function main() {
-	    var map = new L.Map('map', {
-	      
-	      zoomControl: false,
-	      center: [-34.6320779500647, -58.404006958007805],
-	      zoom: 12
-	    });
+		var main = function(){
 
-	    L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
-	      attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
-	    }).addTo(map);
+		// socket.on('connected', function(){
+		// 	// console.log("conectado");
+		// });
 
-	    cartodb.createLayer(map, 'http://apagones.cartodb.com/api/v2/viz/1b386982-4b3a-11e4-a9a5-0e853d047bba/viz.json')
-	     .addTo(map)
-	     .on('done', function(layer) {
+		// socket.on('update', function(data){
+		// 	console.log(data);
+		// });
 
-	      layer.setInteraction(true);
+		// socket.on('disconnect', function () {
+		// 	// console.log('Desconectado!');
+		// });
 
-	      layer.on('featureOver', function(e, pos, latlng, data) {
-	        cartodb.log.log(e, pos, latlng, data);
-	      });
+			var map = new L.Map('map', {
+		      
+			zoomControl: false,
+			center: [-34.6320779500647, -58.404006958007805],
+			zoom: 12
+			
+			});
 
-	      layer.on('error', function(err) {
-	        cartodb.log.log('error: ' + err);
-	      });
-	    }).on('error', function() {
-	      cartodb.log.log("some error occurred");
-	    });
-	  }
+		    L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
+		      attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+		    }).addTo(map);
+
+		    cartodb.createLayer(map, 'http://apagones.cartodb.com/api/v2/viz/1b386982-4b3a-11e4-a9a5-0e853d047bba/viz.json')
+			 	.addTo(map)
+			 	.on('done', function(layer){
+
+				layer.setInteraction(true);
+
+				layer.on('featureOver', function(e, pos, latlng, data) {
+					//console.log(e, pos, latlng, data);
+					cartodb.log.log(e, pos, latlng, data);
+				});
+
+				layer.on('error', function(err) {
+					//console.log(err)
+					cartodb.log.log('error: ' + err);
+			    });
+
+			}).on('error', function() {
+			//	console.log("some error occurred");
+			//	cartodb.log.log("some error occurred");
+			});
+		
+		};
 
 	  // you could use $(window).load(main);
 	  window.onload = main;
