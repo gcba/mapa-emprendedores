@@ -51,7 +51,7 @@ module.exports = function(io){
 				});
 			});
 			client.connect()
-		}, 50000);
+		}, 80000);
 		clients.push(socket);
 		socket.on('message', function(m){
 	  		m.socket = this;

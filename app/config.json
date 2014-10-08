@@ -1,7 +1,7 @@
 {
   "db": {
     "name": "visualizacion-cucc",
-    "host": "lmokto:hacura@localhost",
+    "host": "localhost",
     "url": null
   },
   "host": "localhost",
@@ -19,7 +19,7 @@
     "host":"imap.buenosaires.gob.ar",
     "port":"143",
     "user":"luisuranga@buenosaires.gob.ar",
-    "pass":"ze8ucala"
+    "pass":""
   },
   "cartodb":{
     "username":"apagones",

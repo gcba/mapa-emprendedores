@@ -1,6 +1,7 @@
 var ReportCtrl = require('../controllers/report.js');
 var TaxonomyCtrl = require('../controllers/taxonomy.js');
 var passport = require('passport');
+var ClassifierCtrl = require('../controllers/classifier.js')
 
 module.exports = function(app){
 	
@@ -47,12 +48,28 @@ module.exports = function(app){
 	 * GET api reports emails.
 	 */
 
-	app.get('/api/reports', ReportCtrl.loadAll);
-	app.get('/api/reports/add', TaxonomyCtrl.loadAll, render('reports/add'));
-	app.get('/api/reports/update', render('reports/update'));
-	app.get('/api/reports/:report_id/markAsSpam', ReportCtrl.markAsSpam);
-	app.get('/api/reports/:report_id/markAsVerified', ReportCtrl.markAsVerified);
-	app.get('/api/reports/all', ReportCtrl.loadAll, checkJSON);
+	app.get('/api/taxonomies', isLoggedIn, TaxonomyCtrl.loadAll, render('taxonomies/index'));
+	app.get('/api/reports', isLoggedIn, ReportCtrl.loadAll)
+
+	app.get('/api/reports/add', isLoggedIn, TaxonomyCtrl.loadAll, render('reports/add'));
+
+	app.get('/api/reports/update', isLoggedIn, render('reports/update'));
+
+	app.get('/api/taxonomies/add', isLoggedIn, render('taxonomies/add'));
+	app.post('/api/taxonomies/add', isLoggedIn, TaxonomyCtrl.save);
+
+	app.get('/api/taxonomies/:taxonomy_id/update', isLoggedIn, TaxonomyCtrl.load, render('taxonomies/update'));
+	app.post('/api/taxonomies/:taxonomy_id/update', isLoggedIn, TaxonomyCtrl.update);
+
+	app.get('/api/taxonomies/:taxonomy_id/remove', isLoggedIn, TaxonomyCtrl.remove);
+
+	app.get('/api/reports/:report_id/markAsSpam', isLoggedIn, ReportCtrl.markAsSpam);
+	app.get('/api/reports/:report_id/markAsVerified', isLoggedIn, ReportCtrl.markAsVerified);
+	app.get('/api/classifier/train', isLoggedIn, ClassifierCtrl.train);
+
+	//Ajax
+	app.get('/api/reports/all', isLoggedIn, ReportCtrl.loadAll, checkJSON);
+	app.get('/api/taxonomies/all', isLoggedIn, TaxonomyCtrl.loadAll, checkJSON);
 
 }
 
