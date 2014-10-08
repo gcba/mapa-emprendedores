@@ -10,6 +10,7 @@
     "memwatch": "~0.2.2",
     "express": "3.5.0",
     "ejs": "^1.0.0",
+    "express-session": "1.8.2",
     "socket.io": "0.9.x",
     "cartodb": "^0.2.0",
     "compression": "^1.1.0",
