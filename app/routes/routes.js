@@ -8,7 +8,9 @@ module.exports = function(app){
 	
 
 	app.get('/', function(req, res) {
-		res.render('login.ejs', { message: req.flash('loginMessage') });
+		res.render('login.ejs', { 
+			message: req.flash('loginMessage') 
+		});
 	});
 
 	// process the login form
@@ -17,6 +19,11 @@ module.exports = function(app){
 		failureRedirect : '/', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
+
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
 
 	app.get('/index', isLoggedIn, function(req, res){
 	  res.render('index', {
