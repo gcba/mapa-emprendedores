@@ -14,11 +14,8 @@
     "ejs": "^1.0.0",
     "express": "3.5.0",
     "express-session": "^1.8.2",
-    "express-sessions": "1.8.2",
-    "jquery": "~1.8",
     "lodash": "~2.4.1",
     "mail-listener2": "^0.1.7",
-    "memwatch": "~0.2.2",
     "moment": "~2.5.0",
     "mongoose": "^3.8.17",
     "natural": "~0.1.25",
@@ -27,6 +24,7 @@
     "q": "~1.0.0",
     "socket.io": "0.9.x",
     "superagent": "~0.16.0",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "jquery": "~1.8.3"
   }
 }
