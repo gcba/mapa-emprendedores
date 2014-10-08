@@ -6,14 +6,16 @@ var compression = require('compression');
 var passport = require('passport');
 var app = express();
 var config = require('./config');
-var memwatch = require('memwatch');
+// var memwatch = require('memwatch');
 var flash    = require('connect-flash');
 var session = require('express-session');
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-var normalizador = require('./lib/normalizador.js').init({ lazyDataLoad: false, aceptarCallesSinAlturas: false, callesEnMinusculas: true});
+// var normalizador = require('./lib/normalizador.js').init({ lazyDataLoad: false, aceptarCallesSinAlturas: false, callesEnMinusculas: true});
 var pubsub = require('./lib/pubsub').pubsub;
-var Email = require('./services/email.js')(normalizador);
+var Email = require('./services/email.js');
+
+//(normalizador);
 
 // models y connect db
 require('./lib/passport')(passport); // pass passport for configuration
@@ -25,7 +27,7 @@ var Report = mongoose.model('Report')
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -63,7 +65,8 @@ app.use(function(error, req, res, next) {
 
 
 // require parser
-require('./lib/parser')(normalizador);
+require('./lib/parser');
+//(normalizador);
 
 // development only
 if ('development' == app.get('env')) {
@@ -75,7 +78,7 @@ var initServices = function(){
 	require('./services/socket.js')(io);
  	services = {
     //'Twitter': Twitter,
-    'Email': Email
+    //'Email': Email
   	};
 	Object.keys(services).forEach(function(key) {
 		services[key].start();
@@ -85,9 +88,11 @@ var initServices = function(){
 initServices();
 
 // listen leak memory
+/*
 memwatch.on('leak', function(info) {
   console.log(info);
 });
+*/
 
 // require rutas
 require('./routes/routes.js')(app);
