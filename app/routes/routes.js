@@ -28,8 +28,8 @@ module.exports = function(app){
 
 	app.get('/index', isLoggedIn, function(req, res){
 	  res.render('index', {
-	  	h1: 'App - Real Time, Campanas.',
-	  	title: 'App - Real Time, Campanas.',
+	  	h1: 'Visuzalicion CUCC',
+	  	title: 'Visuzalicion CUCC',
 	  });
 	});
 
@@ -39,8 +39,7 @@ module.exports = function(app){
 
 	app.get('/mapa', isLoggedIn, function(req, res){
 	  res.render('mapa', {
-	  	h1: 'Mapa - Davo.',
-	  	title: 'App - Real Time, Campanas.',
+	  	title: 'Visuzalicion CUCC',
 	  });
 	});
 

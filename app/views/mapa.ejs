@@ -14,6 +14,10 @@
 			  margin: 0;
 			}
 
+			#map *{
+				cursor: default;
+			}
+
 		</style>
 		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 
@@ -49,7 +53,7 @@
 		      attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
 		    }).addTo(map);
 
-		    cartodb.createLayer(map, 'http://apagones.cartodb.com/api/v2/viz/1b386982-4b3a-11e4-a9a5-0e853d047bba/viz.json')
+		    cartodb.createLayer(map, 'http://apagones.cartodb.com/api/v2/viz/d082feae-4f29-11e4-a794-0e018d66dc29/viz.json')
 			 	.addTo(map)
 			 	.on('done', function(layer){
 
