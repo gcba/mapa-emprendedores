@@ -1,11 +1,69 @@
 // Importo font-family: 'DIN-Bold','DINCond-Medium','DIN-Light','DIN-Medium'; 
-@import "fonts/font.css";
 
-html, body, #map {
+@import "../components/bourbon/dist/bourbon";
+@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+@include font-face('DIN-Bold', 'fonts/DINB____.eot');
+@include font-face('DINCond-Medium', 'fonts/DINCond-Medium.eot');
+@include font-face('DIN-Light', 'fonts/DINL____.eot');
+@include font-face('DIN-Medium', 'fonts/DINM____.eot');
+
+
+
+@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/";
+
+/*************
+
+   Variables
+
+**************/
+
+$nav-width: 600px;
+$main-color: #0d0c22;
+$main-font-color: #fff;
+
+$fontset-default: "DIN-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$fontset-dinlight: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$fontset-dinbold: "DIN-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$fontset-dincondmedium: "DINCond-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+
+html, body {
 	width: 100%;
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#map {
+	@extend body;
+}
+
+h1 {
+	font-family: $fontset-dinlight;
+	font-size: 4em;
+}
+
+nav {
+	position: relative;
+	width: $nav-width;
+	height: 100%;
+	background: $main-color;
+	color: $main-font-color;
+
+	.static {
+		position: absolute;
+		bottom: 20px;
+
+		h1 {
+			font-size: 2em;
+			text-transform: uppercase;
+			letter-spacing: -0.04em;
+		}
+
+		.version {
+			font-family: $fontset-dinlight;
+		}
+	}
+
+}
