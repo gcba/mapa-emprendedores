@@ -6,8 +6,8 @@ import itertools
 import textwrap
 import itertools
 # http://yuji.wordpress.com/2011/06/22/python-imaplib-imap-example-with-gmail/
-user = "luisuranga@buenosaires.gob.ar"
-pwd = ""
+user = "alertaapagon@buenosaires.gob.ar"
+pwd = "qegeba3u"
 mail = imaplib.IMAP4_SSL('imap.buenosaires.gob.ar')
 mail.login(user, pwd)
 mail.list()
@@ -58,7 +58,7 @@ if email_message['From'] == 'Reporte Centros de Alerta <reportecentrosdealerta@g
 				if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') == 'Aviso':
 					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
 				elif table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') != 'Aviso':
-					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])					
+					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
 	except:
 		pass
 

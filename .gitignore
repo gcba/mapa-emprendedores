@@ -1,7 +1,5 @@
 app/node_modules
 config.php
-<<<<<<< HEAD
 app/config.json
-=======
+app/run-app.sh
 .sass-cache/
->>>>>>> 5ecfa96894943b4516951e8adb098733ddc6a899

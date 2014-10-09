@@ -3,7 +3,7 @@ npm install
 RUN MODO DEBUG
 
 server side
-DEBUG=* node app.js
+DEBUG=* node server.js
 
 or
 
@@ -15,5 +15,3 @@ damos de alta usuario para ingresar
 
 cd models/
 node test-db.js
-
-

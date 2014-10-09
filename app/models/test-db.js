@@ -6,11 +6,6 @@ var mongoose = require('mongoose')
 require('../models')()
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
 
-// var asd = new Report();
-
-// asd.text ="asd";
-// asd.save();
-
 
 var newUser = new User();
 
@@ -21,8 +16,3 @@ newUser.save(function(err) {
         return console.log(err);
     mongoose.disconnect();
 });
-
-// http://localhost:3000/api/oauth2/authorize
-// client_id 123
-// response_type code
-// redirect_uri http://localhost:3000
