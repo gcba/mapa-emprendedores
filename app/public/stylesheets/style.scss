@@ -1,8 +1,7 @@
 // Importo font-family: 'DIN-Bold','DINCond-Medium','DIN-Light','DIN-Medium'; 
 
 @import "../components/bourbon/dist/bourbon";
-//@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
-//@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/";
+@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 
 @include font-face('DIN-Bold', 'fonts/DINB____');
 @include font-face('DINCond-Medium', 'fonts/DINCond-Medium');
@@ -11,6 +10,7 @@
 @include font-face('iconos-cucc', 'fonts/iconos-cucc');
 
 
+@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/";
 
 /*************
 
@@ -33,10 +33,15 @@ html, body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
+	text-rendering: optimizeLegibility;
 }
 
 #map {
+	position: absolute;
 	@extend body;
+	z-index: 10;
+	top: 0;
+	left: 0;
 }
 
 h1, h2, h3, p {
@@ -49,11 +54,10 @@ h1 {
 
 nav {
 	position: absolute;
-	top:0;
-	left:0;
 	width: $nav-width;
 	height: 100%;
 	z-index: 999;
+	
 	color: $main-font-color;
 
 	.map-selector {
@@ -62,8 +66,10 @@ nav {
 		top: 20px;
 
 		h2 {
+			font-size: 2.6em;
 			text-transform: uppercase;
 			text-align: right;
+			padding: 35px 0;
 		}
 
 		ul {
@@ -80,6 +86,10 @@ nav {
 		}
 		label {
 			cursor: pointer;
+			transition: all .2s ease;
+			&:hover {
+				opacity: 0.5;
+			}
 		}
 	}
 
@@ -104,7 +114,7 @@ nav {
 }
 
 .active {
-	background: $main-color;
+	background: rgba($main-color,.9);
 }
 
 .inactive {
@@ -145,12 +155,12 @@ input[type=checkbox] {
 input[type=checkbox] + span {
   background: #e74c3c;
   border-radius: 5px;
-  
+ 
   display: inline-block;
-  height: 30px;
-  margin:4px 0 0;
-  position:relative;
   width: 30px;
+  height: 30px;
+  margin: 15px 0px -4px 10px;
+  position:relative;
   transition: all .2s ease;
 }
 
