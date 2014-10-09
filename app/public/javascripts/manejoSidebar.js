@@ -22,8 +22,10 @@ $('input:checkbox').change(
 
         if ($(checkbox).is(':checked')) {
             sublayer.getSubLayer(sl).show();
+            console.log("esta chequeado");
         }else{
         	sublayer.getSubLayer(sl).hide();
+            console.log("no esta chequeado");
         }
     });
 
