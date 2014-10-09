@@ -20,26 +20,8 @@ var change = function(rows){
 	return prendidos;
 }
 
-// module.exports = function(io) {
+module.exports = function(io) {
 
-// 	io.sockets.on('connection', function(socket){
-// 		socket.emit('connected');
-// 		setInterval(function(){
-// 			client.on('connect', function(){
-// 				client.query("SELECT * FROM campanas_colocadas WHERE {interval} < updated_at", {interval: "current_timestamp-interval'1 minute'"}, function(err, data){
-// 					console.log("emit update...");
-// 					socket.emit("update", data);
-// 					console.log("updated emited");
-// 				});
-// 			});
-// 			client.connect()
-// 		}, 50000);
-// 	});
-
-// }
-
-module.exports = function(io){
-	console.log('Initialize Socket');
 	io.sockets.on('connection', function(socket){
 		socket.emit('connected');
 		setInterval(function(){
@@ -51,14 +33,32 @@ module.exports = function(io){
 				});
 			});
 			client.connect()
-		}, 80000);
-		clients.push(socket);
-		socket.on('message', function(m){
-	  		m.socket = this;
-	  		pubsub.emit('message', m);
-		});
+		}, 50000);
 	});
-	pubsub.on('reports.saved', function(e){
-		io.sockets.emit('reports.pushed', e);
-	});
-};
+
+}
+
+// module.exports = function(io){
+// 	console.log('Initialize Socket');
+// 	io.sockets.on('connection', function(socket){
+// 		socket.emit('connected');
+// 		setInterval(function(){
+// 			client.on('connect', function(){
+// 				client.query("SELECT * FROM campanas_colocadas WHERE {interval} < updated_at", {interval: "current_timestamp-interval'1 minute'"}, function(err, data){
+// 					console.log("emit update...");
+// 					socket.emit("update", data);
+// 					console.log("updated emited");
+// 				});
+// 			});
+// 			client.connect()
+// 		}, 80000);
+// 		clients.push(socket);
+// 		socket.on('message', function(m){
+// 	  		m.socket = this;
+// 	  		pubsub.emit('message', m);
+// 		});
+// 	});
+// 	pubsub.on('reports.saved', function(e){
+// 		io.sockets.emit('reports.pushed', e);
+// 	});
+// };

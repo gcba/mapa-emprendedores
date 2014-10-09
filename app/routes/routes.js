@@ -47,59 +47,59 @@ module.exports = function(app){
 	 * GET api reports emails.
 	 */
 
-	app.get('/api/taxonomies', isLoggedIn, TaxonomyCtrl.loadAll, render('taxonomies/index'));
-	app.get('/api/reports', isLoggedIn, ReportCtrl.loadAll)
+	// app.get('/api/taxonomies', isLoggedIn, TaxonomyCtrl.loadAll, render('taxonomies/index'));
+	// app.get('/api/reports', isLoggedIn, ReportCtrl.loadAll)
 
-	app.get('/api/reports/add', isLoggedIn, TaxonomyCtrl.loadAll, render('reports/add'));
+	// app.get('/api/reports/add', isLoggedIn, TaxonomyCtrl.loadAll, render('reports/add'));
 
-	app.get('/api/reports/update', isLoggedIn, render('reports/update'));
+	// app.get('/api/reports/update', isLoggedIn, render('reports/update'));
 
-	app.get('/api/taxonomies/add', isLoggedIn, render('taxonomies/add'));
-	app.post('/api/taxonomies/add', isLoggedIn, TaxonomyCtrl.save);
+	// app.get('/api/taxonomies/add', isLoggedIn, render('taxonomies/add'));
+	// app.post('/api/taxonomies/add', isLoggedIn, TaxonomyCtrl.save);
 
-	app.get('/api/taxonomies/:taxonomy_id/update', isLoggedIn, TaxonomyCtrl.load, render('taxonomies/update'));
-	app.post('/api/taxonomies/:taxonomy_id/update', isLoggedIn, TaxonomyCtrl.update);
+	// app.get('/api/taxonomies/:taxonomy_id/update', isLoggedIn, TaxonomyCtrl.load, render('taxonomies/update'));
+	// app.post('/api/taxonomies/:taxonomy_id/update', isLoggedIn, TaxonomyCtrl.update);
 
-	app.get('/api/taxonomies/:taxonomy_id/remove', isLoggedIn, TaxonomyCtrl.remove);
+	// app.get('/api/taxonomies/:taxonomy_id/remove', isLoggedIn, TaxonomyCtrl.remove);
 
-	app.get('/api/reports/:report_id/markAsSpam', isLoggedIn, ReportCtrl.markAsSpam);
-	app.get('/api/reports/:report_id/markAsVerified', isLoggedIn, ReportCtrl.markAsVerified);
-	app.get('/api/classifier/train', isLoggedIn, ClassifierCtrl.train);
+	// app.get('/api/reports/:report_id/markAsSpam', isLoggedIn, ReportCtrl.markAsSpam);
+	// app.get('/api/reports/:report_id/markAsVerified', isLoggedIn, ReportCtrl.markAsVerified);
+	// app.get('/api/classifier/train', isLoggedIn, ClassifierCtrl.train);
 
-	//Ajax
-	app.get('/api/reports/all', isLoggedIn, ReportCtrl.loadAll, checkJSON);
-	app.get('/api/taxonomies/all', isLoggedIn, TaxonomyCtrl.loadAll, checkJSON);
+	// //Ajax
+	// app.get('/api/reports/all', isLoggedIn, ReportCtrl.loadAll, checkJSON);
+	// app.get('/api/taxonomies/all', isLoggedIn, TaxonomyCtrl.loadAll, checkJSON);
 
 }
 
-var render = function(path) {
-  return function(req, res) { 
-    res.render(path, function(err, html){
-      console.log(err);
-      if(err) return res.send(500);
-      res.json({html: html});
-    });
-  };
-};
+// var render = function(path) {
+//   return function(req, res) { 
+//     res.render(path, function(err, html){
+//       console.log(err);
+//       if(err) return res.send(500);
+//       res.json({html: html});
+//     });
+//   };
+// };
 
-var checkJSON = function(req, res, next){
-  if(req.get('accept') === 'application/json'){
-    var response = {};
-    for (var key in res.locals){
-      if(!_.isFunction(res.locals[key])){
-        response[key] = res.locals[key];
-      }
-    }
-    res.json(response);
-  }else{
-    next();
-  }
-}
+// var checkJSON = function(req, res, next){
+//   if(req.get('accept') === 'application/json'){
+//     var response = {};
+//     for (var key in res.locals){
+//       if(!_.isFunction(res.locals[key])){
+//         response[key] = res.locals[key];
+//       }
+//     }
+//     res.json(response);
+//   }else{
+//     next();
+//   }
+// }
 
-var sendMessage = function(m, res){
-  if(res)
-  res.json(m);
-};
+// var sendMessage = function(m, res){
+//   if(res)
+//   res.json(m);
+// };
 
 var isLoggedIn = function(req, res, next) {
 	if (req.isAuthenticated())

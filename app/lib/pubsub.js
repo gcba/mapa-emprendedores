@@ -1,4 +1,4 @@
-var EventEmitter = require('events').EventEmitter
-  , pubsub = new EventEmitter();
+// var EventEmitter = require('events').EventEmitter
+//   , pubsub = new EventEmitter();
 
-exports.pubsub = pubsub;
+// exports.pubsub = pubsub;
