@@ -5,7 +5,7 @@
     "url": ""
   },
   "host": "localhost",
-  "port": 3000,
+  "port": 3001,
   "session": "234kjf98@$!kfjl9",
   "auth_keys": {
     "twitter": {
@@ -22,8 +22,8 @@
     "pass":""
   },
   "cartodb":{
-    "username":"apagones",
-    "password":"isabel09",
+    "username":"baemprende",
+    "password":"barracassantelmo",
     "url":"http://cdb.io/1n0nrI3",
     "docs":"http://docs.cartodb.com/cartodb-platform/cartodb-js.html"
   },
