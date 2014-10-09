@@ -2,7 +2,7 @@
   "db": {
     "name": "visualizacion-cucc",
     "host": "localhost",
-    "url": "localhost"
+    "url": ""
   },
   "host": "localhost",
   "port": 3000,
