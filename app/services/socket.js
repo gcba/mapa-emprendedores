@@ -32,7 +32,7 @@ module.exports = function(io) {
 				});
 			});
 			client.connect()
-		}, 50000);
+		}, 80000);
 	});
 
 }
