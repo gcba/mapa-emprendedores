@@ -5327,7 +5327,8 @@ html, body, #map {
   width: 100%;
   height: 100%;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  text-rendering: optimizeLegibility; }
 
 h1, h2, h3, p {
   font-family: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif; }
@@ -5339,14 +5340,17 @@ nav {
   position: relative;
   width: 600px;
   height: 100%;
+  z-index: 999;
   color: white; }
   nav .map-selector {
     position: absolute;
     width: 100%;
     top: 20px; }
     nav .map-selector h2 {
+      font-size: 2.6em;
       text-transform: uppercase;
-      text-align: right; }
+      text-align: right;
+      padding: 35px 0; }
     nav .map-selector ul {
       list-style-type: none;
       padding: 0;
@@ -5357,7 +5361,10 @@ nav {
       text-transform: uppercase;
       font-size: 2em; }
     nav .map-selector label {
-      cursor: pointer; }
+      cursor: pointer;
+      transition: all .2s ease; }
+      nav .map-selector label:hover {
+        opacity: 0.5; }
   nav .static {
     position: absolute;
     bottom: 20px;
@@ -5409,10 +5416,10 @@ input[type=checkbox] + span {
   background: #e74c3c;
   border-radius: 5px;
   display: inline-block;
-  height: 30px;
-  margin: 4px 0 0;
-  position: relative;
   width: 30px;
+  height: 30px;
+  margin: 15px 0px -4px 10px;
+  position: relative;
   transition: all .2s ease; }
 
 input[type=checkbox] + span::before, input[type=checkbox] + span::after {

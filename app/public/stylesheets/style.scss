@@ -33,6 +33,7 @@ html, body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
+	text-rendering: optimizeLegibility;
 }
 
 #map {
@@ -51,6 +52,7 @@ nav {
 	position: relative;
 	width: $nav-width;
 	height: 100%;
+	z-index: 999;
 	
 	color: $main-font-color;
 
@@ -60,8 +62,10 @@ nav {
 		top: 20px;
 
 		h2 {
+			font-size: 2.6em;
 			text-transform: uppercase;
 			text-align: right;
+			padding: 35px 0;
 		}
 
 		ul {
@@ -78,6 +82,10 @@ nav {
 		}
 		label {
 			cursor: pointer;
+			transition: all .2s ease;
+			&:hover {
+				opacity: 0.5;
+			}
 		}
 	}
 
@@ -143,12 +151,12 @@ input[type=checkbox] {
 input[type=checkbox] + span {
   background: #e74c3c;
   border-radius: 5px;
-  
+ 
   display: inline-block;
-  height: 30px;
-  margin:4px 0 0;
-  position:relative;
   width: 30px;
+  height: 30px;
+  margin: 15px 0px -4px 10px;
+  position:relative;
   transition: all .2s ease;
 }
 
