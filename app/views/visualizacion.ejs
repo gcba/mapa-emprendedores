@@ -15,14 +15,15 @@ var main = function(){
     	attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
     }).addTo(map);
 
-    cartodb.createLayer(map, 'http://apagones.cartodb.com/api/v2/viz/d082feae-4f29-11e4-a794-0e018d66dc29/viz.json',{ refreshTime: tiempo_de_refresh })
+    cartodb.createLayer(map, 'http://baemprende.cartodb.com/api/v2/viz/e93e77a2-5005-11e4-9829-0e9d821ea90d/viz.json',{ refreshTime: tiempo_de_refresh })
 	 	.addTo(map)
 	 	.on('done', function(layer){
 
 	 	sublayer = layer;
 	 	layer.getSubLayer(1).hide();
-
-		$('#map').css('cursor', 'pointer');
+ 	 	layer.getSubLayer(2).hide();
+ 	 	
+ 		$('#map').css('cursor', 'pointer');
 		
 		layer.setInteraction(true);
 
@@ -46,5 +47,5 @@ var main = function(){
 };
 
 window.onload = main;
-// sublayer.getSubLayer(1).hide();
+
 </script>
