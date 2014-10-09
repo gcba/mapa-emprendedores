@@ -3,10 +3,11 @@
 @import "../components/bourbon/dist/bourbon";
 @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 
-@include font-face('DIN-Bold', 'fonts/DINB____.eot');
-@include font-face('DINCond-Medium', 'fonts/DINCond-Medium.eot');
-@include font-face('DIN-Light', 'fonts/DINL____.eot');
-@include font-face('DIN-Medium', 'fonts/DINM____.eot');
+@include font-face('DIN-Bold', 'fonts/DINB____');
+@include font-face('DINCond-Medium', 'fonts/DINCond-Medium');
+@include font-face('DIN-Light', 'fonts/DINL____');
+@include font-face('DIN-Medium', 'fonts/DINM____');
+@include font-face('iconos', 'fonts/iconos-cucc');
 
 
 
@@ -65,5 +66,39 @@ nav {
 			font-family: $fontset-dinlight;
 		}
 	}
-
 }
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "iconos-cucc";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-cerrar:before { content: '\63'; } /* 'c' */
+.icon-gcba:before { content: '\6c'; } /* 'l' */
+.icon-menu:before { content: '\6d'; } /* 'm' */

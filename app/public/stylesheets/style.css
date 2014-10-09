@@ -2,26 +2,32 @@
   font-family: "DIN-Bold";
   font-weight: normal;
   font-style: normal;
-  src: url("fonts/DINB____.eot.eot");
-  src: url("fonts/DINB____.eot.eot?#iefix") format("embedded-opentype"), url("fonts/DINB____.eot.woff") format("woff"), url("fonts/DINB____.eot.ttf") format("truetype"), url("fonts/DINB____.eot.svg#DIN-Bold") format("svg"); }
+  src: url("fonts/DINB____.eot");
+  src: url("fonts/DINB____.eot?#iefix") format("embedded-opentype"), url("fonts/DINB____.woff") format("woff"), url("fonts/DINB____.ttf") format("truetype"), url("fonts/DINB____.svg#DIN-Bold") format("svg"); }
 @font-face {
   font-family: "DINCond-Medium";
   font-weight: normal;
   font-style: normal;
-  src: url("fonts/DINCond-Medium.eot.eot");
-  src: url("fonts/DINCond-Medium.eot.eot?#iefix") format("embedded-opentype"), url("fonts/DINCond-Medium.eot.woff") format("woff"), url("fonts/DINCond-Medium.eot.ttf") format("truetype"), url("fonts/DINCond-Medium.eot.svg#DINCond-Medium") format("svg"); }
+  src: url("fonts/DINCond-Medium.eot");
+  src: url("fonts/DINCond-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/DINCond-Medium.woff") format("woff"), url("fonts/DINCond-Medium.ttf") format("truetype"), url("fonts/DINCond-Medium.svg#DINCond-Medium") format("svg"); }
 @font-face {
   font-family: "DIN-Light";
   font-weight: normal;
   font-style: normal;
-  src: url("fonts/DINL____.eot.eot");
-  src: url("fonts/DINL____.eot.eot?#iefix") format("embedded-opentype"), url("fonts/DINL____.eot.woff") format("woff"), url("fonts/DINL____.eot.ttf") format("truetype"), url("fonts/DINL____.eot.svg#DIN-Light") format("svg"); }
+  src: url("fonts/DINL____.eot");
+  src: url("fonts/DINL____.eot?#iefix") format("embedded-opentype"), url("fonts/DINL____.woff") format("woff"), url("fonts/DINL____.ttf") format("truetype"), url("fonts/DINL____.svg#DIN-Light") format("svg"); }
 @font-face {
   font-family: "DIN-Medium";
   font-weight: normal;
   font-style: normal;
-  src: url("fonts/DINM____.eot.eot");
-  src: url("fonts/DINM____.eot.eot?#iefix") format("embedded-opentype"), url("fonts/DINM____.eot.woff") format("woff"), url("fonts/DINM____.eot.ttf") format("truetype"), url("fonts/DINM____.eot.svg#DIN-Medium") format("svg"); }
+  src: url("fonts/DINM____.eot");
+  src: url("fonts/DINM____.eot?#iefix") format("embedded-opentype"), url("fonts/DINM____.woff") format("woff"), url("fonts/DINM____.ttf") format("truetype"), url("fonts/DINM____.svg#DIN-Medium") format("svg"); }
+@font-face {
+  font-family: "iconos";
+  font-weight: normal;
+  font-style: normal;
+  src: url("fonts/iconos-cucc.eot");
+  src: url("fonts/iconos-cucc.eot?#iefix") format("embedded-opentype"), url("fonts/iconos-cucc.woff") format("woff"), url("fonts/iconos-cucc.ttf") format("truetype"), url("fonts/iconos-cucc.svg#iconos") format("svg"); }
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -5342,3 +5348,40 @@ nav {
       letter-spacing: -0.04em; }
     nav .static .version {
       font-family: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "iconos-cucc";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
+
+.icon-cerrar:before {
+  content: '\63'; }
+
+/* 'c' */
+.icon-gcba:before {
+  content: '\6c'; }
+
+/* 'l' */
+.icon-menu:before {
+  content: '\6d'; }
+
+/* 'm' */
