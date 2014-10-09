@@ -1,7 +1,7 @@
 {
   "db": {
     "name": "visualizacion-cucc",
-    "host": "lmokto:hacura@localhost",
+    "host": "localhost",
     "url": null
   },
   "host": "localhost",
