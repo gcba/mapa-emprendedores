@@ -11,19 +11,10 @@ var session = require('express-session');
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
-// var memwatch = require('memwatch');
-//var normalizador = require('./lib/normalizador.js').init({ lazyDataLoad: false, aceptarCallesSinAlturas: false, callesEnMinusculas: true});
-//var pubsub = require('./lib/pubsub').pubsub;
-//var Email = require('./services/email.js')(normalizador);
-
 // models y connect db
-require('./lib/passport')(passport); // pass passport for configuration
-//require('./models')()
-
-//var Report = mongoose.model('Report')
-//  , Taxonomy = mongoose.model('Taxonomy');
-
+require('./lib/passport')(passport); 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
+//mongoose.connect("mongodb://factorialabgcba:thelabrocks123@ds043180.mongolab.com:43180/visualizacion-cucc");
 
 // all environments
 app.set('port', process.env.PORT || 3001);
@@ -67,31 +58,11 @@ app.use(function(error, req, res, next) {
 	res.render('500');
 });
 
-// require parser
-//require('./lib/parser')(normalizador);
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-// inicio servicios
-// var initServices = function(){
-// 	require('./services/socket.js')(io);
-// 	services = {
-// 		'Email': Email
-// 	};
-// 	Object.keys(services).forEach(function(key) {
-// 		services[key].start();
-// 	});
-// };
-
-//initServices();
-
-// listen leak memory
-//memwatch.on('leak', function(info) {
-//  console.log(info);
-//});
 
 // require rutas
 require('./routes/routes.js')(app);

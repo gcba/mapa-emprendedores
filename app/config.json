@@ -26,5 +26,15 @@
     "password":"isabel09",
     "url":"http://cdb.io/1n0nrI3",
     "docs":"http://docs.cartodb.com/cartodb-platform/cartodb-js.html"
+  },
+  "heroku":{
+    "email": "factoria.labgcba@gmail.com",
+    "password": "thelabrocks123"
+  },
+  "mongolab":{
+    "email": "factoria.labgcba@gmail.com",
+    "username":"factorialabgcba",
+    "password": "thelabrocks123",
+    "url": "mongodb://factorialabgcba:thelabrocks123@ds043180.mongolab.com:43180/visualizacion-cucc"
   }
 }
