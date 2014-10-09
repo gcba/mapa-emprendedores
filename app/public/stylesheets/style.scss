@@ -1,7 +1,8 @@
 // Importo font-family: 'DIN-Bold','DINCond-Medium','DIN-Light','DIN-Medium'; 
 
 @import "../components/bourbon/dist/bourbon";
-@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+//@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+//@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/";
 
 @include font-face('DIN-Bold', 'fonts/DINB____');
 @include font-face('DINCond-Medium', 'fonts/DINCond-Medium');
@@ -10,7 +11,6 @@
 @include font-face('iconos-cucc', 'fonts/iconos-cucc');
 
 
-@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/";
 
 /*************
 
@@ -48,10 +48,12 @@ h1 {
 }
 
 nav {
-	position: relative;
+	position: absolute;
+	top:0;
+	left:0;
 	width: $nav-width;
 	height: 100%;
-	
+	z-index: 999;
 	color: $main-font-color;
 
 	.map-selector {
