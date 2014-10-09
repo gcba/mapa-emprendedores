@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2014 by original authors @ fontello.com</metadata>
+<defs>
+<font id="iconos-cucc" horiz-adv-x="1000" >
+<font-face font-family="iconos-cucc" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="500" descent="-500" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="close" unicode="&#x63;" d="m173 426c-25 0-51-9-70-29-39-39-39-101 0-140l257-257-257-257c-39-39-39-101 0-140 39-39 101-39 140 0l257 257 257-257c39-39 101-39 140 0 39 39 39 101 0 140l-257 257 257 257c39 39 39 101 0 140-39 39-101 39-140 0l-257-257-257 257c-19 20-45 29-70 29z" horiz-adv-x="1000" />
+<glyph glyph-name="menu" unicode="&#x6d;" d="m151 413c-48 0-87-39-87-87 0-49 39-88 87-88l706 0c48 0 87 39 87 88 0 48-39 87-87 87l-706 0z m-8-325c-48 0-87-39-87-88 0-48 39-87 87-87l706 0c48 0 87 39 87 87 0 49-39 88-87 88l-706 0z m8-326c-48 0-87-39-87-87 0-48 39-88 87-88l706 0c48 0 87 40 87 88 0 48-39 87-87 87l-706 0z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>
