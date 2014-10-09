@@ -23,11 +23,11 @@
   src: url("fonts/DINM____.eot");
   src: url("fonts/DINM____.eot?#iefix") format("embedded-opentype"), url("fonts/DINM____.woff") format("woff"), url("fonts/DINM____.ttf") format("truetype"), url("fonts/DINM____.svg#DIN-Medium") format("svg"); }
 @font-face {
-  font-family: "iconos";
+  font-family: "iconos-cucc";
   font-weight: normal;
   font-style: normal;
   src: url("fonts/iconos-cucc.eot");
-  src: url("fonts/iconos-cucc.eot?#iefix") format("embedded-opentype"), url("fonts/iconos-cucc.woff") format("woff"), url("fonts/iconos-cucc.ttf") format("truetype"), url("fonts/iconos-cucc.svg#iconos") format("svg"); }
+  src: url("fonts/iconos-cucc.eot?#iefix") format("embedded-opentype"), url("fonts/iconos-cucc.woff") format("woff"), url("fonts/iconos-cucc.ttf") format("truetype"), url("fonts/iconos-cucc.svg#iconos-cucc") format("svg"); }
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -5329,25 +5329,51 @@ html, body, #map {
   padding: 0;
   margin: 0; }
 
+h1, h2, h3, p {
+  font-family: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
 h1 {
-  font-family: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 4em; }
 
 nav {
   position: relative;
   width: 600px;
   height: 100%;
-  background: #0d0c22;
   color: white; }
+  nav .map-selector {
+    position: absolute;
+    width: 100%;
+    top: 20px; }
+    nav .map-selector h2 {
+      text-transform: uppercase;
+      text-align: right; }
+    nav .map-selector ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: right; }
+    nav .map-selector li {
+      font-family: "DIN-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-transform: uppercase;
+      font-size: 2em; }
+    nav .map-selector label {
+      cursor: pointer; }
   nav .static {
     position: absolute;
-    bottom: 20px; }
+    bottom: 20px;
+    left: 50px; }
     nav .static h1 {
-      font-size: 2em;
+      font-size: 3em;
       text-transform: uppercase;
-      letter-spacing: -0.04em; }
+      letter-spacing: -0.04em;
+      clear: both; }
     nav .static .version {
-      font-family: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      font-family: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.5em;
+      float: right; }
+
+.active {
+  background: #0d0c22; }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "iconos-cucc";
@@ -5359,29 +5385,69 @@ nav {
   width: 1em;
   margin-right: .2em;
   text-align: center;
-  /* opacity: .8; */
-  /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
-  /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em;
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
+  margin-left: .2em; }
 
 .icon-cerrar:before {
   content: '\63'; }
 
-/* 'c' */
-.icon-gcba:before {
-  content: '\6c'; }
-
-/* 'l' */
 .icon-menu:before {
   content: '\6d'; }
 
-/* 'm' */
+input[type=checkbox] {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  position: absolute;
+  opacity: 0;
+  z-index: 2; }
+
+input[type=checkbox] + span {
+  background: #e74c3c;
+  border-radius: 5px;
+  display: inline-block;
+  height: 30px;
+  margin: 4px 0 0;
+  position: relative;
+  width: 30px;
+  transition: all .2s ease; }
+
+input[type=checkbox] + span::before, input[type=checkbox] + span::after {
+  background: #fff;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 4px;
+  transition: all .2s ease; }
+
+input[type=checkbox] + span::before {
+  height: 16px;
+  left: 13px;
+  top: 7px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg); }
+
+input[type=checkbox] + span::after {
+  height: 16px;
+  right: 13px;
+  top: 7px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg); }
+
+input[type=checkbox]:checked + span {
+  background: #2ecc71; }
+
+input[type=checkbox]:checked + span::before {
+  height: 9px;
+  left: 9px;
+  top: 13px;
+  -webkit-transform: rotate(-47deg);
+  transform: rotate(-47deg); }
+
+input[type=checkbox]:checked + span::after {
+  height: 15px;
+  right: 11px;
+  top: 8px; }
