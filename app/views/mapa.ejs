@@ -11,8 +11,14 @@
 	<body>
 		<div id="map"></div>
 
+
+		<div id="controles">
+		</div>
+
+
 	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 	<script>
+		var sublayer;
 		var main = function(){
 		
 			$('#map').css('cursor', 'progress');
@@ -32,6 +38,9 @@
 			 	.addTo(map)
 			 	.on('done', function(layer){
 
+			 	sublayer = layer;
+			 	layer.getSubLayer(1).hide();
+
 				$('#map').css('cursor', 'pointer');
 				
 				layer.setInteraction(true);
@@ -41,7 +50,7 @@
 				});
 
 				layer.on('refresh', function(e) {
-					console.log("e, pos, latlng, data");
+					//console.log("e, pos, latlng, data");
 				});
 
 
