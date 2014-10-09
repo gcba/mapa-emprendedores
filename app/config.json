@@ -1,8 +1,8 @@
 {
   "db": {
     "name": "visualizacion-cucc",
-    "host": "lmokto:hacura@localhost",
-    "url": "lmokto:hacura@localhost/visualizacion-cucc"
+    "host": "localhost",
+    "url": "localhost"
   },
   "host": "localhost",
   "port": 3000,

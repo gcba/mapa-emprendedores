@@ -2,4 +2,5 @@ app/node_modules
 config.php
 app/config.json
 app/run-app.sh
+app/public/components
 .sass-cache/
