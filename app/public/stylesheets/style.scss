@@ -146,7 +146,7 @@ input[type=checkbox] {
   cursor: pointer;
   height: 30px;
   width: 30px;
-  margin:0;
+  margin: 10px;
   position: absolute;
   opacity: 0;
   z-index: 2;
@@ -155,7 +155,6 @@ input[type=checkbox] {
 input[type=checkbox] + span {
   background: #e74c3c;
   border-radius: 5px;
- 
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -165,7 +164,7 @@ input[type=checkbox] + span {
 }
 
 input[type=checkbox] + span::before, input[type=checkbox] + span::after{
-  background:#fff;
+  background:#000;
   content:'';
   display:block;
   position:absolute;
@@ -190,7 +189,7 @@ input[type=checkbox] + span::after{
 }
 
 input[type=checkbox]:checked + span {
-  background:#2ecc71;			    
+  background:#fff;			    
 }
 
 input[type=checkbox]:checked + span::before{
