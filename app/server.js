@@ -13,7 +13,8 @@ var io = require('socket.io').listen(server);
 
 // models y connect db
 require('./lib/passport')(passport); 
-mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
+//mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
+mongoose.connect("mongodb://factorialabgcba:thelabrocks123@ds043180.mongolab.com:43180/visualizacion-cucc")
 
 // all environments
 app.set('port', process.env.PORT || 3001);
