@@ -7,8 +7,7 @@
 @include font-face('DINCond-Medium', 'fonts/DINCond-Medium');
 @include font-face('DIN-Light', 'fonts/DINL____');
 @include font-face('DIN-Medium', 'fonts/DINM____');
-@include font-face('iconos', 'fonts/iconos-cucc');
-
+@include font-face('iconos-cucc', 'fonts/iconos-cucc');
 
 
 @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/";
@@ -40,8 +39,11 @@ html, body {
 	@extend body;
 }
 
-h1 {
+h1, h2, h3, p {
 	font-family: $fontset-dinlight;
+}
+
+h1 {
 	font-size: 4em;
 }
 
@@ -49,56 +51,146 @@ nav {
 	position: relative;
 	width: $nav-width;
 	height: 100%;
-	background: $main-color;
+	
 	color: $main-font-color;
+
+	.map-selector {
+		position: absolute;
+		width: 100%;
+		top: 20px;
+
+		h2 {
+			text-transform: uppercase;
+			text-align: right;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			text-align: right;
+		}
+
+		li {
+			font-family: $fontset-dinbold;
+			text-transform: uppercase;
+			font-size: 2em;
+		}
+		label {
+			cursor: pointer;
+		}
+	}
 
 	.static {
 		position: absolute;
 		bottom: 20px;
+		left: 50px;
 
 		h1 {
-			font-size: 2em;
+			font-size: 3em;
 			text-transform: uppercase;
 			letter-spacing: -0.04em;
+			clear: both;
 		}
 
 		.version {
 			font-family: $fontset-dinlight;
+			font-size: 1.5em;
+			float: right;
 		}
 	}
 }
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "iconos-cucc";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
- 
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  /* opacity: .8; */
- 
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
-     
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
- 
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em;
- 
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
- 
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+.active {
+	background: $main-color;
 }
- 
-.icon-cerrar:before { content: '\63'; } /* 'c' */
-.icon-gcba:before { content: '\6c'; } /* 'l' */
-.icon-menu:before { content: '\6d'; } /* 'm' */
+
+.inactive {
+
+}
+
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: "iconos-cucc";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	margin-left: .2em;
+}
+
+.icon-cerrar:before { content: '\63'; }
+.icon-menu:before { content: '\6d'; }
+
+
+input[type=checkbox] {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin:0;
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+}
+
+input[type=checkbox] + span {
+  background: #e74c3c;
+  border-radius: 5px;
+  
+  display: inline-block;
+  height: 30px;
+  margin:4px 0 0;
+  position:relative;
+  width: 30px;
+  transition: all .2s ease;
+}
+
+input[type=checkbox] + span::before, input[type=checkbox] + span::after{
+  background:#fff;
+  content:'';
+  display:block;
+  position:absolute;
+  width:4px;
+  transition: all .2s ease;
+}
+
+input[type=checkbox] + span::before{
+  height:16px;
+  left:13px;
+  top:7px;
+  -webkit-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+}
+
+input[type=checkbox] + span::after{
+  height:16px;
+  right:13px;
+  top:7px;
+  -webkit-transform:rotate(45deg);
+  transform:rotate(45deg);
+}
+
+input[type=checkbox]:checked + span {
+  background:#2ecc71;			    
+}
+
+input[type=checkbox]:checked + span::before{
+  height: 9px;
+  left: 9px;
+  top: 13px;
+  -webkit-transform:rotate(-47deg);
+  transform:rotate(-47deg);
+}
+
+input[type=checkbox]:checked + span::after{
+  height: 15px;
+  right: 11px;
+  top: 8px;
+}
