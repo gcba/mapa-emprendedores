@@ -1,0 +1,52 @@
+<div id="map"></div>
+<script>
+var sublayer;
+var main = function(){
+
+	$('#map').css('cursor', 'progress');
+	var tiempo_de_refresh = 1000 * 60; //1 minuto
+
+	var map = new L.Map('map', {
+		zoomControl: false,
+		center: [-34.620, -58.444],
+		zoom: 13
+	});
+
+    L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
+    	attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+    }).addTo(map);
+
+    cartodb.createLayer(map, 'http://baemprende.cartodb.com/api/v2/viz/e93e77a2-5005-11e4-9829-0e9d821ea90d/viz.json',{ refreshTime: tiempo_de_refresh })
+	 	.addTo(map)
+	 	.on('done', function(layer){
+
+	 	sublayer = layer;
+	 	layer.getSubLayer(1).hide();
+ 	 	layer.getSubLayer(2).hide();
+ 	 	
+ 		$('#map').css('cursor', 'pointer');
+		
+		layer.setInteraction(true);
+
+		layer.on('featureOver', function(e, pos, latlng, data) {
+			// console.log(e, pos, latlng, data);
+		});
+
+		layer.on('refresh', function(e) {
+			//console.log("e, pos, latlng, data");
+		});
+
+
+		layer.on('error', function(err) {
+			console.log("Error de capa: " +  err)
+	    });
+
+	}).on('error', function() {
+		console.log("Ocurrió un error al cargar el mapa");
+	});
+
+};
+
+window.onload = main;
+
+</script>
