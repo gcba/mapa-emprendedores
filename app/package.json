@@ -1,28 +1,28 @@
 {
-  "name": "cartodb-socket",
+  "name": "vizcucc",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
+  "description": "\"simple app que muestra el estado de luminarias\"",
+  "main": "Gruntfile.js",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "express": "3.5.0",
-    "ejs": "^1.0.0",
-    "express-session": "^1.8.2",
-    "socket.io": "0.9.x",
-    "cartodb": "^0.2.0",
-    "compression": "^1.1.0",
+    "bcrypt-nodejs": "~0.0.3",
+    "ejs": "~1.0.0",
+    "cartodb": "~0.2.0",
+    "express": "~3.5.0",
+    "express-session": "~1.8.2",
+    "forever": "~0.11.1",
+    "mail-listener2": "~0.1.7",
+    "mongoose": "~3.8.17",
+    "compression": "~1.1.0",
+    "socket.io": "~0.9.17",
     "connect-flash": "~0.1.1",
-    "mongoose": "^3.8.17",
-    "passport": "~0.1.17",
-    "passport-local": "~0.1.6",
-    "forever": "^0.11.1"
+    "passport": "~0.1.18",
+    "passport-local": "~0.1.6"
   },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-watch": "^0.6.1"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT"
 }
