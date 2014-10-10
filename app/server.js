@@ -64,8 +64,16 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var initServices = function(){
+  require('./services/socket.js')(io);
+};
+
+initServices();
+
 // require rutas
 require('./routes/routes.js')(app);
+
+
 
 // inicio server
 server.listen(app.get('port'), function(){

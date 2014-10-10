@@ -5,8 +5,26 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<script src="http://localhost:3001/socket.io/socket.io.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script src="/javascripts/init-app.js"></script>
-	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />	
+	
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+	<script type="text/javascript">
+
+			var socket = io.connect('http://localhost');
+		
+			socket.on('connected', function(){
+				console.log("conectado");
+			});
+		
+			socket.on('update', function(data){
+				console.log(data);
+			});
+		
+			socket.on('disconnect', function () {
+				console.log('Desconectado!');
+			});
+
+			 
+	    </script>
   </head>
   <body>
   	<% include sidebar %>
@@ -15,5 +33,7 @@
 	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 	<script src="/javascripts/manejoSidebar.js"></script>
 
+
   </body>
+
 </html>

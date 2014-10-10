@@ -2,10 +2,10 @@
 
 !(function(){
 
-	var socket = io.connect('http://localhost');
+	var socket = io.connect('http://localhost:3001');
 
 	socket.on('connected', function(){
-		// console.log("conectado");
+		console.log("conectado");
 	});
 
 	socket.on('update', function(data){
