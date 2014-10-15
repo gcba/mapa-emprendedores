@@ -1,14 +1,15 @@
 var mongoose = require('mongoose')
-, config = require('../config')
+var config = require('../config')
 , User = require('./user');
 
 //mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
 mongoose.connect("mongodb://factorialabgcba:thelabrocks123@ds043180.mongolab.com:43180/visualizacion-cucc");
 
-var newUser = new User();
+//module.exports = function(mongoose){
 
-newUser.local.email = "lm@email.com";
-newUser.local.password = newUser.generateHash("password");
+var newUser = new User();
+newUser.local.email = "invitado@email.com";
+newUser.local.password = newUser.generateHash("remolacha");
 newUser.save(function(err) {
     if (err)
         return console.log(err);

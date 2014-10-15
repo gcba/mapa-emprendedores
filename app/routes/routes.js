@@ -4,7 +4,6 @@ module.exports = function(app){
 	
 	// GET home page.
 	
-
 	app.get('/', function(req, res) {
 		res.render('login.ejs', { 
 			message: req.flash('loginMessage') 
