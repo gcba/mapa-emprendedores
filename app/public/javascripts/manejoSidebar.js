@@ -12,8 +12,10 @@ $('input:checkbox').change(
     			break;
     		case "luminarias": sl = 2;
     			break;
-    		case "voluntarios": console.log("no hay datos");
-    			break;
+            case "voluntarios": console.log("no hay datos");
+                break;
+            case "distancias": sl = 3;
+                break;
     		case "cuc": console.log("no hay datos");
     			break;
     	}

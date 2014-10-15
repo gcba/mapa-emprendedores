@@ -14,7 +14,6 @@ var io = require('socket.io').listen(server);
 // models y connect db
 require('./lib/passport')(passport); 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
-//mongoose.connect(config.mongolab.url)
 
 // all environments
 app.set('port', process.env.PORT || 3001);
@@ -64,9 +63,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var initServices = function(){
+  require('./services/socket.js')(io);
+};
+
+initServices();
+
 // require rutas
 require('./routes/routes.js')(app);
 require('./services/socket.js')(io);
+
+
 
 // inicio server
 server.listen(app.get('port'), function(){

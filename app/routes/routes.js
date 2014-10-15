@@ -24,8 +24,7 @@ module.exports = function(app){
 
 	app.get('/index', isLoggedIn, function(req, res){
 	  res.render('index', {
-	  	h1: 'Visuzalicion CUCC',
-	  	title: 'Visuzalicion CUCC',
+	  	title: 'Mapa de cortes de luz - v0.1',
 	  });
 	});
 
@@ -35,7 +34,7 @@ module.exports = function(app){
 
 	app.get('/mapa', isLoggedIn, function(req, res){
 	  res.render('mapa', {
-	  	title: 'Visuzalicion CUCC',
+	  	title: 'Mapa de cortes de luz - v0.1',
 	  });
 	});
 
