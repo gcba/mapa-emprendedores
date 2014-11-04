@@ -5,7 +5,10 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<script src="http://localhost:3001/socket.io/socket.io.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	
+    
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
 	<script src="/components/moment/moment.js"></script>
 	<script src="/components/angular/angular.js"></script>
 	<script src="/components/restangular/src/restangular.js"></script>
@@ -17,36 +20,36 @@
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 	<script type="text/javascript">
 
-		    //console.log(moment("2010-01-01T05:06:07", moment.ISO_8601));
-		    //console.log(moment([2010, 1, 14, 15, 25, 50, 125]));
+		//console.log(moment("2010-01-01T05:06:07", moment.ISO_8601));
+		//console.log(moment([2010, 1, 14, 15, 25, 50, 125]));
 
-		    // http://localhost:3001/api/2014-11-03T20:45:24.0Z/2014-11-03T21:45:23.0Z
-		    var date = moment({ years:2010, months:3, days:5, hours:15, minutes:10, seconds:3, milliseconds:123})
-		    console.log(new Date(date._d).toISOString());
+		// http://localhost:3001/api/2014-11-03T20:45:24.0Z/2014-11-03T21:45:23.0Z
+		var date = moment({ years:2010, months:3, days:5, hours:15, minutes:10, seconds:3, milliseconds:123})
+		console.log(new Date(date._d).toISOString());
 
-			var socket = io.connect('http://localhost');
+		var socket = io.connect('http://localhost');
 
-			socket.on('connected', function(){
-				console.log("conectado");
-			});
-		
-			socket.on('update', function(data){
-				console.log(data);
-			});
-				
-			socket.on('time', function(t){
-				console.log(t);
-			});
+		socket.on('connected', function(){
+			console.log("conectado");
+		});
 
-			socket.on('error', function(error){
-				console.log(error);
-			});
+		socket.on('update', function(data){
+			console.log(data);
+		});
 			
-			socket.on('disconnect', function () {
-				console.log('Desconectado!');
-			});
+		socket.on('time', function(t){
+			console.log(t);
+		});
 
-	    </script>
+		socket.on('error', function(error){
+			console.log(error);
+		});
+
+		socket.on('disconnect', function () {
+			console.log('Desconectado!');
+		});
+
+	</script>
   </head>
   <body ng-controller="infoCtrl">
 

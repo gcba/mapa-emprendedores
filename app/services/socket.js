@@ -5,7 +5,7 @@ var Segmentos = require('../models/dump');
 var Report = require('../models/report');
 
 // intervalo cada 70 minutos
-const interval = 700000;
+const interval = 7000000;
 const interval2 = 4000000;
 
 var client = new CartoDB({
