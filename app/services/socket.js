@@ -61,6 +61,6 @@ module.exports = function(io) {
 				});
 			});
 			client.connect()
-		}, interval2);
+		}, 1000 * 60 * 3);
 	});
 }
