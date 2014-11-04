@@ -1,5 +1,14 @@
-app.controller('infoCtrl', function($scope, socket) {
- 
+app.controller('infoCtrl', function($scope, $http, socket) {
+ 	
+ 	var lacalledelolo = "42978";
+
+    $http.get('/api/'+lacalledelolo)
+        .success(function(data, status, headers, config) {
+            console.log(data)
+        }).error(function(data) {
+            // console.log(data)
+        });
+
 	$scope.today = function() {
 		$scope.dt = new Date();
 	};
@@ -36,5 +45,5 @@ app.controller('infoCtrl', function($scope, socket) {
 	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	$scope.format = $scope.formats[0];
 	console.log($scope.dt)
-	
+
 });
