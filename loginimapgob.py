@@ -1,4 +1,5 @@
-from lxml import html
+#from lxml import html
+import BeautifulSoup
 import imaplib
 import csv
 import email
@@ -20,33 +21,50 @@ result, data = mail.fetch(latest_email_id, "(RFC822)") # fetch the email body (R
 raw_email = data[0][1]
 email_message = email.message_from_string(raw_email)
 
-if email_message['To'] == 'antoniomilanese@gmail.com':
+def get_first_text_block(email_message_instance):
+    maintype = email_message_instance.get_content_maintype()
+    if maintype == 'multipart':
+        for part in email_message_instance.get_payload():
+            if part.get_content_maintype() == 'text':
+                return part.get_payload()
+    elif maintype == 'text':
+        return email_message_instance.get_payload()
 
-	fileread = email_message.get_payload()
-	dochtml = html.fromstring(fileread)
-	lista = []
-	table = dochtml.cssselect('table')
 
-	try:
+print get_first_text_block(email_message)
 
-		for i in range(len(table[0].xpath('//tr[td]'))):
+for link in soup.find('table'):
+    print(link.get('href'))
 
-			if len(table[0].xpath('//tr[td]')[i].text_content().split('\r\n')) == 23:
-				if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') == 'NoAlca=':
-					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
-			elif len(table[0].xpath('//tr[td]')[i].text_content().split('\r\n')) == 16:
-				if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') == 'Aviso':
-					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
-				elif table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') != 'Aviso':
-					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
-			elif len(table[0].xpath('//tr[td]')[i].text_content().split('\r\n')) == 19:
-				if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[12].replace(' ', '') == "Nofluyecorrienteporla=":
-					lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "No fluye corriente por la combinacion driver-lampara."])
+def get_parse_mail(email_message):
 
-		with open('incidencias.csv', 'w') as out_file:
-			writer = csv.writer(out_file)
-			writer.writerow(("ID", "Categoria"))
-			writer.writerows(lista)
+	if email_message['To'] == 'antoniomilanese@gmail.com':
 
-	except:
-		pass
+		fileread = email_message.get_payload()
+		dochtml = html.fromstring(fileread)
+		lista = []
+		table = dochtml.cssselect('table')
+
+		try:
+
+			for i in range(len(table[0].xpath('//tr[td]'))):
+
+				if len(table[0].xpath('//tr[td]')[i].text_content().split('\r\n')) == 23:
+					if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') == 'NoAlca=':
+						lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
+				elif len(table[0].xpath('//tr[td]')[i].text_content().split('\r\n')) == 16:
+					if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') == 'Aviso':
+						lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
+					elif table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[8].replace(' ', '') != 'Aviso':
+						lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "El OLC no esta alcanzable"])
+				elif len(table[0].xpath('//tr[td]')[i].text_content().split('\r\n')) == 19:
+					if table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[12].replace(' ', '') == "Nofluyecorrienteporla=":
+						lista.append([table[0].xpath('//tr[td]')[i].text_content().split('\r\n')[1].replace(' ', ''), "No fluye corriente por la combinacion driver-lampara."])
+
+			with open('incidencias.csv', 'w') as out_file:
+				writer = csv.writer(out_file)
+				writer.writerow(("ID", "Categoria"))
+				writer.writerows(lista)
+
+		except:
+			pass

@@ -13,8 +13,7 @@ var io = require('socket.io').listen(server);
 
 // models y connect db
 require('./lib/passport')(passport); 
-mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
-//mongoose.connect("mongodb://factorialabgcba:thelabrocks123@ds043180.mongolab.com:43180/visualizacion-cucc")
+mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name)) ; 
 
 // all environments
 app.set('port', process.env.PORT || 3001);
@@ -29,8 +28,8 @@ app.use(session({
 }));
 
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(passport.session()); 
+app.use(flash()); 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.favicon(__dirname + '/public/favicon.ico'));
 app.use(express.logger('dev'));
@@ -40,14 +39,14 @@ app.use(express.methodOverride());
 app.use(app.router);
 
 app.use(compression({
-    filter: function (req, res) {
+    filter: function (req, res){
       return /json|text|javascript|css/.test(res.getHeader('Content-Type'));
     },
     level: 9
 }));
 
 // manejo de caida conexion
-app.use(function(req, res) {
+app.use(function(req, res){
 	res.status(400);
 	res.render('404');
 });
@@ -72,8 +71,6 @@ initServices();
 
 // require rutas
 require('./routes/routes.js')(app);
-
-
 
 // inicio server
 server.listen(app.get('port'), function(){
