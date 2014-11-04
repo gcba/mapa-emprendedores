@@ -1,5 +1,5 @@
 var passport = require('passport');
-var sse = require('server-sent-events');
+//var sse = require('server-sent-events');
 var CartoDB = require('cartodb');
 var secret = require('../services/secrets.js');
 var getStatus = require('../controllers/status');
