@@ -1,4 +1,5 @@
 npm install
+bower install
 
 RUN MODO DEBUG
 

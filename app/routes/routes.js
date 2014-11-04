@@ -1,4 +1,13 @@
 var passport = require('passport');
+var sse = require('server-sent-events');
+var CartoDB = require('cartodb');
+var secret = require('../services/secrets.js');
+var getStatus = require('../controllers/status');
+
+var client = new CartoDB({
+	user:secret.user,
+	api_key:secret.api_key
+});
 
 module.exports = function(app){
 	
@@ -37,6 +46,14 @@ module.exports = function(app){
 	  	title: 'Mapa de cortes de luz - v0.1',
 	  });
 	});
+
+	/*
+	 * API
+	 */
+
+	app.get('/api', isLoggedIn, getStatus.All);
+	app.get('/api/:start/:end', isLoggedIn, getStatus.rangeDates);
+	app.get('/api/:id_calle', isLoggedIn, getStatus.getCalle);
 
 }
 

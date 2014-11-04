@@ -13,7 +13,7 @@ var io = require('socket.io').listen(server);
 
 // models y connect db
 require('./lib/passport')(passport); 
-mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
+mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name)) ; 
 
 // all environments
 app.set('port', process.env.PORT || 3001);
@@ -71,9 +71,6 @@ initServices();
 
 // require rutas
 require('./routes/routes.js')(app);
-require('./services/socket.js')(io);
-
-
 
 // inicio server
 server.listen(app.get('port'), function(){
