@@ -6,11 +6,6 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<script src="http://localhost:3001/socket.io/socket.io.js"></script>
 
-	<script src="/components/angular/angular.js"></script>
-	<script src="/javascripts/app.js"></script>
-	<script src="/javascripts/services.js"></script>
-	<script src="/javascripts/controller.js"></script>
-
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="all" href="/components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
@@ -27,13 +22,15 @@
        <div class="container">
          <div class="span12">
 
+          <h1>11/03/2014 5:45 PM - 11/03/2014 8:45 PM</h1>
+
           <hr />
             <div class="well">
 
                <form class="form-horizontal">
                  <fieldset>
                   <div class="control-group">
-                    <label class="control-label" for="reservationtime">Seleccionar Rango de Fecha y Hora</label>
+                    <label class="control-label" for="reservationtime">:</label>
                     <div class="controls">
                      <div class="input-prepend input-group">
                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
@@ -59,7 +56,7 @@
                     console.log(new Date(start))
                     // model angular here?
                     $.ajax({
-                      url:"/api/"+new Date(end)+"/"+new Date(start),
+                      url:"/api/"+new Date(start)+"/"+new Date(end),
                       // data : {
                       //   start : start,
                       // }
@@ -72,7 +69,8 @@
                         console.log(status)
                       },
                       complete:function(c){
-                        console.log(c)                      }
+                        //console.log(c)                      
+                      }
                     });
                   });
                });

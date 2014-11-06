@@ -14,6 +14,10 @@ exports.All = function(req, res) {
 // 2014-11-20T03:00:00.000Z 
 // 2014-11-30T02:59:00.000Z 
 
+estadosegmentos4.find({ updated_at: { '$gte': new Date("Mon, 03 Nov 2014 20:45:24 GMT"), '$lte': new Date("Mon, 03 Nov 2014 23:45:23 GMT") } }) { fields: undefined }  
+
+estadosegmentos4.find({ updated_at: { '$gte': new Date("Fri, 07 Nov 2014 02:30:00 GMT"), '$lte': new Date("Wed, 05 Nov 2014 23:00:00 GMT") } }) { fields: undefined }  
+
 exports.rangeDates = function(req, res) {
 	console.log(req.params.start)
 	console.log(req.params.end)

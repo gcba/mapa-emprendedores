@@ -14,7 +14,7 @@ var io = require('socket.io').listen(server);
 // models y connect db
 require('./lib/passport')(passport); 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name)) ; 
-
+mongoose.set('debug', true)
 // all environments
 app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +42,8 @@ app.use(compression({
     filter: function (req, res){
       return /json|text|javascript|css/.test(res.getHeader('Content-Type'));
     },
-    level: 9
+    level: 9,
+    threshold: 2048
 }));
 
 // manejo de caida conexion
@@ -50,7 +51,7 @@ app.use(function(req, res){
 	res.status(400);
 	res.render('404');
 });
-
+//
 app.use(function(error, req, res, next) {
 	console.log(error);
 	res.status(500);

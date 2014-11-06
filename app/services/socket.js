@@ -36,15 +36,16 @@ var forEach = function(data, cb){
 }
 
 module.exports = function(io) {
+	io.debug = false;
 	io.sockets.on('connection', function(socket){
 		socket.emit('connected');
 		setInterval(function(){
-			var hr = new Date()
-			console.log(hr.toLocaleString())
-			socket.emit("time", hr);
+			//var hr = new Date()
+			//console.log(hr.toLocaleString())
+			//socket.emit("time", hr);
 			client.on('connect', function(){
 				client.query("SELECT id_calle, status, updated_at FROM status_luminarias WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
-					console.log("emit update...")
+					//console.log("emit update...")
 					if (err){
 						report(socket, err);
 					} else {
@@ -55,12 +56,12 @@ module.exports = function(io) {
 								"updated_at": new Date(elem.updated_at).toISOString()
 							}).save()
 						})
-						socket.emit("update", data);
 					}
-					console.log("updated emited");
+					socket.emit("update", data);
+					//console.log("updated emited");
 				});
 			});
 			client.connect()
-		}, interval2);
+		}, interval);
 	});
 }
