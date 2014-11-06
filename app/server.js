@@ -58,7 +58,6 @@ app.use(function(error, req, res, next) {
 	res.render('500');
 });
 
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

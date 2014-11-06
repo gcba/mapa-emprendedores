@@ -35,14 +35,26 @@ var forEach = function(data, cb){
 	} 
 }
 
+var formatToLocalTimeDate = function(inDate) {
+	var today = new Date();
+	var inDateMod = new Date(inDate);
+	offSet = today.getTimezoneOffset();
+	if(offSet < 0) {
+		inDateMod.setMinutes(inDateMod.getMinutes()+offSet );
+	} else {
+		inDateMod.setMinutes(inDateMod.getMinutes()-offSet);
+	}
+	return inDateMod;
+}
+
 module.exports = function(io) {
 	io.debug = false;
 	io.sockets.on('connection', function(socket){
 		socket.emit('connected');
 		setInterval(function(){
-			//var hr = new Date()
-			//console.log(hr.toLocaleString())
-			//socket.emit("time", hr);
+			var hr = new Date()
+			console.log(hr.toLocaleString())
+			socket.emit("time", hr);
 			client.on('connect', function(){
 				client.query("SELECT id_calle, status, updated_at FROM status_luminarias WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
 					//console.log("emit update...")
@@ -53,7 +65,7 @@ module.exports = function(io) {
 							SegDump = new Segmentos({
 								"id_calle":  elem.id_calle,
 								"status": elem.status,
-								"updated_at": new Date(elem.updated_at).toISOString()
+								"updated_at": formatToLocalTimeDate(elem.updated_at)
 							}).save()
 						})
 					}
@@ -62,6 +74,6 @@ module.exports = function(io) {
 				});
 			});
 			client.connect()
-		}, interval);
+		}, 1500000);
 	});
 }

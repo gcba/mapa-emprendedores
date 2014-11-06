@@ -9,6 +9,6 @@ var estadosegmentos =  new mongoose.Schema({
 	updated_at: Date
 });
 
-var estadosegmentos = mongoose.model('estadosegmentos4', estadosegmentos);
+var estadosegmentos = mongoose.model('estadosegmentos', estadosegmentos);
 
 module.exports = estadosegmentos;

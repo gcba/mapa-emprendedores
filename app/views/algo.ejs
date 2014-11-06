@@ -30,7 +30,7 @@
                <form class="form-horizontal">
                  <fieldset>
                   <div class="control-group">
-                    <label class="control-label" for="reservationtime">:</label>
+                    <label class="control-label" for="reservationtime"></label>
                     <div class="controls">
                      <div class="input-prepend input-group">
                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
@@ -52,8 +52,8 @@
                     end = end.format('MM/DD/YYYY h:mm A')
                     //var start = new Date(start)
                     //var end = new Date(start)
-                    console.log(new Date(end))
-                    console.log(new Date(start))
+                    // console.log(new Date(end))
+                    // console.log(new Date(start))
                     // model angular here?
                     $.ajax({
                       url:"/api/"+new Date(start)+"/"+new Date(end),
