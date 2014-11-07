@@ -48,16 +48,8 @@
                   }, function(start, end, label){
                     start = start.format('MM/DD/YYYY h:mm A')
                     end = end.format('MM/DD/YYYY h:mm A')
-                    //var start = new Date(start)
-                    //var end = new Date(start)
-                    // console.log(new Date(end))
-                    // console.log(new Date(start))
-                    // model angular here?
                     $.ajax({
                       url:"/api/"+new Date(start)+"/"+new Date(end),
-                      // data : {
-                      //   start : start,
-                      // }
                       type: "GET",
                       dataType: "JSON",
                       success : function(json){

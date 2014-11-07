@@ -1,8 +1,8 @@
 var CartoDB = require('cartodb');
 var secret = require('./secrets.js');
-var savefile = require('fs').createWriteStream(__dirname + '/result-query.json');
 var Segmentos = require('../models/dump');
 var Report = require('../models/report');
+var FormatDate = require('./formatdate');
 
 // intervalo cada 70 minutos
 const interval = 7000000;
@@ -35,18 +35,6 @@ var forEach = function(data, cb){
 	} 
 }
 
-var formatToLocalTimeDate = function(inDate) {
-	var today = new Date();
-	var inDateMod = new Date(inDate);
-	offSet = today.getTimezoneOffset();
-	if(offSet < 0) {
-		inDateMod.setMinutes(inDateMod.getMinutes()+offSet );
-	} else {
-		inDateMod.setMinutes(inDateMod.getMinutes()-offSet);
-	}
-	return inDateMod;
-}
-
 module.exports = function(io) {
 	io.debug = false;
 	io.sockets.on('connection', function(socket){
@@ -65,7 +53,7 @@ module.exports = function(io) {
 							SegDump = new Segmentos({
 								"id_calle":  elem.id_calle,
 								"status": elem.status,
-								"updated_at": formatToLocalTimeDate(elem.updated_at)
+								"updated_at": FormatDate(elem.updated_at)
 							}).save()
 						})
 					}
