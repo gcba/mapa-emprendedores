@@ -1,12 +1,10 @@
-Listado de lugares donde tienen que responder
-Prioridades de respuesta
-
 Datos de origen
 
-Hay luz?
-Hora de retorno del suministro
+Reporte por hora del servicio CityTouch de Luminarias
+Reporte del sistema Nagios de ASI
 
-Tipos de edificio
+
+#### Responsables desde el Ministerio de Justicia y Seguridad
 
 Centro Único de Coordinación y Control (CUCC)
 
@@ -20,7 +18,6 @@ Carlos Álvarez (Subgerente Operativo de Coordinación y Control de Operaciones 
 2. Revisión de herramienta
 3. Definir metodología de trabajo
 
-
 Revisión de la herramienta generada por DGGOBE.
 
 - Broadcast de datos via push a cualquier cliente suscrbipto via WEB.
@@ -31,21 +28,12 @@ Revisión de la herramienta generada por DGGOBE.
 - Geocodifica basandose en strings.
 - Categorización basada en el contenido.
 
-=======
-Para regenerar el TopoJSON de barrios y calles de la ciudad segmentadas:
 
-```
-make caba.json
-```
+# Instalación
 
-#### Mapas
-* [GDAL](http://www.gdal.org/)
-* [TopoJSON](http://www.gdal.org/)
+Grunt
+Bower
 
-Requiere instalar GDAL y TopoJSON (con `brew` y `npm`):
+#### Unit Testing
 
-```
-brew update
-brew install gdal
-npm install -g topojson
-```
+Jasmine (Revisar version)
