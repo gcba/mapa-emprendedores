@@ -1,0 +1,11 @@
+// Importo font-family: 'DIN-Bold','DINCond-Medium','DIN-Light','DIN-Medium'; 
+@import "fonts/font.css";
+
+html, body, #map {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+

@@ -2,3 +2,7 @@
 /src
 /references
 .DS_Store
+app/node_modules
+config.php
+app/config.json
+.sass-cache/

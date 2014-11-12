@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>v0</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+    <style>
+      html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      
+      #map_nagios, #map_luminarias {
+        width: 50%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        float: left;
+        background-color: #eaeaea;
+      }
+
+    </style>
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+  </head>
+  <body>
+    <div id="map_nagios"></div>
+    <div id="map_luminarias"></div>
+    
+    <!-- include cartodb.js library -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="js/L.Map.Sync.js"></script>
+
+    <script>
+      function main() {
+        var map_nagios = new L.Map('map_nagios', {
+          zoomControl: false,
+          center: [-34.6215,-58.4509],
+          zoom: 12
+        });
+
+        var map_luminarias = new L.Map('map_luminarias', {
+          zoomControl: false,
+          center: [-34.6215,-58.4509],
+          zoom: 12
+        });
+
+        L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
+          attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+        }).addTo(map_nagios);
+
+        L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
+          attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+        }).addTo(map_luminarias);
+
+        var layerNagios = [
+          'http://davo.cartodb.com/api/v2/viz/39c4cd6a-44c2-11e4-8caf-0e230854a1cb/viz.json'
+        ]
+        var layerLuminarias = [
+          'http://davo.cartodb.com/api/v2/viz/36a66f30-44c2-11e4-a2fb-0e73339ffa50/viz.json'
+        ]
+
+        var qNagios = queue(2);
+
+        layerNagios.forEach(function(vizjson) {
+          qNagios.defer(function(vizjson, callback) {
+            cartodb.createLayer(map_nagios, vizjson, function(layer) { callback(null, layer); })
+          }, vizjson);
+        })
+
+        qNagios.await(function() {
+          var leafletLayers = Array.prototype.slice.call(arguments, 1);
+          leafletLayers.forEach(function(lyr) {
+            lyr.addTo(map_nagios);
+          });
+        })
+
+        var qluminarias = queue(2);
+
+        layerLuminarias.forEach(function(vizjson) {
+          qluminarias.defer(function(vizjson, callback) {
+            cartodb.createLayer(map_luminarias, vizjson, function(layer) { callback(null, layer); })
+          }, vizjson);
+        })
+
+        qluminarias.await(function() {
+          var leafletLayers = Array.prototype.slice.call(arguments, 1);
+          leafletLayers.forEach(function(lyr) {
+            lyr.addTo(map_luminarias);
+          });
+        })
+
+        map_nagios.sync(map_luminarias);
+        map_luminarias.sync(map_nagios);
+
+      }
+
+      // you could use $(window).load(main);
+      window.onload = main;
+    </script>
+  </body>
+</html>

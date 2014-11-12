@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>U.S. States</title>
+    <script type="text/javascript" src="libs/d3/d3.min.js"></script>
+    <script type="text/javascript" src="libs/d3/d3.geo.min.js"></script>
+    <script type="text/javascript" src="libs/d3/d3.geom.min.js"></script>
+    <style type="text/css">
+
+svg {
+  width: 2060px;
+  height: 5000px;
+}
+
+body{
+    background:#111;
+}
+
+#states path {
+  fill-opacity:0;
+  stroke: #ddd;
+  stroke-width:1px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+// The radius scale for the centroids.
+var r = d3.scale.sqrt()
+    .domain([0, 1e6])
+    .range([0, 10]);
+
+// Our projection.
+var xy = d3.geo.mercator()
+		.scale(300)
+		.origin(-71.03,42.37);
+
+var svg = d3.select("body")
+        .append("svg")
+        .call(d3.behavior.zoom()
+            .on("zoom", redraw))
+        .append("g");
+
+svg.append("g").attr("id", "states");
+
+var path = d3.geo.path();
+
+var fill = d3.scale.log()
+    .domain([10, 100,2000])
+    .range(["yellow", "black", "aqua"]);
+
+d3.json("https://davo.cartodb.com/api/v2/sql/?q=SELECT%20*%20FROM%20calles_segmentadas%20WHERE%20the_geom%20IS%20NOT%20NULL&format=geojson&dp=4", function(collection) {
+  svg.select("#states")
+    .selectAll("path")
+      .data(collection.features)
+    .enter().append("path")
+    .attr("d", path.projection(xy));
+
+});
+
+
+function redraw() {
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
+    </script>
+  </body>
+</html>

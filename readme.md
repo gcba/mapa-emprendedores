@@ -8,7 +8,7 @@ Hora de retorno del suministro
 
 Tipos de edificio
 
-Cliente: Centro Único de Coordinación y Control (CUCC)
+Centro Único de Coordinación y Control (CUCC)
 
 Rodrigo Silvosa (Subsecretario de Mantenimiento - Mtrio. de Ambiente y Espacio Público en Gobierno de la Ciudad de Buenos Aires)
 Nestor Nicolás (Subsecretario de Emergencias  - Mtrio. de Justicia y Seguridad)
@@ -30,3 +30,22 @@ Revisión de la herramienta generada por DGGOBE.
 	Mail
 - Geocodifica basandose en strings.
 - Categorización basada en el contenido.
+
+=======
+Para regenerar el TopoJSON de barrios y calles de la ciudad segmentadas:
+
+```
+make caba.json
+```
+
+#### Mapas
+* [GDAL](http://www.gdal.org/)
+* [TopoJSON](http://www.gdal.org/)
+
+Requiere instalar GDAL y TopoJSON (con `brew` y `npm`):
+
+```
+brew update
+brew install gdal
+npm install -g topojson
+```
