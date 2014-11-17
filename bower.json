@@ -14,6 +14,8 @@
     "bourbon": "~4.0.2",
     "d3": "~3.4.11",
     "queue-async": "mbostock/queue#~1.0.7",
-    "pace": "~0.5.7"
+    "pace": "~0.5.7",
+    "isotope": "~2.0.1",
+    "bootstrap-sass-official": "~3.3.1"
   }
 }
