@@ -1,3 +1,5 @@
+// modulo que parsea la fecha recibida y la deja en un formato normalizado para efectuar la consulta como tambien guardar en la db
+
 var parser = function(inDate) {
 	var today = new Date();
 	var inDateMod = new Date(inDate);

@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-	secret: 'ilovescotchscotchyscotchscotch',
+	secret: 'iloveslolololoylolololo',
     proxy: true,
     resave: true,
     saveUninitialized: true
@@ -46,12 +46,13 @@ app.use(compression({
     threshold: 2048
 }));
 
-// manejo de caida conexion
+// manejo de caida conexion con error 400
 app.use(function(req, res){
 	res.status(400);
 	res.render('404');
+
 });
-//
+// // manejo de caida conexion con error 500
 app.use(function(error, req, res, next) {
 	console.log(error);
 	res.status(500);

@@ -1,3 +1,4 @@
+// modulo de configuracion para acceder a cartodb
 module.exports = {
 	user: "baemprende",
 	pass : "barracassantelmo",

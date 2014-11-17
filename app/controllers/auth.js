@@ -3,6 +3,8 @@ var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var User = require('../models/user');
 
+// esta parte se ocupa de verificar , si machea el user y password
+
 passport.use(new BasicStrategy(
   function(username, password, callback) {
     User.findOne({ username: username }, function (err, user) {
