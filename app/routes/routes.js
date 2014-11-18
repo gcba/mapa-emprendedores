@@ -57,7 +57,7 @@ module.exports = function(app){
 
 	app.get('/api', isLoggedIn, getStatus.All);
 	app.get('/api/:start/:end', isLoggedIn, getStatus.rangeDates);
-	app.get('/api/:id_calle', isLoggedIn, getStatus.getCalle);
+	app.get('/api/:id_calle', isLoggedIn, getStatus.getNagios);
 
 }
 
