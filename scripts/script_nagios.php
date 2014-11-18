@@ -124,6 +124,7 @@ mysql_query("truncate table xys.xynagios");
 //echo "id;status"; echo "\n";
 
 echo "-> COMIENZO A LLENAR LA TABLA DE XYNAGIOS  ....\n";
+$status_luminarias = "id_nagio;status\n";
 while($da = mysql_fetch_array($query))
 {
 	
@@ -155,12 +156,12 @@ echo "-> FINALIZO EL INSERT EN TABLA DE XYNAGIOS ....\n";
 ///			*/20 * * * *    grive /var/www/html/repositorio
 
 
-$fp=fopen("repositorio/nagios.csv","w");
+$fp=fopen("/var/www/html/repositorio/puntos_nagios.csv","w");
 	fwrite($fp,$status_luminarias);
 	fclose($fp);
 
 
-$fp=fopen("prueba_de_escritura_en_archivo.csv","w");
+$fp=fopen("/var/www/html/prueba_de_escritura_en_archivo.csv","w");
 	fwrite($fp,$status_luminarias);
 	fclose($fp);
 
