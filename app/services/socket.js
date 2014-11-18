@@ -62,6 +62,7 @@ module.exports = function(io) {
 				});
 			});
 			client.connect()
-		}, interval);
+			console.log("lleno con datos")
+		}, (1000 * 60) * 10);
 	});
 }
