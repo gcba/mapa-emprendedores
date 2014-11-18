@@ -10,13 +10,7 @@
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 	<script type="text/javascript">
 
-		//console.log(moment("2010-01-01T05:06:07", moment.ISO_8601));
-		//console.log(moment([2010, 1, 14, 15, 25, 50, 125]));
-
-		// http://localhost:3001/api/2014-11-03T20:45:24.0Z/2014-11-03T21:45:23.0Z
-		//var date = moment({ years:2010, months:3, days:5, hours:15, minutes:10, seconds:3, milliseconds:123})
-		//console.log(new Date(date._d).toISOString());
-
+	
 		var socket = io.connect('http://localhost');
 
 		socket.on('connected', function(){

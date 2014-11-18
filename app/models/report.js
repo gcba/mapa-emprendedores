@@ -3,6 +3,7 @@ var config = require('../config');
 
 //mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
 
+// modelo para guardar los errores que puede generar cartodb, con fecha ocasionado
 var report =  new mongoose.Schema({
 	type: String,
 	updated_at: Date

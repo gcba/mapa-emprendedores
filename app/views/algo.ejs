@@ -22,15 +22,13 @@
        <div class="container">
          <div class="span12">
 
-          <h1>11/03/2014 5:45 PM - 11/03/2014 8:45 PM</h1>
-
           <hr />
             <div class="well">
 
                <form class="form-horizontal">
                  <fieldset>
                   <div class="control-group">
-                    <label class="control-label" for="reservationtime">:</label>
+                    <label class="control-label" for="reservationtime"></label>
                     <div class="controls">
                      <div class="input-prepend input-group">
                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
@@ -42,6 +40,9 @@
                </form>
 
                <script type="text/javascript">
+               /*
+                  funcion en jquery, que efectua la consulta ajax a la api, segun le fecha brindada y devuelve un historico de la base de datos, de las luminarias.
+               */
                $(document).ready(function(){
                   $('#reservationtime').daterangepicker({
                     timePicker: true,
@@ -50,16 +51,8 @@
                   }, function(start, end, label){
                     start = start.format('MM/DD/YYYY h:mm A')
                     end = end.format('MM/DD/YYYY h:mm A')
-                    //var start = new Date(start)
-                    //var end = new Date(start)
-                    console.log(new Date(end))
-                    console.log(new Date(start))
-                    // model angular here?
                     $.ajax({
                       url:"/api/"+new Date(start)+"/"+new Date(end),
-                      // data : {
-                      //   start : start,
-                      // }
                       type: "GET",
                       dataType: "JSON",
                       success : function(json){
