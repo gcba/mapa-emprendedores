@@ -24,7 +24,7 @@ Reporte del sistema Nagios de ASI
 
  *puntos_luminarias.csv*
  Status de todos los puntos de la red de Phillips
-    - id_nagio: String
+    - id_luminaria: String
 	- status: Int [0,1]
 	- lat: Float
 	- long: Float
