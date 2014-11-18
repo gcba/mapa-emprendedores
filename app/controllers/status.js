@@ -12,7 +12,6 @@ exports.All = function(req, res) {
 	});
 }
 
-// extraigo todos los luminarias de la base de datos, que correspondan a un rango de fecha dado, con start y end"
 exports.rangeDates = function(req, res) {
 	var start = FormatDate(req.params.start)
 	var end = FormatDate(req.params.end)
