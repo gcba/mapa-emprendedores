@@ -1,8 +1,71 @@
 <div id="map"></div>
-<script>
-var sublayer;
-var main = function(){
 
+
+
+<script>
+var capas;
+
+
+      var styles = {}, selectedStyle;
+      // create layer selector
+      function createSelector(layer) {
+        var sql = new cartodb.SQL({ user: 'baemprende' });
+
+        var $options = $('#layer_selector li');
+        $options.click(function(e) {
+          // get the area of the selected layer
+          var $li = $(e.target);
+          var style = $li.attr('id');
+          if(selectedStyle != style ){
+            // change the style in the layer to update the map
+            layer.setCartoCSS(styles[style]);
+            selectedStyle = style;
+          }
+        });
+      }
+
+      function main() {
+        // get the currently selected style
+        selectedStyle = $('li.selected').attr('id');
+
+        cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
+        .done(function(vis, layers) {
+
+          capas = layers;
+
+          // create a new assoc array of styles
+          styles['ranking_css'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ puntaje_ranking <= 60] {polygon-fill: #B10026;}#fracciones_poligonos [ puntaje_ranking <= 50] {polygon-fill: #E31A1C;}#fracciones_poligonos [ puntaje_ranking <= 40] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ puntaje_ranking <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ puntaje_ranking <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ puntaje_ranking <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ puntaje_ranking <= 0] {polygon-opacity: 0;}";
+          styles['porcentaje_css'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ tiempo_sin_luz <= 420]{polygon-fill: #B10026;}#fracciones_poligonos [ tiempo_sin_luz <= 360] {polygon-fill: #E31A1C;}#fracciones_poligonos [ tiempo_sin_luz <= 240] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ tiempo_sin_luz <= 180]{polygon-fill: #FD8D3C;}#fracciones_poligonos [ tiempo_sin_luz <= 120]{polygon-fill: #FEB24C;}#fracciones_poligonos [ tiempo_sin_luz <= 60] { polygon-fill: #FED976;}#fracciones_poligonos [ tiempo_sin_luz <= 0] {  polygon-opacity: 0;}";
+          styles['tiempo_css'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ porcentaje_sin_luz <= 60]{polygon-fill: #B10026;}#fracciones_poligonos [porcentaje_sin_luz <= 50]{polygon-fill: #E31A1C;}#fracciones_poligonos [ porcentaje_sin_luz <= 40]{polygon-fill: #FC4E2A;}#fracciones_poligonos [ porcentaje_sin_luz <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ porcentaje_sin_luz <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ porcentaje_sin_luz <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ porcentaje_sin_luz <= 0] {polygon-opacity: 0;}";
+
+
+          var subLayer = layers[1].getSubLayer(0);
+          createSelector(subLayer);
+          layers[1].getSubLayer(1).hide();
+          layers[1].getSubLayer(2).hide();
+          layers[1].getSubLayer(3).hide();
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+      }
+
+      window.onload = main;
+
+
+
+</script>
+
+/*
+SELECT fp.the_geom_webmercator, fp.id_fraccion, fe.puntaje_ranking FROM fracciones_poligonos as fp
+inner join fracciones_estadistica as fe on fp.id_fraccion = fe.fraccion_id
+inner join tercera on fp.capo = tercera.campo
+*/
+
+
+
+
+/*
 	$('#map').css('cursor', 'progress');
 	var tiempo_de_refresh = 1000 * 60; //1 minuto
 
@@ -15,39 +78,33 @@ var main = function(){
     L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
     	attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
     }).addTo(map);
-
-    cartodb.createLayer(map, 'http://baemprende.cartodb.com/api/v2/viz/e93e77a2-5005-11e4-9829-0e9d821ea90d/viz.json',{ refreshTime: tiempo_de_refresh })
+    var styles = {}, selectedStyle;
+    cartodb.createLayer(map, 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json',{ refreshTime: tiempo_de_refresh })
 	 	.addTo(map)
 	 	.on('done', function(layer){
+          styles['red'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ puntaje_ranking <= 60] {polygon-fill: #B10026;}#fracciones_poligonos [ puntaje_ranking <= 50] {polygon-fill: #E31A1C;}#fracciones_poligonos [ puntaje_ranking <= 40] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ puntaje_ranking <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ puntaje_ranking <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ puntaje_ranking <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ puntaje_ranking <= 0] {polygon-opacity: 0;}";
+          styles['bw'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ tiempo_sin_luz <= 420]{polygon-fill: #B10026;}#fracciones_poligonos [ tiempo_sin_luz <= 360] {polygon-fill: #E31A1C;}#fracciones_poligonos [ tiempo_sin_luz <= 240] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ tiempo_sin_luz <= 180]{polygon-fill: #FD8D3C;}#fracciones_poligonos [ tiempo_sin_luz <= 120]{polygon-fill: #FEB24C;}#fracciones_poligonos [ tiempo_sin_luz <= 60] { polygon-fill: #FED976;}#fracciones_poligonos [ tiempo_sin_luz <= 0] {  polygon-opacity: 0;}";
+          styles['area'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ porcentaje_sin_luz <= 60]{polygon-fill: #B10026;}#fracciones_poligonos [porcentaje_sin_luz <= 50]{polygon-fill: #E31A1C;}#fracciones_poligonos [ porcentaje_sin_luz <= 40]{polygon-fill: #FC4E2A;}#fracciones_poligonos [ porcentaje_sin_luz <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ porcentaje_sin_luz <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ porcentaje_sin_luz <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ porcentaje_sin_luz <= 0] {polygon-opacity: 0;}";
 
-	 	sublayer = layer;
-	 	layer.getSubLayer(1).hide();
- 	 	layer.getSubLayer(2).hide();
- 	 	layer.getSubLayer(3).hide();
+
+	 	sublayer = layer.getSubLayer(0);
+//	 	layer.getSubLayer(1).hide();
+// 	 	layer.getSubLayer(2).hide();
+// 	 	layer.getSubLayer(3).hide();
  	 	
  		$('#map').css('cursor', 'pointer');
 		
 		layer.setInteraction(true);
 
-		layer.on('featureOver', function(e, pos, latlng, data) {
-			// console.log(e, pos, latlng, data);
-		});
-
-		layer.on('refresh', function(e) {
-			//console.log("e, pos, latlng, data");
-		});
 
 
 		layer.on('error', function(err) {
 			console.log("Error de capa: " +  err)
 	    });
 
+
 	}).on('error', function() {
 		console.log("Ocurrió un error al cargar el mapa");
 	});
 
-};
-
-window.onload = main;
-
-</script>
+*/

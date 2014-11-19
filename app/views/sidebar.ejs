@@ -2,15 +2,14 @@
 	<div class="container-fluid map-selector">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-2">
-				<h2>Vista general</h2>
-				<ul>
-					<li class="segmentos"><label for="segmentos">Ranking</label><input type="checkbox" id="segmentos" checked /><span></span></li>
-				</ul>
-				<h2>Resumen</h2>
-				<ul>
-					<li class="distancias"><label for="distancias">% luminarias apagadas	</label><input type="checkbox" id="distancias" /><span></span></li>
-					<li class="tiempo disabled"><label for="tiempo">Tiempo sin luz</label><input type="checkbox" id="tiempo" /><span></span></li>
-				</ul>
+				<h2>Vistas</h2>
+				<span id="layer_selector">
+					<ul>
+						<li class="selected luminarias" id="ranking_css">Ranking</li>
+						<li class="luminarias" id="porcentaje_css">% luminarias apagadas</li>
+						<li class="luminarias" id="tiempo_css">Tiempo sin luz</li>
+					</ul>
+			    </span>
 				<h2>Sensores</h2>
 				<ul>
 					
