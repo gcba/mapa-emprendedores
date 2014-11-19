@@ -2,7 +2,7 @@
   "db": {
     "name": "visualizacion-cucc",
     "host": "localhost",
-    "url": "mongodb://factorialabgcba:thelabrocks123@ds043180.mongolab.com:43180/visualizacion-cucc"
+    "url": ""
   },
   "host": "localhost",
   "port": 3001,
