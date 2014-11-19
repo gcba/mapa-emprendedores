@@ -3,12 +3,13 @@ var config = require('../config');
 
 //mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
 
-var estadosegmentos =  new mongoose.Schema({
-	id_calle: String,
+// puntos nagios
+var puntos_nagios =  new mongoose.Schema({
+	id_nagio: String,
 	status: String,
 	updated_at: Date
 });
 
-var estadosegmentos = mongoose.model('estadosegmentos', estadosegmentos);
+var puntos_nagios = mongoose.model('puntos_nagios', puntos_nagios);
 
-module.exports = estadosegmentos;
+module.exports = puntos_nagios;
