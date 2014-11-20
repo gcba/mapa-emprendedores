@@ -1,0 +1,1 @@
+*/55 * * * * php /Users/pilimayora/Sites/datos-luminarias/scripts/masterscript.php

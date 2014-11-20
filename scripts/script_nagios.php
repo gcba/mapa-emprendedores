@@ -9,15 +9,8 @@
 $filas = "";
 ///////////////////////////////////////////
 
-
-
 $conn = mysql_connect("dbm3.gcba.gob.ar:3307","vladimir","nagios2014ASI");
-$db = mysql_select_db($base,$conn);
-
-
-
-
-
+$db = mysql_select_db($base,$conn) or die(mysql_error());
 
 //$db = mysql_select_db("centreon",$conn);
 
