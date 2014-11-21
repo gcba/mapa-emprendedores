@@ -5,8 +5,8 @@ var config = require('../config');
 
 // puntos nagios
 var puntos_nagios =  new mongoose.Schema({
-	id_nagio: String,
-	status: String,
+	id_nagio: Number,
+	status: Number,
 	updated_at: Date
 });
 

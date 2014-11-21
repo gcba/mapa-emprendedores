@@ -7,7 +7,7 @@ var config = require('../config');
 var fracciones_estadistica =  new mongoose.Schema({
 	cartodb_id : Number,
 	cantidad_luminarias: Number,
-	fraccion_id : Number,
+	fraccion_id : String,
 	porcentaje_sin_luz : Number,
 	puntaje_ranking : Number,
 	tiempo_sin_luz : Number,
