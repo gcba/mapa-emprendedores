@@ -4,30 +4,29 @@ $('input:checkbox').change(
     function(){
     	var checkbox = this.id; 
     	var sl = 9;
-
-    	switch (checkbox){
-    		case "segmentos": sl = 0;
-    			break;
-    		case "nagios": sl = 1;
-    			break;
-    		case "luminarias": sl = 2;
-    			break;
-            case "voluntarios": console.log("no hay datos");
+        switch (checkbox){
+            case "luminarias": sl = 1; //layer
                 break;
-            case "distancias": sl = 3;
+            case "nagios": sl = 2; //layer
                 break;
-    		case "cuc": console.log("no hay datos");
-    			break;
-    	}
+            case "voluntarios": sl = 3; //layer
+                break;
+        }
 
-    	checkbox = "#"+checkbox;
+        checkbox = "#"+checkbox;
 
         if ($(checkbox).is(':checked')) {
-            sublayer.getSubLayer(sl).show();
+            capas[1].getSubLayer(sl).show();
         }else{
-        	sublayer.getSubLayer(sl).hide();
+            capas[1].getSubLayer(sl).hide();
         }
+
     });
 
 
 
+/* Query a correr
+SELECT fp.the_geom_webmercator, fp.id_fraccion, fe.puntaje_ranking FROM fracciones_poligonos as fp
+inner join fracciones_estadistica as fe on fp.id_fraccion = fe.fraccion_id
+inner join tercera on fp.campo = tercera.campo
+*/

@@ -5371,6 +5371,11 @@ nav {
       transition: all .2s ease; }
       nav .map-selector label:hover {
         opacity: 0.5; }
+    nav .map-selector .overcursor {
+      cursor: pointer;
+      transition: all .2s ease; }
+      nav .map-selector .overcursor:hover {
+        opacity: 0.5; }
   nav .static {
     position: absolute;
     bottom: 20px;
