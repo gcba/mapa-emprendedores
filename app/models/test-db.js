@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var config = require('../config')
-, Segmentos = require('./dump')
+//, Segmentos = require('./dump')
 , User = require('./user');
 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
@@ -8,14 +8,14 @@ mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.d
 
 //module.exports = function(mongoose){
 
-// var newUser = new User();
-// newUser.local.email = "lm@email.com";
-// newUser.local.password = newUser.generateHash("password");
-// newUser.save(function(err) {
-//     if (err)
-//         return console.log(err);
-//     mongoose.disconnect();
-// });
+var newUser = new User();
+newUser.local.email = "soporte@mapacucc.com";
+newUser.local.password = newUser.generateHash("mapacucc");
+newUser.save(function(err) {
+	if (err)
+		return console.log(err);
+	mongoose.disconnect();
+});
 
 // var info = new dump({
 // 	id: "C",
@@ -33,15 +33,15 @@ mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.d
 // "Thu Oct 30 2014 14:45:38 GMT-0300 (ART)"
 // db.estadosegmentos.find({"updated_at": {$gt: "Thu Oct 30 2014 14:45:38 GMT-0300 (ART)", $lt: "Thu Oct 30 2014 16:00:52 GMT-0300 (ART)"}})
 
-var start = new Date("2014-11-03T19:30:35.0Z").toISOString()
-var end = new Date("2014-11-03T21:31:34.0Z").toISOString()
+//var start = new Date("2014-11-03T19:30:35.0Z").toISOString()
+//var end = new Date("2014-11-03T21:31:34.0Z").toISOString()
 
-Segmentos.find({updated_at: {$gte: start, $lte: end}},  function(err, segmentos) {
-	if (err)
-		console.log("err")
-
-	console.log(segmentos);
-});
+//Segmentos.find({updated_at: {$gte: start, $lte: end}},  function(err, segmentos) {
+//	if (err)
+//		console.log("err")
+//
+//	console.log(segmentos);
+//});
 
 
 // Segmentos.where('update_at').gte('2014-11-03T14:02:20.000Z').lte("2014-11-03T15:03:20.000Z").exec(function(err, segmentos){
