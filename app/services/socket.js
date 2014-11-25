@@ -1,7 +1,7 @@
 var CartoDB = require('cartodb');
 // api key para conectarme a cartodb
 var secret = require('./secrets.js');
-
+var config = require('../config.json');
 // import formateador de fecha
 var FormatDate = require('./formatdate');
 
@@ -21,6 +21,8 @@ const cincomin = 300000;
 var calinterval = function(min){
 	return min * 60  * 1000
 }
+
+const interval = calinterval(config.interval);
 
 // creo el cliente de cartodb
 var client = new CartoDB({
@@ -184,6 +186,6 @@ module.exports = function(io) {
 			} catch (err) {
 				report(socket, err)
 			}
-		}, calinterval(5));
+		}, interval);
 	})
 }
