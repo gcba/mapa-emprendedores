@@ -29,6 +29,19 @@ while ($row = mysql_fetch_array($result)) {
     mysql_query($update_query) or die(mysql_error());
 }
 
+$file_luminarias = fopen("/Users/pilimayora/Sites/datos-luminarias/data/luminarias.csv", "w");
+fseek($file_luminarias, 0);
+
+$columnas = array("external_id","long","lat","status","tiempo_sin_luz","fraccion_id");
+fputcsv($file_luminarias, $columnas);
+
+// Escribir a archivo CSV para el drive
+$rows = mysql_query("SELECT * FROM luminarias");
+
+while ($row = mysql_fetch_assoc($rows)) {
+	fputcsv($file_luminarias, $row);
+}
+
 // Cerrar conexion a MySQL
 mysql_close($link);
 ?>
