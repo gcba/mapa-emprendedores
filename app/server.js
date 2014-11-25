@@ -65,7 +65,7 @@ if ('development' == app.get('env')) {
 }
 
 var initServices = function(){
-  require('./services/socket.js')(io);
+    require('./services/socket.js')(io);
 };
 
 initServices();

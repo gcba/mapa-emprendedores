@@ -10,10 +10,17 @@ var Nagios = require('../models/nagios');
 var Luminarias = require('../models/luminarias');
 var Estadisticas = require('../models/festadisticas');
 var Report = require('../models/report');
+var Informante = require('../models/informantes');
 
-// defino dos tipos de intervalos
-const interval = 7000000;
-const interval2 = 4000000;
+// defino los tipos de intervalos
+const unahora = 3600000;
+const mediahora = 1800000;
+const quincemin = 900000;
+const cincomin = 300000;
+
+var calinterval = function(min){
+	return min * 60  * 1000
+}
 
 // creo el cliente de cartodb
 var client = new CartoDB({
@@ -47,6 +54,15 @@ var forEach = function(data, cb){
 		}
 	} 
 }
+
+var asd = function(err, cb){
+	if (err){
+		report(socket, err);
+	} else {
+		cb
+	}
+}
+
 /*
 	modulo que se exporta, se le pasa como parametro socket para emitir data al cliente
 	cada un intervalo , se hace una query a la api de cartodb, para extraer los segmentos actualizados
@@ -56,46 +72,115 @@ var forEach = function(data, cb){
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
 	"puntos_luminarias" : "SELECT cartodb_id, external_id, fraccion_id, status, tiempo_sin_luz, updated_at FROM puntos_luminarias ",
-	"fracciones_estadistica" : "SELECT cartodb_id, cantidad_luminarias, fraccion_id, porcentaje_sin_luz, puntaje_ranking, tiempo_sin_luz, updated_at FROM fracciones_estadistica "
+	"fracciones_estadistica" : "SELECT cartodb_id, cantidad_luminarias, fraccion_id, porcentaje_sin_luz, puntaje_ranking, tiempo_sin_luz, updated_at FROM fracciones_estadistica ",
+	"status_informantes":"SELECT cartodb_id, descripcion, fecha_actualizacion, fecha_alta, id_ubicacion, lat, long, titulo, ubicacion, ultimo_estado, user_id, created_at ",
+	"interval": "current_timestamp-interval'60 minute'"
+}
+
+
+var get_informantes = function(cb){
+	client.query(getQuery["status_informantes"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
+		console.log("emit update...")
+		asd(err, forEach(data, function(elem){
+			InformanteSave = new Informante({
+				"cartodb_id" : elem.cartodb_id,
+				"descripcion" : elem.descripcion,
+				"fecha_actualizacion" : FormatDate(elem.fecha_actualizacion),
+				"fecha_alta" : FormatDate(elem.fecha_alta),
+				"id_ubicacion" : elem.id_ubicacion,
+				"lat" : elem.lat,
+				"long" : elem.long,
+				"titulo": elem.titulo,
+				"ubicacion": elem.ubicacion,
+				"ultimo_estado": elem.ultimo_estado,
+				"user_id" : elem.user_id,
+				"created_at": FormatDate(elem.created_at)
+			}).save()
+		}))
+		//socket.emit("update", data);
+		console.log("updated emited puntos nagios");
+	});
+}
+
+var get_nagios = function(cb){
+	client.query(getQuery["puntos_nagios"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
+		console.log("emit update...")
+		asd(err, forEach(data, function(elem){
+			NagiosSave = new Nagios({
+				"id_nagio":  elem.id_nagio,
+				"status": elem.status,
+				"updated_at": FormatDate(elem.updated_at)
+			}).save()
+		}))
+		//socket.emit("update", data);
+		console.log("updated emited puntos nagios");
+	});
+}
+
+var get_festadistica = function(cb){
+	client.query(getQuery["fracciones_estadistica"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
+		console.log("emit update...")
+		asd(err, forEach(data, function(elem){
+			EstadisticasSave = new Estadisticas({
+				"cartodb_id" : elem.cartodb_id,
+				"cantidad_luminarias": elem.cantidad_luminarias,
+				"fraccion_id" : elem.fraccion_id,
+				"porcentaje_sin_luz" : elem.porcentaje_sin_luz,
+				"puntaje_ranking" : elem.puntaje_ranking,
+				"tiempo_sin_luz" : elem.tiempo_sin_luz,
+				"updated_at": FormatDate(elem.updated_at)
+			}).save()
+		}))
+		//socket.emit("update", data);
+		console.log("updated emited fracciones estadistica");
+	});
+}
+
+var get_luminarias = function(cb){
+	client.on('connect', function(){
+		console.log("connected");
+		client.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
+			console.log("emit update...")
+			asd(err, forEach(data, function(elem){
+				LuminariasSave = new Luminarias({
+					"cartodb_id":  elem.cartodb_id,
+					"external_id": elem.external_id,
+					"fraccion_id" : elem.fraccion_id,
+					"status": elem.status,
+					"tiempo_sin_luz":elem.tiempo_sin_luz,
+					"updated_at": FormatDate(elem.updated_at)
+				}).save()
+			}))
+			// emite los segmentos traidos de la api de cartodb al cliente
+			cb(data)
+			console.log("updated emited puntos luminarias");
+		});
+	});
+}
+
+
+var emit_hr = function(socket){
+	var hr = new Date()
+	console.log(hr.toLocaleString())
+	socket.emit("time", hr);
 }
 
 module.exports = function(io) {
 	io.sockets.on('connection', function(socket){
 		socket.emit('connected');
 		setInterval(function(){
-			var hr = new Date()
-			console.log(hr.toLocaleString())
-			socket.emit("time", hr);
-			client.on('connect', function(){
-				client.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
-					console.log("emit update...")
-					if (err){
-						report(socket, err);
-					} else {
-						forEach(data, function(elem){
-							// NagiosSave = new Nagios({
-							// 	"id_nagio":  elem.id_nagio,
-							// 	"status": elem.status,
-							// 	"updated_at": FormatDate(elem.updated_at)
-							// }).save()
-							//	
-							LuminariasSave = new Luminarias({
-								"cartodb_id":  elem.cartodb_id,
-								"external_id": elem.external_id,
-								"fraccion_id" : elem.fraccion_id,
-								"status": elem.status,
-								"tiempo_sin_luz":elem.tiempo_sin_luz,
-								"updated_at": FormatDate(elem.updated_at)
-							}).save()							
-						})
-					}
-					// emite los segmentos traidos de la api de cartodb al cliente
-					socket.emit("update", data);
-					console.log("updated emited");
-				});
-			});
-			// se desconecta de cartodb
-			client.connect()
-		}, 105000);
-	});
+			get_luminarias(function(data){
+				console.log(data)
+				socket.emit("update", data);
+			})
+			try {
+				client.connect()
+				process.on('uncaughtException', function(e){
+					console.log(e);
+				})
+			} catch (err) {
+				report(socket, err)
+			}
+		}, calinterval(15));
+	})
 }

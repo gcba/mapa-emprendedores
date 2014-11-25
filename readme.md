@@ -16,20 +16,30 @@ Reporte del sistema Nagios de ASI
 #### Archivos
 *puntos_nagios.csv*
  Status de todos los puntos de la red Nagios
-    - id_nagio: String
-	- status: Int [0,1]
+    - id_nagio: Number [0-9999]
+	- status: Number [0,1]
+
+*puntos_luminarias.csv*
+ Status de todos los puntos de la red de Phillips
+    - extenal_id: String
     - lat: Float
 	- long: Float
+	- status: Number [0,1]
+	- tiempo_sin_luz: Number
 	- id_fraccion: String
 
- *puntos_luminarias.csv*
- Status de todos los puntos de la red de Phillips
-    - id_luminaria: String
-	- status: Int [0,1]
-	- lat: Float
-	- long: Float
-	- id_fraccion: String
+*fracciones_estadistica.csv*
+	- fraccion_id: String
+	- cantidad_luminarias: Number [0-999]
+	- percentil_edad: Number [0-100]
+	- percentil_pisos:  Number [0-100]
+	- porcentaje_sin_luz:  Float [0-100]
+	- tiempo_sin_luz:  Number [0-maxInt]
+	- puntaje_ranking: Number [0-9]
 
+*fracciones_wgs84.csv*
+	- the_geom: Polygon
+	- id_fraccion: String
 
 #### Responsables desde el Ministerio de Justicia y Seguridad
 

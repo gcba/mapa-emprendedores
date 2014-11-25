@@ -1,4 +1,4 @@
-// Importo font-family: 'DIN-Bold','DINCond-Medium','DIN-Light','DIN-Medium'; 
+	// Importo font-family: 'DIN-Bold','DINCond-Medium','DIN-Light','DIN-Medium'; 
 
 @import "../components/bourbon/dist/bourbon";
 @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
@@ -85,6 +85,14 @@ nav {
 			font-size: 2em;
 		}
 		label {
+			cursor: pointer;
+			transition: all .2s ease;
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+		
+		.overcursor {
 			cursor: pointer;
 			transition: all .2s ease;
 			&:hover {
