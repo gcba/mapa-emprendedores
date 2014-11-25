@@ -4,7 +4,8 @@
 	$db = 'xys';
 	$username = 'root';
 	$password = 'password';
-	$json_link = "http://reporte.hml.gcba.gob.ar/query/consulta.php?query=1&key=GODZILLACATASTROFEEXPLOTATODO314159267";
+//	$json_link = "http://reporte.hml.gcba.gob.ar/query/consulta.php?query=1&key=GODZILLACATASTROFEEXPLOTATODO314159267";
+        $json_link = "https://reporte.buenosaires.gob.ar/query/consulta.php?query=1&key=GODZILLACATASTROFEEXPLOTATODO314159267";
 
 	// Abrir conexion a MySQL y seleccionar base de datos
 	$link = mysql_connect($host, $username, $password);
@@ -46,7 +47,7 @@ $query = mysql_query("delete from informantes");
 		$latlong_json = json_decode($latlong, true);
 		//echo $latlong_json['resultado']['x'];
 		//die(print_r($latlong_json));
-$voluntarios .= $json_parsed[$i]['id_ubicacion'].";".$json_parsed[$i]['titulo'].";".$json_parsed[$i]['descripcion'].";".$json_parsed[$i]['user_id'].";".$json_parsed[$i]['fecha_alta'].";".$json_parsed[$i]['fecha_actualizacion'].";".$json_parsed[$i]['ubicacion'].";".$latlong_json['resultado']['x'].";".$latlong_json['resultado']['y'].";".$json_parsed[$i]['ultimo_estado']."\n"; 
+$voluntarios .= $json_parsed[$i]['id_ubicacion'].";".$json_parsed[$i]['titulo'].";".$json_parsed[$i]['descripcion'].";".$json_parsed[$i]['user_id'].";".$json_parsed[$i]['fecha_alta'].";".$json_parsed[$i]['fecha_actualizacion'].";".$json_parsed[$i]['ubicacion'].";".$latlong_json['resultado']['y'].";".$latlong_json['resultado']['x'].";".$json_parsed[$i]['ultimo_estado']."\n"; 
 		//die($latlong);
 		$result = mysql_query("INSERT INTO `informantes` (
 				`id_ubicacion`,
