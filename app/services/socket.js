@@ -1,7 +1,7 @@
 var CartoDB = require('cartodb');
 // api key para conectarme a cartodb
 var secret = require('./secrets.js');
-
+var config = require('../config.json');
 // import formateador de fecha
 var FormatDate = require('./formatdate');
 
@@ -21,6 +21,8 @@ const cincomin = 300000;
 var calinterval = function(min){
 	return min * 60  * 1000
 }
+
+const interval = calinterval(config.interval);
 
 // creo el cliente de cartodb
 var client = new CartoDB({
@@ -78,7 +80,7 @@ var getQuery = {
 }
 
 
-var get_informantes = function(cb){
+var get_informantes = function(){
 	client.query(getQuery["status_informantes"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
 		console.log("emit update...")
 		asd(err, forEach(data, function(elem){
@@ -102,7 +104,7 @@ var get_informantes = function(cb){
 	});
 }
 
-var get_nagios = function(cb){
+var get_nagios = function(){
 	client.query(getQuery["puntos_nagios"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
 		console.log("emit update...")
 		asd(err, forEach(data, function(elem){
@@ -117,7 +119,7 @@ var get_nagios = function(cb){
 	});
 }
 
-var get_festadistica = function(cb){
+var get_festadistica = function(){
 	client.query(getQuery["fracciones_estadistica"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
 		console.log("emit update...")
 		asd(err, forEach(data, function(elem){
@@ -172,7 +174,10 @@ module.exports = function(io) {
 			get_luminarias(function(data){
 				console.log(data)
 				socket.emit("update", data);
-			})
+			});
+			get_informantes();
+			get_nagios();
+			get_festadistica();
 			try {
 				client.connect()
 				process.on('uncaughtException', function(e){
@@ -181,6 +186,6 @@ module.exports = function(io) {
 			} catch (err) {
 				report(socket, err)
 			}
-		}, calinterval(15));
+		}, interval);
 	})
 }
