@@ -80,7 +80,7 @@ while ($row = mysql_fetch_array($result)) {
 	mysql_query($update_query) or die(mysql_error());
 }
 
-$file_fracciones = fopen("/home/pili/datos-luminarias/data/fracciones_estadistica.csv", "w");
+$file_fracciones = fopen("/var/www/html/repositorio/fracciones_estadistica.csv", "w");
 fseek($file_fracciones, 0);
 
 $columnas = array("fraccion_id","cantidad_luminarias","percentil_edad","percentil_pisos","porcentaje_sin_luz","tiempo_sin_luz", "puntaje_ranking");
