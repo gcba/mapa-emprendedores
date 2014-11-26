@@ -150,7 +150,7 @@ nav {
 .icon-menu:before { content: '\6d'; }
 
 
-input[type=checkbox] {
+input[type=checkbox], input[type=radio] {
   cursor: pointer;
   height: 30px;
   width: 30px;

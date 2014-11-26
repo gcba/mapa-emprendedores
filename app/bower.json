@@ -15,7 +15,7 @@
         "d3": "~3.4.11",
         "queue-async": "mbostock/queue#~1.0.7",
         "pace": "~0.5.7",
-        "bootstrap-sass-official": "~3.2.0+2",
+        "bootstrap-sass-official": "~3.3.1",
         "gsap": "~1.13.2"
     }
 }
