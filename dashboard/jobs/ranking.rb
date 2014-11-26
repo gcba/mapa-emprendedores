@@ -1,4 +1,4 @@
-buzzwords = ['MOYANO', 'PASTEUR', 'BORDA'] 
+buzzwords = ['CORRIENTES Y MALABIA', 'CORDOBA Y ARAOZ', 'ACOYTE Y RIVADAVIA'] 
 buzzword_counts = Hash.new({ value: 0 })
 
 SCHEDULER.every '2s' do
