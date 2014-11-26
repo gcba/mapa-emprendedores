@@ -16,7 +16,8 @@
     "connect-flash": "~0.1.1",
     "passport": "~0.1.18",
     "passport-local": "~0.1.6",
-    "redis": "^0.12.1"
+    "redis": "^0.12.1",
+    "newrelic": "^1.14.0"
   },
   "devDependencies": {
     "grunt-beep": "^0.3.1"

@@ -1,7 +1,8 @@
 var passport = require('passport');
 var CartoDB = require('cartodb');
 var secret = require('../services/secrets.js');
-var getStatus = require('../controllers/status');
+var luminarias = require('../controllers/sinredis-luminarias');
+var fraccion = require('../controllers/sinredis-festadisticas');
 
 module.exports = function(app){
 	
@@ -55,9 +56,10 @@ module.exports = function(app){
 	 * API 
 	 */
 
-	app.get('/api', isLoggedIn, getStatus.All);
-	app.get('/api/:start/:end', isLoggedIn, getStatus.rangeDates);
-	app.get('/api/:id_calle', isLoggedIn, getStatus.getNagios);
+	app.get('/api', isLoggedIn, luminarias.getall);
+	app.get('/api/:start/:end', isLoggedIn, luminarias.rangofecha);
+	app.get('/api/:id_calle', isLoggedIn, luminarias.idfraccion);
+	app.get('/api/:fraccion_id/:start/:end', isLoggedIn, fraccion.filtroestadisticas);
 
 }
 
