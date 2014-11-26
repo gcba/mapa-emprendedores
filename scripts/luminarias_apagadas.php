@@ -29,7 +29,7 @@ while ($row = mysql_fetch_array($result)) {
     mysql_query($update_query) or die(mysql_error());
 }
 
-$file_luminarias = fopen("/Users/pilimayora/Sites/datos-luminarias/data/luminarias.csv", "w");
+$file_luminarias = fopen("/home/pili/datos-luminarias/data/luminarias.csv", "w");
 fseek($file_luminarias, 0);
 
 $columnas = array("external_id","long","lat","status","tiempo_sin_luz","fraccion_id");

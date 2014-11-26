@@ -16,13 +16,13 @@ except mysql.connector.Error as err:
         print(err)
     exit(0)
 
-url = 'file:///Users/pilimayora/Downloads/AssetLink.wsdl'
+url = 'file:///home/pili/datos-luminarias/scripts/AssetLink.wsdl'
 public = 'f3ea773e-e5be-4f8d-ab7f-77f9ae9198cd_00puwFYd39xuOPMOGC0SSIFr'
 private = 'pkt3KFvbNTFeijsOQb3tll3hr6ijQulML5u72DhWrV4mXxpH'
 
 client = Client(url, username=public, password=private)
 
-file_revision = open('/Users/pilimayora/Sites/datos-luminarias/scripts/lastRevision.txt', 'r+')
+file_revision = open('/home/pili/datos-luminarias/scripts/lastRevision.txt', 'r+')
 ultima_revision = file_revision.read()
 
 # GetFaults desde la ultima revision
@@ -32,7 +32,7 @@ fault_items = result.FaultItems
 file_revision.seek(0)
 file_revision.write(str(result.Revision))
 
-file_faults = open('/Users/pilimayora/Sites/datos-luminarias/scripts/faults.txt', 'w')
+file_faults = open('/home/pili/datos-luminarias/scripts/faults.txt', 'w')
 file_faults.seek(0)
 
 if (fault_items is not None):
