@@ -1,7 +1,7 @@
 <?php
 
 // Master script!
-system('python /Users/pilimayora/Sites/datos-luminarias/scripts/conexionluminarias.py', $retval);
+system('python /home/pili/datos-luminarias/scripts/conexionluminarias.py', $retval);
 echo("Se actualizaron las fallas de luminarias de Philips \n");
 
 include('luminarias_apagadas.php');
