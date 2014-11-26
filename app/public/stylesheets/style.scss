@@ -2,6 +2,7 @@
 
 @import "../components/bourbon/dist/bourbon";
 @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+@import "../components/jasny-bootstrap/scss/offcanvas";
 
 @include font-face('DIN-Bold', 'fonts/DINB____');
 @include font-face('DINCond-Medium', 'fonts/DINCond-Medium');
@@ -21,6 +22,8 @@
 $nav-width: 600px;
 $main-color: #0d0c22;
 $main-font-color: #fff;
+
+$input-size: 30px;
 
 $fontset-default: "DIN-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $fontset-dinlight: "DIN-Light", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -150,10 +153,58 @@ nav {
 .icon-menu:before { content: '\6d'; }
 
 
-input[type=checkbox], input[type=radio] {
+input[type=radio] {
   cursor: pointer;
-  height: 30px;
-  width: 30px;
+  height: $input-size;
+  width: $input-size;
+  margin: 10px;
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+}
+
+input[type=radio] + span {
+  background: #e74c3c;
+  border-radius: 31px;
+  display: inline-block;
+  width: 31px;
+  height: 31px;
+  margin: 15px 0px -4px 10px;
+  position:relative;
+  transition: all .2s ease;
+}
+
+input[type=radio] + span::before {
+  background:#000;
+  content:'';
+  display:block;
+  position:absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  transition: all .2s ease;
+  left: 10px;
+  top: 10px;
+}
+
+
+input[type=radio]:checked + span {   
+	background: #fff;
+}
+
+input[type=radio]:checked + span::before{
+	background:#000;
+	width: 12px;
+	height: 12px;
+	left: 9px;
+	top: 9px;
+}
+
+
+input[type=checkbox] {
+  cursor: pointer;
+  height: $input-size;
+  width: $input-size;
   margin: 10px;
   position: absolute;
   opacity: 0;
@@ -162,10 +213,10 @@ input[type=checkbox], input[type=radio] {
 
 input[type=checkbox] + span {
   background: #e74c3c;
-  border-radius: 5px;
+  border-radius: $input-size;
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: $input-size;
+  height: $input-size;
   margin: 15px 0px -4px 10px;
   position:relative;
   transition: all .2s ease;
