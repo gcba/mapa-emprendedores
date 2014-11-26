@@ -111,7 +111,9 @@ var get_nagios = function(){
 			NagiosSave = new Nagios({
 				"id_nagio":  elem.id_nagio,
 				"status": elem.status,
-				"updated_at": FormatDate(elem.updated_at)
+				"updated_at": FormatDate(elem.updated_at),
+				"lat":elem.lat,
+				"long":elem.long
 			}).save()
 		}))
 		//socket.emit("update", data);
@@ -166,6 +168,7 @@ var emit_hr = function(socket){
 	console.log(hr.toLocaleString())
 	socket.emit("time", hr);
 }
+
 
 module.exports = function(io) {
 	io.sockets.on('connection', function(socket){

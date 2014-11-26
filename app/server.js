@@ -1,3 +1,5 @@
+//require('newrelic');
+
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -37,7 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-
+//
 app.use(compression({
     filter: function (req, res){
       return /json|text|javascript|css/.test(res.getHeader('Content-Type'));
@@ -45,7 +47,6 @@ app.use(compression({
     level: 9,
     threshold: 2048
 }));
-
 // manejo de caida conexion con error 400
 app.use(function(req, res){
 	res.status(400);
@@ -76,4 +77,9 @@ require('./routes/routes.js')(app);
 // inicio server
 server.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
+});
+
+io.configure(function () { 
+    io.set("transports", ["xhr-polling"]); 
+    io.set("polling duration", 10); 
 });
