@@ -1,1 +1,3 @@
 */55 * * * * php /Users/pilimayora/Sites/datos-luminarias/scripts/masterscript.php
+*/20 * * * * drive upload --file /Users/pilimayora/Sites/datos-luminarias/data/luminarias.csv
+*/20 * * * * drive upload --file /Users/pilimayora/Sites/datos-luminarias/data/fracciones_estadistica.csv

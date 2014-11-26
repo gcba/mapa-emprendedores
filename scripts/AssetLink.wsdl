@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://schemas.citytouch.com/AssetLink/v1.0" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="AssetLink" targetNamespace="http://schemas.citytouch.com/AssetLink/v1.0">
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.citytouch.com/AssetLink/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="Commit">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="changeRequests" nillable="true" type="tns:ArrayOfChangeRequest"/>
+						<xs:element minOccurs="0" name="mode" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfChangeRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ChangeRequest" nillable="true" type="tns:ChangeRequest"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfChangeRequest" nillable="true" type="tns:ArrayOfChangeRequest"/>
+			<xs:complexType name="ChangeRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Context" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ChangeRequest" nillable="true" type="tns:ChangeRequest"/>
+			<xs:complexType name="PostLuminaireRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostAssetAndComponentRequest">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="LuminaireId" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="LuminaireIdDisplayName" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostLuminaireRequest" nillable="true" type="tns:PostLuminaireRequest"/>
+			<xs:complexType name="PostAssetAndComponentRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostRequest">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="AssetId" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="AssetIdDisplayName" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostAssetAndComponentRequest" nillable="true" type="tns:PostAssetAndComponentRequest"/>
+			<xs:complexType name="PostRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ChangeRequest">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Properties" nillable="true" type="tns:ArrayOfKeyObjectPair"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostRequest" nillable="true" type="tns:PostRequest"/>
+			<xs:complexType name="ArrayOfKeyObjectPair">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="KeyObjectPair" nillable="true" type="tns:KeyObjectPair"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfKeyObjectPair" nillable="true" type="tns:ArrayOfKeyObjectPair"/>
+			<xs:complexType name="KeyObjectPair">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Key" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="KeyObjectPair" nillable="true" type="tns:KeyObjectPair"/>
+			<xs:complexType name="PostStreetRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostRequest">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Path" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="StreetNumber" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostStreetRequest" nillable="true" type="tns:PostStreetRequest"/>
+			<xs:complexType name="PostCabinetRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostAssetRequest">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostCabinetRequest" nillable="true" type="tns:PostCabinetRequest"/>
+			<xs:complexType name="PostAssetRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostAssetAndComponentRequest">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="StreetPath" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostAssetRequest" nillable="true" type="tns:PostAssetRequest"/>
+			<xs:complexType name="PostStreetLightRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostAssetRequest">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostStreetLightRequest" nillable="true" type="tns:PostStreetLightRequest"/>
+			<xs:complexType name="PostRouterRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostControlGearRequest">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostRouterRequest" nillable="true" type="tns:PostRouterRequest"/>
+			<xs:complexType name="PostControlGearRequest">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:PostAssetAndComponentRequest">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="ControlGearId" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="ControlGearIdDisplayName" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="ControlSystemDriverDisplayName" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="ControlSystemDriverName" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PostControlGearRequest" nillable="true" type="tns:PostControlGearRequest"/>
+			<xs:element name="CommitResponse">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="AssetLinkFault">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Context" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Parameter0" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Parameter1" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="AssetLinkFault" nillable="true" type="tns:AssetLinkFault"/>
+			<xs:element name="GetFaults">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="revision" type="xs:long"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetFaultsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetFaultsResult" nillable="true" type="tns:FaultItemResult"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="FaultItemResult">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="FaultItems" nillable="true" type="tns:ArrayOfFaultItem"/>
+					<xs:element minOccurs="0" name="Revision" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="FaultItemResult" nillable="true" type="tns:FaultItemResult"/>
+			<xs:complexType name="ArrayOfFaultItem">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="FaultItem" nillable="true" type="tns:FaultItem"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfFaultItem" nillable="true" type="tns:ArrayOfFaultItem"/>
+			<xs:complexType name="FaultItem">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AssetExternalId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="CategoryKey" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ComponentExternalId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="CreationTimestamp" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="ErrorKey" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ErrorParameter0" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ErrorParameter1" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="FaultId" type="xs:int"/>
+					<xs:element minOccurs="0" name="IsActive" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="LastModificationTimestamp" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="Severity" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="FaultItem" nillable="true" type="tns:FaultItem"/>
+		</xs:schema>
+		<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+			<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+			<xs:element name="byte" nillable="true" type="xs:byte"/>
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+			<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+			<xs:element name="double" nillable="true" type="xs:double"/>
+			<xs:element name="float" nillable="true" type="xs:float"/>
+			<xs:element name="int" nillable="true" type="xs:int"/>
+			<xs:element name="long" nillable="true" type="xs:long"/>
+			<xs:element name="QName" nillable="true" type="xs:QName"/>
+			<xs:element name="short" nillable="true" type="xs:short"/>
+			<xs:element name="string" nillable="true" type="xs:string"/>
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+			<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+			<xs:element name="char" nillable="true" type="tns:char"/>
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int"/>
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration"/>
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid"/>
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute name="FactoryType" type="xs:QName"/>
+			<xs:attribute name="Id" type="xs:ID"/>
+			<xs:attribute name="Ref" type="xs:IDREF"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="AssetLinkService_Commit_InputMessage">
+		<wsdl:part name="parameters" element="tns:Commit"/>
+	</wsdl:message>
+	<wsdl:message name="AssetLinkService_Commit_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CommitResponse"/>
+	</wsdl:message>
+	<wsdl:message name="AssetLinkService_Commit_AssetLinkFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="tns:AssetLinkFault"/>
+	</wsdl:message>
+	<wsdl:message name="AssetLinkService_GetFaults_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetFaults"/>
+	</wsdl:message>
+	<wsdl:message name="AssetLinkService_GetFaults_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetFaultsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="AssetLinkService_GetFaults_AssetLinkFaultFault_FaultMessage">
+		<wsdl:part name="detail" element="tns:AssetLinkFault"/>
+	</wsdl:message>
+	<wsdl:portType name="AssetLinkService">
+		<wsdl:operation name="Commit">
+			<wsdl:input message="tns:AssetLinkService_Commit_InputMessage" wsaw:Action="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/Commit"/>
+			<wsdl:output message="tns:AssetLinkService_Commit_OutputMessage" wsaw:Action="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/CommitResponse"/>
+			<wsdl:fault name="AssetLinkFaultFault" message="tns:AssetLinkService_Commit_AssetLinkFaultFault_FaultMessage" wsaw:Action="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/CommitAssetLinkFaultFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetFaults">
+			<wsdl:input message="tns:AssetLinkService_GetFaults_InputMessage" wsaw:Action="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/GetFaults"/>
+			<wsdl:output message="tns:AssetLinkService_GetFaults_OutputMessage" wsaw:Action="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/GetFaultsResponse"/>
+			<wsdl:fault name="AssetLinkFaultFault" message="tns:AssetLinkService_GetFaults_AssetLinkFaultFault_FaultMessage" wsaw:Action="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/GetFaultsAssetLinkFaultFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_AssetLinkService" type="tns:AssetLinkService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Commit">
+			<soap:operation soapAction="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/Commit" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="AssetLinkFaultFault">
+				<soap:fault name="AssetLinkFaultFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetFaults">
+			<soap:operation soapAction="http://schemas.citytouch.com/AssetLink/v1.0/AssetLinkService/GetFaults" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="AssetLinkFaultFault">
+				<soap:fault name="AssetLinkFaultFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="AssetLink">
+		<wsdl:port name="BasicHttpBinding_AssetLinkService" binding="tns:BasicHttpBinding_AssetLinkService">
+			<soap:address location="https://ws.citytouch.com/AssetLink/data1/AssetLink.svc"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
