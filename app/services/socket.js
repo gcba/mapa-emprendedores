@@ -73,9 +73,9 @@ var asd = function(err, cb){
 
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
-	"puntos_luminarias" : "SELECT cartodb_id, external_id, fraccion_id, status, tiempo_sin_luz, updated_at FROM puntos_luminarias ",
-	"fracciones_estadistica" : "SELECT cartodb_id, cantidad_luminarias, fraccion_id, porcentaje_sin_luz, puntaje_ranking, tiempo_sin_luz, updated_at FROM fracciones_estadistica ",
-	"status_informantes":"SELECT cartodb_id, descripcion, fecha_actualizacion, fecha_alta, id_ubicacion, lat, long, titulo, ubicacion, ultimo_estado, user_id, created_at ",
+	"puntos_luminarias" : "SELECT id_fraccion, status, lat, long, external_id, tiempo_sin_luz, cartodb_id, updated_at FROM status_luminarias ",
+	"fracciones_estadistica" : "SELECT * FROM fracciones_estadistica  ",
+	"status_informantes":"SELECT * FROM status_informantes ",
 	"interval": "current_timestamp-interval'60 minute'"
 }
 
@@ -86,7 +86,7 @@ var get_informantes = function(){
 		asd(err, forEach(data, function(elem){
 			InformanteSave = new Informante({
 				"cartodb_id" : elem.cartodb_id,
-				"descripcion" : elem.descripcion,
+				"descripcion" : FormatDate(elem.descripcion),
 				"fecha_actualizacion" : FormatDate(elem.fecha_actualizacion),
 				"fecha_alta" : FormatDate(elem.fecha_alta),
 				"id_ubicacion" : elem.id_ubicacion,
@@ -96,13 +96,14 @@ var get_informantes = function(){
 				"ubicacion": elem.ubicacion,
 				"ultimo_estado": elem.ultimo_estado,
 				"user_id" : elem.user_id,
-				"created_at": FormatDate(elem.created_at)
+				"updated_at": FormatDate(elem.updated_at)
 			}).save()
 		}))
 		//socket.emit("update", data);
 		console.log("updated emited puntos nagios");
 	});
 }
+
 
 var get_nagios = function(){
 	client.query(getQuery["puntos_nagios"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
@@ -111,7 +112,9 @@ var get_nagios = function(){
 			NagiosSave = new Nagios({
 				"id_nagio":  elem.id_nagio,
 				"status": elem.status,
-				"updated_at": FormatDate(elem.updated_at)
+				"updated_at": FormatDate(elem.updated_at),
+				"lat":elem.lat,
+				"long":elem.long
 			}).save()
 		}))
 		//socket.emit("update", data);
@@ -145,11 +148,13 @@ var get_luminarias = function(cb){
 			console.log("emit update...")
 			asd(err, forEach(data, function(elem){
 				LuminariasSave = new Luminarias({
-					"cartodb_id":  elem.cartodb_id,
-					"external_id": elem.external_id,
-					"fraccion_id" : elem.fraccion_id,
+					"id_fraccion" : elem.id_fraccion,
 					"status": elem.status,
+					"lat":elem.lat,
+					"long":elem.long,
+					"external_id": elem.external_id,
 					"tiempo_sin_luz":elem.tiempo_sin_luz,
+					"cartodb_id":  elem.cartodb_id,
 					"updated_at": FormatDate(elem.updated_at)
 				}).save()
 			}))
@@ -167,12 +172,13 @@ var emit_hr = function(socket){
 	socket.emit("time", hr);
 }
 
+
 module.exports = function(io) {
 	io.sockets.on('connection', function(socket){
 		socket.emit('connected');
 		setInterval(function(){
 			get_luminarias(function(data){
-				console.log(data)
+				//console.log(data)
 				socket.emit("update", data);
 			});
 			get_informantes();

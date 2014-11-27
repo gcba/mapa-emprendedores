@@ -1,4 +1,14 @@
-<div id="map"></div>
+<div class="canvas">
+  <div class="navbar navbar-default navbar-fixed-top">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+  </div>  
+  <div id="map"></div>
+</div>
+
 
 
 
@@ -54,7 +64,7 @@ var capas;
 
 
 
-</script>
+
 
 /*
 SELECT fp.the_geom_webmercator, fp.id_fraccion, fe.puntaje_ranking FROM fracciones_poligonos as fp
@@ -108,3 +118,5 @@ inner join tercera on fp.capo = tercera.campo
 	});
 
 */
+
+</script>

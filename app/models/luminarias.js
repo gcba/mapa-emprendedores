@@ -5,11 +5,13 @@ var config = require('../config');
 
 // puntos luminarias
 var puntos_luminarias = new mongoose.Schema({
-	cartodb_id : Number,
-	external_id : String,
-	fraccion_id : String,
+	id_fraccion : String,
 	status : Number,
+	lat: Number,
+	long: Number,
+	external_id : String,
 	tiempo_sin_luz : Number,
+	cartodb_id: Number,
 	updated_at : Date
 });
 
