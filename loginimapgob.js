@@ -4,7 +4,7 @@ console.log('Start Email service');
 
 mailListener = new MailListener({
   username: "luisuranga@buenosaires.gob.ar",
-  password: "ze8ucala",
+  password: "",
   host: "imap.buenosaires.gob.ar",
   port: 143, // imap port
   tls: false,

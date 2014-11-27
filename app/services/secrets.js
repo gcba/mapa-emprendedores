@@ -1,7 +1,8 @@
+// modulo de configuracion para acceder a cartodb
 module.exports = {
-	user: "bahackaton",
-	pass : "thelabrocks635",
-	api_key:"9717f50be6513a142a5c22b8d02df19bb0bacc0a",
-	consumer_key:"CnMO6hdLFYxGsOKUsBtbRp2uJxBVJLLSn8kBdJNS",
-	consumer_secret:"5lzjPHp1LyZMO6U1FbZ9NpXVifzxJlCZc6j5nrvx"
+	user: "baemprende",
+	pass : "barracassantelmo",
+	api_key:"f2d531bee1002c47a2bcc52f2262c3c28d6ef311",
+	consumer_key:"viBS44M8A8k4ykJZ3s2IbyYhSODeJjk3VLfAzvUv",
+	consumer_secret:"dDjgqfDIVu2qEUsUpyflMKzov8T62rTLcx4UsCXK"
 }

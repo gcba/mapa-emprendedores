@@ -1,22 +1,14 @@
-var mongoose = require('mongoose')
-  , Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectId;
+var mongoose = require('mongoose');
+var config = require('../config');
 
-var Report = new Schema({
-  "text": String,
-  "geo": {
-    "coordinates": {
-      "custom": [],
-      "utm": []
-    },
-    "address": String,
-    "district": String,
-    "neighborhood": String,
-  },
-  "tagged_as": String,
-  "taxonomies":[{ type: ObjectId, ref: 'Taxonomy'}],
-  "origin": String,
-  "time": { type : Date, default: Date.now }
+//mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
+
+// modelo para guardar los errores que puede generar cartodb, con fecha ocasionado
+var report =  new mongoose.Schema({
+	type: String,
+	updated_at: Date
 });
 
-module.exports = mongoose.model('Report', Report);
+var report = mongoose.model('reporterror', report);
+
+module.exports = report;

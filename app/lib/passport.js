@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 
+// modulo que se ocupa de serializar y deserializar usuario, para hacer la autentificacion del login
 
 module.exports = function(passport){
     
