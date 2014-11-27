@@ -73,9 +73,9 @@ var asd = function(err, cb){
 
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
-	"puntos_luminarias" : "SELECT cartodb_id, external_id, fraccion_id, status, tiempo_sin_luz, updated_at FROM puntos_luminarias ",
-	"fracciones_estadistica" : "SELECT cartodb_id, cantidad_luminarias, fraccion_id, porcentaje_sin_luz, puntaje_ranking, tiempo_sin_luz, updated_at FROM fracciones_estadistica ",
-	"status_informantes":"SELECT cartodb_id, descripcion, fecha_actualizacion, fecha_alta, id_ubicacion, lat, long, titulo, ubicacion, ultimo_estado, user_id, created_at ",
+	"puntos_luminarias" : "SELECT id_fraccion, status, lat, long, external_id, tiempo_sin_luz, updated_at FROM status_luminarias ",
+	"fracciones_estadistica" : "SELECT * FROM fracciones_estadistica  ",
+	"status_informantes":"SELECT * FROM status_informantes ",
 	"interval": "current_timestamp-interval'60 minute'"
 }
 
@@ -103,6 +103,10 @@ var get_informantes = function(){
 		console.log("updated emited puntos nagios");
 	});
 }
+	});
+
+	/*
+	 * API 
 
 var get_nagios = function(){
 	client.query(getQuery["puntos_nagios"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
