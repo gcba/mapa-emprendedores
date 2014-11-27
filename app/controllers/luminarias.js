@@ -46,8 +46,8 @@ exports.rangofecha = function(req, res) {
 
 // extraigo todos los nagios de la base de datos, que correspondan a un id correspondiente"
 exports.idfraccion = function(req, res) {
-	console.log(req.params.id_nagio)
-	var idfraccion = req.params.id_nagio;
+	console.log(req.params.idfraccion)
+	var idfraccion = req.params.idfraccion;
 	//consulto en redis , si la consulta hecha ya esta cacheada
 	redisClient.get(idfraccion, function(err, cachefraccion){
 		if(cachefraccion){
@@ -56,7 +56,7 @@ exports.idfraccion = function(req, res) {
 			return res.json(JSON.parse(cachefraccion))
 		} else {
 			// sino esta, la extraigo de mongo
-			Luminarias.find({ id_nagio: idfraccion },  function(err, luminarias) {
+			Luminarias.find({ id_fraccion: idfraccion },  function(err, luminarias) {
 				if (err)
 					res.send(err);
 				// guardo la consulta en cache y la devuelvo en formato json

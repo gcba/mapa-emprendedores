@@ -103,7 +103,6 @@ var get_informantes = function(){
 		console.log("updated emited puntos nagios");
 	});
 }
-	});
 
 
 var get_nagios = function(){
@@ -179,7 +178,7 @@ module.exports = function(io) {
 		socket.emit('connected');
 		setInterval(function(){
 			get_luminarias(function(data){
-				console.log(data)
+				//console.log(data)
 				socket.emit("update", data);
 			});
 			get_informantes();
