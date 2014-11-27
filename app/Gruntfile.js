@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         watch: {
             css: {
                 files: '**/*.scss',
-                tasks: ['sass']
+                tasks: ['sass','beep']
             },
             options: {
                 livereload: true
@@ -31,7 +31,8 @@ module.exports = function (grunt) {
     });
 
 
-    //Register modules to user    
+    //Register modules to user 
+    grunt.loadNpmTasks('grunt-beep');   
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
