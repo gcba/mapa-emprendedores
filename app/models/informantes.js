@@ -6,7 +6,7 @@ var config = require('../config');
 // puntos luminarias
 var informantes = new mongoose.Schema({
 	cartodb_id : Number,
-	descripcion : String,
+	descripcion : Date,
 	fecha_actualizacion : Date,
 	fecha_alta : Date,
 	id_ubicacion : Number,
@@ -14,10 +14,9 @@ var informantes = new mongoose.Schema({
 	long : Number,
 	titulo: String,
 	ubicacion: String,
-	ultimo_estado: String,
+	ultimo_estado: Number,
 	user_id : Number,
-	created_at: Date,
-	// updated_at: Date
+	updated_at: Date
 });
 
 
