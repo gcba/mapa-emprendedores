@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+  <head>
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="/components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/components/moment/moment.js"></script>
+	<script type="text/javascript" src="/components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+
+  </head>
+  <body ng-controller="infoCtrl">
+
+      <nav class="active">
+        <div class="container-fluid map-selector">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <h2>Vistas</h2>
+              <span id="layer_selector">
+                <ul>
+                  <li class="selected luminarias overcursor" id="ranking_css">Ranking</li>
+                  <li class="luminarias overcursor" id="porcentaje_css">% luminarias apagadas</li>
+                  <li class="luminarias overcursor" id="tiempo_css">Tiempo sin luz</li>
+                </ul>
+                </span>
+              <h2>Sensores</h2>
+              <ul>
+                <li class="luminarias"><label for="luminarias">Luminarias LED</label><input type="checkbox" id="luminarias" /><span></span></li>
+                <li class="nagios"><label for="nagios">Sis. NAGIOS, ASI</label><input type="radio" name="sensores" id="nagios" /><span></span></li>
+                <li class="informantes-voluntarios disabled"><label for="voluntarios">Informantes Voluntarios</label><input type="radio" name="sensores" id="voluntarios" /><span></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="static">
+          <div class="logo"><span class="icon-gcba"></span></div>
+          <div class="version" data-version="Version 0.2">v0.2</div>
+          <h1>Mapa de cortes de luz</h1>
+        </div>
+      </nav>
+
+       <div class="container">
+         <div class="span12">
+
+          <hr />
+            <div class="well">
+
+               <form class="form-horizontal">
+                 <fieldset>
+                  <div class="control-group">
+                    <label class="control-label" for="reservationtime"></label>
+                    <div class="controls">
+                     <div class="input-prepend input-group">
+                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                       <input type="text" style="width: 400px" name="reservation" id="reservationtime" class="form-control"  value="07/10/2014 1:00 PM - 07/10/2014 1:30 PM" class="span4"/>
+                     </div>
+                    </div>
+                  </div>
+                 </fieldset>
+               </form>
+
+               <script type="text/javascript">
+               /*
+                  funcion en jquery, que efectua la consulta ajax a la api, segun le fecha brindada y devuelve un historico de la base de datos, de las luminarias.
+               */
+               $(document).ready(function(){
+                  $('#reservationtime').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 1,
+                    format: 'MM/DD/YYYY h:mm A'
+                  }, function(start, end, label){
+                    start = start.format('MM/DD/YYYY h:mm A')
+                    end = end.format('MM/DD/YYYY h:mm A')
+                    $.ajax({
+                      url:"/api/"+new Date(start)+"/"+new Date(end),
+                      type: "GET",
+                      dataType: "JSON",
+                      success : function(json){
+                        console.log(json);
+                      },
+                      error: function(xhr, status, errorThrown){
+                        console.log(status)
+                      },
+                      complete:function(c){
+                        //console.log(c)                      
+                      }
+                    });
+                  });
+               });
+               </script>
+
+            </div>            
+
+
+         </div>
+      </div>
+
+  </body>
+</html>

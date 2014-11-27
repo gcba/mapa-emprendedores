@@ -9,15 +9,8 @@
 $filas = "";
 ///////////////////////////////////////////
 
-
-
 $conn = mysql_connect("dbm3.gcba.gob.ar:3307","vladimir","nagios2014ASI");
-$db = mysql_select_db($base,$conn);
-
-
-
-
-
+$db = mysql_select_db($base,$conn) or die(mysql_error());
 
 //$db = mysql_select_db("centreon",$conn);
 
@@ -114,10 +107,21 @@ echo "-> FINALIZO EL INSERT EN LA TABLA DE LOG LOCAL DE NAGIOS....\n";
 $local_conn = 	mysql_connect("localhost","root","password");
 $local_db = 	mysql_select_db($base,$local_conn);
 echo "-> HAGO LA QUERY PARA LLENAR LOS XYNAGIOS....\n";
+
+// 
+/*
 $query = mysql_query('
 SELECT host.host_id, log.status FROM centreon.host  as host
 inner join centreonstorage.log as log on log.host_name = host.host_name 
 	');
+*/
+//// cambio la query de arriba por esta porque son los unicos que tengo geolocaclizados 
+$query = mysql_query("
+SELECT host.host_id, log.status, gnc.lat, gnc.long FROM centreon.host  as host
+inner join centreonstorage.log as log on log.host_name = host.host_name 
+inner join geolocacion_nuevo.nagios_calles as gnc on host.host_id = gnc.host_id
+");
+
 
 echo "->  VACIO LA TABLA DE XYS.XYNAGIOS ....\n";
 mysql_query("truncate table xys.xynagios");
@@ -140,7 +144,7 @@ while($da = mysql_fetch_array($query))
 	//echo $da[0].";".$status.";\n";
 	mysql_query("insert into xys.xynagios (id_calle, status) values ('".$da[0]."','".$status."')");
 	echo $da[0].";".$da[1]."\n"; //status_luminarias.csv
-	$status_luminarias .= $da[0].";".$status."\n"; //status_luminarias.csv
+	$status_luminarias .= $da[0].";".$status.";".$da[2].";".$da[3]."\n"; //status_luminarias.csv
 	//echo "http://apagones.cartodb.com/api/v2/sql?q=UPDATE calles_apagones SET status = ".$status." WHERE id=".$da[0]." &api_key=d748899fa2f59842f227a4c55c15494336c82096\n";
 
 }

@@ -12,13 +12,34 @@ if (!$db_selected) {
 }	
 
 // Selecionar todas las fallas de Philips
-$query = "SELECT * FROM fallas_philips";
+$query = "SELECT falla_id, asset_external_id, creation_timestamp FROM fallas_philips";
 $result = mysql_query($query) or die(mysql_error());
 
 while ($row = mysql_fetch_array($result)) {
     // Actualizar las luminarias - setear estado a 0 si esa luminaria tiene falla
-    $update_query = "UPDATE luminarias SET status = 0 WHERE external_id = '{$row[1]}";
+    $external_id = $row[1];
+
+    $creation_timestamp = strtotime($row[2]);
+	$current_timestamp = time(); 
+
+	// Tiempo sin luz en minutos
+    $tiempo_sin_luz = ($current_timestamp - $creation_timestamp) / 60; 
+
+    $update_query = "UPDATE luminarias SET status = 0, tiempo_sin_luz = {$tiempo_sin_luz} WHERE external_id = '{$row[1]}'";
     mysql_query($update_query) or die(mysql_error());
+}
+
+$file_luminarias = fopen("/var/www/html/repositorio/status_luminarias.csv", "w");
+fseek($file_luminarias, 0);
+
+$columnas = array("id_fraccion","status","lat","long","external_id","tiempo_sin_luz");
+fputcsv($file_luminarias, $columnas);
+
+// Escribir a archivo CSV para el drive
+$rows = mysql_query("SELECT * FROM luminarias");
+
+while ($row = mysql_fetch_assoc($rows)) {
+	fputcsv($file_luminarias, $row);
 }
 
 // Cerrar conexion a MySQL
