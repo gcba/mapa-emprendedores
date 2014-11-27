@@ -6,7 +6,6 @@
 /node_modules
 app/node_modules
 config.php
-<<<<<<< HEAD
 app/config.json
 .sass-cache/
 dashboard/Gemfile.lock
