@@ -2,18 +2,16 @@
 <div class="gridster">
   <ul>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="welcome" data-view="Text" data-title="Hello" data-text="This is your shiny new dashboard." data-moreinfo="Protip: You can drag the widgets around!"></div>
-    </li>
-
-
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Hospitales" data-moreinfo="Hospitales sin luz"></div>
+      <div data-id="barrios" data-view="List" data-unordered="true" data-title="Barrios críticos" data-moreinfo="Barrios de la ciudad de Buenos Aires con mayor nivel de criticidad"></div>
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="ranking" data-view="List" data-unordered="true" data-title="Ranking de criticidad" data-moreinfo=""></div>
+      <div data-id="personas" data-view="Number" data-unordered="true" data-title="Personas afectadas" data-moreinfo="Estimación de personas afectadas por cortes de luz"></div>
     </li>
-
-
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="esquinas" data-view="List" data-unordered="true" data-title="Esquinas críticas" data-moreinfo="Esquinas de la ciudad de Buenos Aires con mayor nivel de criticidad"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="edificios" data-view="Number" data-unordered="true" data-title="Edificios altos sin luz" data-moreinfo="Estimación de edificios de más de 4 pisos afectadas por cortes de luz"></div>
+    </li>
   </ul>
-  <center><div style="font-size: 12px">Try this: curl -d '{ "auth_token": "YOUR_AUTH_TOKEN", "text": "Hey, Look what I can do!" }' \http://<%=request.host%>:<%=request.port%>/widgets/welcome</div></center>
 </div>
