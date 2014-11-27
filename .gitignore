@@ -8,3 +8,4 @@ app/node_modules
 config.php
 app/config.json
 .sass-cache/
+dashboard/Gemfile.lock
