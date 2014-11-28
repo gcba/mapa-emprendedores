@@ -21,7 +21,7 @@
 
 // Reset and dependencies
 @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
-// @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
+@import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
 // @import "../components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
 
 // Core CSS
@@ -93,6 +93,7 @@ $fontset-dincondmedium: "DINCond-Medium", "Helvetica Neue", Helvetica, Arial, sa
 
 .cartodb-zoom {
 	float: right !important;
+	
 }
 
 html, body {
