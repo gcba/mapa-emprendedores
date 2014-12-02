@@ -46,7 +46,17 @@ function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados
 
     // Ranking de criticidad:
     // ((EDAD * 0.25) + (PISOS * 0.35) + (%SIN LUZ * 0.4)) * (TIEMPO SIN LUZ) 
-	$puntaje_ranking = (($percentil_edad*0.25)+($percentil_pisos*0.35)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
+    if ($porcentaje_apagados <= 5) {
+		$puntaje_ranking = 0;
+	}
+	else {
+		$puntaje_ranking = (($percentil_edad*0.25)+($percentil_pisos*0.35)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
+	}
+	
+	if ($puntaje_ranking > 100) {
+		$puntaje_ranking = 100;
+	}
+
 	return $puntaje_ranking;
 }
 
