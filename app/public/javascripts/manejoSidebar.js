@@ -27,8 +27,6 @@ $('input:checkbox').change(
 
 $(document).keyup(function(e) {
     if (e.keyCode == 83) { 
-        console.log('apreté la S');
-
-        
-    }    
+        $('#toggleNav').click();
+    } 
 });
