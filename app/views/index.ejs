@@ -4,37 +4,11 @@
   <head>
 	<title><%= title %></title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<script src="http://localhost:3001/socket.io/socket.io.js"></script>
 	<script src="/components/jquery/dist/jquery.min.js"></script>
 	<script src="/components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 	<script src="/javascripts/cartodb.js"></script>
 
-	<script type="text/javascript">
 
-	
-		var socket = io.connect('http://localhost');
-
-		socket.on('connected', function(){
-			console.log("conectado");
-		});
-
-		socket.on('update', function(data){
-			// console.log(data);
-		});
-			
-		socket.on('time', function(t){
-			console.log(t);
-		});
-
-		socket.on('error', function(error){
-			console.log(error);
-		});
-
-		socket.on('disconnect', function () {
-			console.log('Desconectado!');
-		});
-
-	</script>
   </head>
   <body ng-controller="infoCtrl">
 

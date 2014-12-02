@@ -13,16 +13,16 @@
 
 
 <script>
-var capas;
-
+var capas, map;
+      
 
       var styles = {}, selectedStyle;
       // create layer selector
       function createSelector(layer) {
         var sql = new cartodb.SQL({ user: 'baemprende' });
 
-        var $options = $('#layer_selector li');
-        $options.click(function(e) {
+        var $barrios = $('#layer_selector li');
+        $barrios.click(function(e) {
           // get the area of the selected layer
           var $li = $(e.target);
           var style = $li.attr('id');
@@ -38,15 +38,21 @@ var capas;
         // get the currently selected style
         selectedStyle = $('li.selected').attr('id');
 
+        //cartodb.createVis('map', 'http://pixelbeat-v21.cartodb.com/api/v2/viz/757dd230-7a4f-11e4-a944-0e018d66dc29/viz.json')
         cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
         .done(function(vis, layers) {
 
+          map = vis.getNativeMap();
           capas = layers;
 
+          var ranking_css =  "#poligonos{  polygon-fill: #FFFFB2;  polygon-opacity: 0.8;  line-color: #000000;  line-width: 0.5;  line-opacity: 0.1;} #poligonos::labels {  text-name: [puntaje_ranking] + ' p';  text-face-name: 'Open Sans Regular';  text-size: 8;  text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ puntaje_ranking <= 99] {polygon-fill: #B10026;}#poligonos [ puntaje_ranking <= 80] {polygon-fill: #E31A1C;}#poligonos [ puntaje_ranking <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ puntaje_ranking <= 60] {polygon-fill: #FD8D3C;}#poligonos [ puntaje_ranking <= 50] {   polygon-fill: #FEB24C;}#poligonos [ puntaje_ranking <= 40] {polygon-fill: #FED976;}#poligonos [ puntaje_ranking <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ puntaje_ranking <= 0] {polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ puntaje_ranking <= 0]::labels {  text-fill:transparent;}";
+          var porcentaje_css = "#poligonos{polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}";
+          var tiempo_css =  "#poligonos{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}";
+
           // create a new assoc array of styles
-          styles['ranking_css'] = "#poligonos{  polygon-fill: #FFFFB2;  polygon-opacity: 0.8;  line-color: #000000;  line-width: 0.5;  line-opacity: 0.1;} #poligonos::labels {  text-name: [puntaje_ranking] + ' p';  text-face-name: 'Open Sans Regular';  text-size: 8;  text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ puntaje_ranking <= 99] {polygon-fill: #B10026;}#poligonos [ puntaje_ranking <= 80] {polygon-fill: #E31A1C;}#poligonos [ puntaje_ranking <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ puntaje_ranking <= 60] {polygon-fill: #FD8D3C;}#poligonos [ puntaje_ranking <= 50] {   polygon-fill: #FEB24C;}#poligonos [ puntaje_ranking <= 40] {polygon-fill: #FED976;}#poligonos [ puntaje_ranking <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ puntaje_ranking <= 0] {polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ puntaje_ranking <= 0]::labels {  text-fill:transparent;}";
-          styles['porcentaje_css'] = "#poligonos{polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}";
-          styles['tiempo_css'] = "#poligonos{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}";
+          styles['ranking-li'] = styles['ranking-label'] = styles['ranking-radio'] = styles['ranking-span'] = ranking_css;
+          styles['porcentaje-li'] = styles['ranking-label'] = styles['porcentaje-radio'] = styles['porcentaje-span'] = porcentaje_css;
+          styles['tiempo-li'] = styles['tiempo-label'] = styles['tiempo-radio'] = styles['tiempo-span'] = tiempo_css;
 
           var subLayer = layers[1].getSubLayer(0);
           createSelector(subLayer);
@@ -57,8 +63,8 @@ var capas;
 
           // defino limites de la visualizacion.
         capas[0].leafletMap.setMaxBounds([
-          [-34.508114, -58.616621], //top left
-          [-34.705166, -58.306486] //bottom right
+          [-34.499782, -58.642337], //top left
+          [-34.703251, -58.246829] //bottom right
         ])
 
         })
@@ -67,80 +73,31 @@ var capas;
           console.log(err);
         });
 
+
+
+        $('select').change(function(){
+          var selected = $(this).find('option:selected');
+          var barrio = {
+            nombre : selected.data('barrio'),
+            lat : selected.data('lat'),
+            lon : selected.data('long'),
+            zoom : selected.data('zoom')
+          };
+          console.log(barrio); 
+          
+          map.setView([barrio.lat, barrio.lon], barrio.zoom);
+          $('#toggleNav').click();
+
+           });
+
+
       }
 
       window.onload = main;
 
 
 
-
-
 /*
-SELECT fp.the_geom_webmercator, fp.id_fraccion, fe.puntaje_ranking FROM fracciones_poligonos as fp
-inner join fracciones_estadistica as fe on fp.id_fraccion = fe.fraccion_id
-inner join tercera on fp.capo = tercera.campo
-*/
-
-
-
-
-/*
-
-barrio,longitude,latitude
-PUERTO MADERO,-58.3526266685737,-34.6101158222289
-BOCA,-58.3615293910316,-34.6338876903345
-CHACARITA,-58.4518020861319,-34.5880647105625
-VILLA CRESPO,-58.4418491950448,-34.5981416725561
-BELGRANO,-58.4464521348604,-34.5532678728765
-RECOLETA,-58.3964637494477,-34.5845546116709
-RETIRO,-58.372298347688,-34.5883884720865
-VILLA SANTA RITA,-58.4834525244926,-34.616378311772
-CABALLITO,-58.4435324959958,-34.6166562779805
-Dique 1,-58.3636635528939,-34.6208262207471
-PARQUE CHACABUCO,-58.4379303416617,-34.637175431996
-PARQUE CHAS,-58.480045646722,-34.5854242669018
-COLEGIALES,-58.4531038756845,-34.5746395655064
-COGHLAN,-58.4754180616737,-34.5601914789001
-BOEDO,-58.4188807059834,-34.6304213552842
-CONSTITUCION,-58.3838643102714,-34.6257883610081
-SAN NICOLAS,-58.3802057464816,-34.603806714151
-VILLA REAL,-58.5247859065315,-34.619209220057
-PATERNAL,-58.4715642002865,-34.5963782282419
-VILLA DEL PARQUE,-58.4889954527539,-34.6059022854685
-ALMAGRO,-58.4224632845641,-34.6098936682854
-Dique 3,-58.3650410264787,-34.6085990571536
-MONTE CASTRO,-58.5052109648438,-34.6187880463312
-VILLA LURO,-58.5029621864507,-34.6350484121104
-FLORES,-58.4621873655078,-34.6353460166486
-SAN CRISTOBAL,-58.4017970791833,-34.6242575447172
-PARQUE PATRICIOS,-58.4006301091095,-34.6379179538403
-VELEZ SARSFIELD,-58.4939349754642,-34.6313352534466
-NUEVA POMPEYA,-58.4177772495764,-34.6500773392728
-MATADEROS,-58.5017739117247,-34.6589590220086
-VILLA LUGANO,-58.47985715382,-34.6746538240819
-SAAVEDRA,-58.4889030865477,-34.554313884165
-ESCOLLERA EXTERIOR,-58.3572685061929,-34.5831839348174
-VILLA URQUIZA,-58.4872748403288,-34.5719612667097
-PARQUE AVELLANEDA,-58.4773777903261,-34.6497140035796
-VILLA RIACHUELO,-58.4645781520123,-34.6928607982816
-VILLA SOLDATI,-58.4479777460868,-34.6678776277971
-VILLA DEVOTO,-58.5141058486933,-34.6007416676166
-LINIERS,-58.5166357749025,-34.6448445206002
-MONSERRAT,-58.3794389028705,-34.612330602846
-BARRACAS,-58.3829169516616,-34.6445755450559
-PALERMO,-58.4227160209753,-34.5743954065221
-Dique 2,-58.3643130497832,-34.6149754951675
-VILLA ORTUZAR,-58.4672995761556,-34.5815446337104
-FLORESTA,-58.48267829941,-34.6278315241088
-VERSALLES,-58.5230739499297,-34.62917326487
-VILLA PUEYRREDON,-58.5035894660205,-34.581609326625
-AGRONOMIA,-58.4883951507128,-34.5922445833988
-SAN TELMO,-58.3715549721975,-34.6225594664168
-BALVANERA,-58.4032681717613,-34.6093227058563
-VILLA GRAL. MITRE,-58.4698306002429,-34.6105078438308
-NUÑEZ,-58.4611350328884,-34.5432347991421
-Dique 4,-58.3658063508058,-34.6019151825093
-
 
 	$('#map').css('cursor', 'progress');
 	var tiempo_de_refresh = 1000 * 60; //1 minuto
