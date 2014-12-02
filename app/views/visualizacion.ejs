@@ -54,9 +54,11 @@ var capas;
           layers[1].getSubLayer(2).hide();
           layers[1].getSubLayer(3).hide();
 
+
+          // defino limites de la visualizacion.
         capas[0].leafletMap.setMaxBounds([
-          [-34.508114, -58.616621],
-          [-34.705166, -58.306486]
+          [-34.508114, -58.616621], //top left
+          [-34.705166, -58.306486] //bottom right
         ])
 
         })
