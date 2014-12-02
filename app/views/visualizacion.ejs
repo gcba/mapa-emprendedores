@@ -13,16 +13,16 @@
 
 
 <script>
-var capas;
-
+var capas, map;
+      
 
       var styles = {}, selectedStyle;
       // create layer selector
       function createSelector(layer) {
         var sql = new cartodb.SQL({ user: 'baemprende' });
 
-        var $options = $('#layer_selector li');
-        $options.click(function(e) {
+        var $barrios = $('#layer_selector li');
+        $barrios.click(function(e) {
           // get the area of the selected layer
           var $li = $(e.target);
           var style = $li.attr('id');
@@ -41,6 +41,7 @@ var capas;
         cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
         .done(function(vis, layers) {
 
+          map = vis.getNativeMap();
           capas = layers;
 
           // create a new assoc array of styles
@@ -54,19 +55,39 @@ var capas;
           layers[1].getSubLayer(2).hide();
           layers[1].getSubLayer(3).hide();
         })
+        
         .error(function(err) {
           console.log(err);
         });
+
+
+
+        $('select').change(function(){
+          var selected = $(this).find('option:selected');
+          var barrio = {
+            nombre : selected.data('barrio'),
+            lat : selected.data('lat'),
+            lon : selected.data('long'),
+            zoom : selected.data('zoom')
+          };
+          console.log(barrio); 
+          
+          map.setView([barrio.lat, barrio.lon], barrio.zoom);
+
+           });
+
         /*
           map.fitBounds([
               [40.712, -74.227],
               [40.774, -74.125]
           ]);
         */
+
+        
+
       }
 
       window.onload = main;
-
 
 
 
