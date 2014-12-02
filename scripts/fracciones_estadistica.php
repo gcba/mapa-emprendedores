@@ -34,7 +34,7 @@ function calcularTiempoSinLuz($fraccion_id) {
 
 function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados, $tiempo_horas) {
     // Ponderación en base a hace cuánto tiempo la fracción no tiene luz
-    if ($tiempo_horas < 5) {
+    if ($tiempo_horas <= 6) {
     	$rk_tiempo_luz = 0;
     }
     else {
@@ -45,8 +45,8 @@ function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados
     $rk_porcentaje_luz = -0.0059*($porcentaje_apagados)^2 + 1.562*($porcentaje_apagados) + 2.278;
 
     // Ranking de criticidad:
-    // ((EDAD * 0.35) + (PISOS * 0.25) + (%SIN LUZ * 0.4)) * (TIEMPO SIN LUZ) 
-	$puntaje_ranking = (($percentil_edad*0.35)+($percentil_pisos*0.25)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
+    // ((EDAD * 0.25) + (PISOS * 0.35) + (%SIN LUZ * 0.4)) * (TIEMPO SIN LUZ) 
+	$puntaje_ranking = (($percentil_edad*0.25)+($percentil_pisos*0.35)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
 	return $puntaje_ranking;
 }
 

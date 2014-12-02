@@ -38,7 +38,8 @@ var capas, map;
         // get the currently selected style
         selectedStyle = $('li.selected').attr('id');
 
-        cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
+        cartodb.createVis('map', 'http://pixelbeat-v21.cartodb.com/api/v2/viz/757dd230-7a4f-11e4-a944-0e018d66dc29/viz.json')
+        // cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
         .done(function(vis, layers) {
 
           map = vis.getNativeMap();
@@ -54,8 +55,16 @@ var capas, map;
           layers[1].getSubLayer(1).hide();
           layers[1].getSubLayer(2).hide();
           layers[1].getSubLayer(3).hide();
+
+
+          // defino limites de la visualizacion.
+        capas[0].leafletMap.setMaxBounds([
+          [-34.508114, -58.616621], //top left
+          [-34.705166, -58.306486] //bottom right
+        ])
+
         })
-        
+
         .error(function(err) {
           console.log(err);
         });
@@ -73,17 +82,10 @@ var capas, map;
           console.log(barrio); 
           
           map.setView([barrio.lat, barrio.lon], barrio.zoom);
+          $('#toggleNav').click();
 
            });
 
-        /*
-          map.fitBounds([
-              [40.712, -74.227],
-              [40.774, -74.125]
-          ]);
-        */
-
-        
 
       }
 
@@ -91,67 +93,7 @@ var capas, map;
 
 
 
-
 /*
-SELECT fp.the_geom_webmercator, fp.id_fraccion, fe.puntaje_ranking FROM fracciones_poligonos as fp
-inner join fracciones_estadistica as fe on fp.id_fraccion = fe.fraccion_id
-inner join tercera on fp.capo = tercera.campo
-*/
-
-
-
-
-/*
-
-barrio,longitude,latitude
-Agronomia,-58.4883951507128,-34.5922445833988
-Almagro,-58.4224632845641,-34.6098936682854
-Balvanera,-58.4032681717613,-34.6093227058563
-Barracas,-58.3829169516616,-34.6445755450559
-Belgrano,-58.4464521348604,-34.5532678728765
-Boca,-58.3615293910316,-34.6338876903345
-Boedo,-58.4188807059834,-34.6304213552842
-Caballito,-58.4435324959958,-34.6166562779805
-Chacarita,-58.4518020861319,-34.5880647105625
-Coghlan,-58.4754180616737,-34.5601914789001
-Colegiales,-58.4531038756845,-34.5746395655064
-Constitucion,-58.3838643102714,-34.6257883610081
-Flores,-58.4621873655078,-34.6353460166486
-Floresta,-58.48267829941,-34.6278315241088
-Liniers,-58.5166357749025,-34.6448445206002
-Mataderos,-58.5017739117247,-34.6589590220086
-Monserrat,-58.3794389028705,-34.612330602846
-Monte Castro,-58.5052109648438,-34.6187880463312
-Nueva Pompeya,-58.4177772495764,-34.6500773392728
-Nuñez,-58.4611350328884,-34.5432347991421
-Palermo,-58.4227160209753,-34.5743954065221
-Parque Avellaneda,-58.4773777903261,-34.6497140035796
-Parque Chacabuco,-58.4379303416617,-34.637175431996
-Parque Chas,-58.480045646722,-34.5854242669018
-Parque Patricios,-58.4006301091095,-34.6379179538403
-Paternal,-58.4715642002865,-34.5963782282419
-Puerto Madero,-58.3526266685737,-34.6101158222289
-Recoleta,-58.3964637494477,-34.5845546116709
-Retiro,-58.372298347688,-34.5883884720865
-Saavedra,-58.4889030865477,-34.554313884165
-San Cristobal,-58.4017970791833,-34.6242575447172
-San Nicolas,-58.3802057464816,-34.603806714151
-San Telmo,-58.3715549721975,-34.6225594664168
-Velez Sarsfield,-58.4939349754642,-34.6313352534466
-Versalles,-58.5230739499297,-34.62917326487
-Villa Crespo,-58.4418491950448,-34.5981416725561
-Villa Del Parque,-58.4889954527539,-34.6059022854685
-Villa Devoto,-58.5141058486933,-34.6007416676166
-Villa Gral. Mitre,-58.4698306002429,-34.6105078438308
-Villa Lugano,-58.47985715382,-34.6746538240819
-Villa Luro,-58.5029621864507,-34.6350484121104
-Villa Ortuzar,-58.4672995761556,-34.5815446337104
-Villa Pueyrredon,-58.5035894660205,-34.581609326625
-Villa Real,-58.5247859065315,-34.619209220057
-Villa Riachuelo,-58.4645781520123,-34.6928607982816
-Villa Santa Rita,-58.4834525244926,-34.616378311772
-Villa Soldati,-58.4479777460868,-34.6678776277971
-Villa Urquiza,-58.4872748403288,-34.5719612667097
 
 	$('#map').css('cursor', 'progress');
 	var tiempo_de_refresh = 1000 * 60; //1 minuto
