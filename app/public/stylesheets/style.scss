@@ -104,6 +104,29 @@ html, body {
 	text-rendering: optimizeLegibility;
 }
 
+#barrios_chosen {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 50;
+	min-width: 200px;
+	zoom: 1.5;
+}
+.chosen-container-single .chosen-single abbr {
+	height: 11px !important;
+}
+.chosen-rtl .chosen-search input[type="text"],
+.chosen-container-single .chosen-single abbr,
+.chosen-container-single .chosen-single div b,
+.chosen-container-single .chosen-search input[type="text"],
+.chosen-container-multi .chosen-choices .search-choice .search-choice-close,
+.chosen-container .chosen-results-scroll-down span,
+.chosen-container .chosen-results-scroll-up span {
+  background-image: url('/components/chosen_v1.2.0/chosen-sprite@2x.png') !important;
+  background-size: 52px 37px !important;
+  background-repeat: no-repeat !important;
+}
+
 #map {
 	position: absolute;
 	@extend body;
