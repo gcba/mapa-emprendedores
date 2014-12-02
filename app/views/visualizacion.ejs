@@ -53,16 +53,18 @@ var capas;
           layers[1].getSubLayer(1).hide();
           layers[1].getSubLayer(2).hide();
           layers[1].getSubLayer(3).hide();
+
+        capas[0].leafletMap.setMaxBounds([
+          [-34.508114, -58.616621],
+          [-34.705166, -58.306486]
+        ])
+
         })
+
         .error(function(err) {
           console.log(err);
         });
-        /*
-          map.fitBounds([
-              [40.712, -74.227],
-              [40.774, -74.125]
-          ]);
-        */
+
       }
 
       window.onload = main;
