@@ -42,7 +42,12 @@ function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados
     }
 
     // Ponderación en base al porcentaje de la fracción sin luz
-    $rk_porcentaje_luz = -0.0059*($porcentaje_apagados)^2 + 1.562*($porcentaje_apagados) + 2.278;
+    if ($porcentaje_apagados <= 5) {
+    	$rk_porcentaje_luz = 0;
+    }
+    else {
+    	$rk_porcentaje_luz = -0.0059*($porcentaje_apagados)^2 + 1.562*($porcentaje_apagados) + 2.278;
+    }	
 
     // Ranking de criticidad:
     // ((EDAD * 0.25) + (PISOS * 0.35) + (%SIN LUZ * 0.4)) * (TIEMPO SIN LUZ) 
