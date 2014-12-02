@@ -1,6 +1,6 @@
 <div class="canvas">
   <div class="navbar navbar-default navbar-fixed-top">
-          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas" id="toggleNav">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -44,10 +44,9 @@ var capas;
           capas = layers;
 
           // create a new assoc array of styles
-          styles['ranking_css'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ puntaje_ranking <= 60] {polygon-fill: #B10026;}#fracciones_poligonos [ puntaje_ranking <= 50] {polygon-fill: #E31A1C;}#fracciones_poligonos [ puntaje_ranking <= 40] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ puntaje_ranking <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ puntaje_ranking <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ puntaje_ranking <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ puntaje_ranking <= 0] {polygon-opacity: 0;}";
-          styles['porcentaje_css'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ tiempo_sin_luz <= 420]{polygon-fill: #B10026;}#fracciones_poligonos [ tiempo_sin_luz <= 360] {polygon-fill: #E31A1C;}#fracciones_poligonos [ tiempo_sin_luz <= 240] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ tiempo_sin_luz <= 180]{polygon-fill: #FD8D3C;}#fracciones_poligonos [ tiempo_sin_luz <= 120]{polygon-fill: #FEB24C;}#fracciones_poligonos [ tiempo_sin_luz <= 60] { polygon-fill: #FED976;}#fracciones_poligonos [ tiempo_sin_luz <= 0] {  polygon-opacity: 0;}";
-          styles['tiempo_css'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ porcentaje_sin_luz <= 60]{polygon-fill: #B10026;}#fracciones_poligonos [porcentaje_sin_luz <= 50]{polygon-fill: #E31A1C;}#fracciones_poligonos [ porcentaje_sin_luz <= 40]{polygon-fill: #FC4E2A;}#fracciones_poligonos [ porcentaje_sin_luz <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ porcentaje_sin_luz <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ porcentaje_sin_luz <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ porcentaje_sin_luz <= 0] {polygon-opacity: 0;}";
-
+          styles['ranking_css'] = "#poligonos{  polygon-fill: #FFFFB2;  polygon-opacity: 0.8;  line-color: #000000;  line-width: 0.5;  line-opacity: 0.1;} #poligonos::labels {  text-name: [puntaje_ranking] + ' p';  text-face-name: 'Open Sans Regular';  text-size: 8;  text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ puntaje_ranking <= 99] {polygon-fill: #B10026;}#poligonos [ puntaje_ranking <= 80] {polygon-fill: #E31A1C;}#poligonos [ puntaje_ranking <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ puntaje_ranking <= 60] {polygon-fill: #FD8D3C;}#poligonos [ puntaje_ranking <= 50] {   polygon-fill: #FEB24C;}#poligonos [ puntaje_ranking <= 40] {polygon-fill: #FED976;}#poligonos [ puntaje_ranking <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ puntaje_ranking <= 0] {polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ puntaje_ranking <= 0]::labels {  text-fill:transparent;}";
+          styles['porcentaje_css'] = "#poligonos{polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}";
+          styles['tiempo_css'] = "#poligonos{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}";
 
           var subLayer = layers[1].getSubLayer(0);
           createSelector(subLayer);
@@ -58,12 +57,12 @@ var capas;
         .error(function(err) {
           console.log(err);
         });
-
-        map.fitBounds([
-            [40.712, -74.227],
-            [40.774, -74.125]
-        ]);
-
+        /*
+          map.fitBounds([
+              [40.712, -74.227],
+              [40.774, -74.125]
+          ]);
+        */
       }
 
       window.onload = main;

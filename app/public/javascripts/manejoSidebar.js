@@ -26,15 +26,7 @@ $('input:checkbox').change(
 
 
 $(document).keyup(function(e) {
-  if (e.keyCode == 83) { 
-    console.log('message');
-    
-  }    
+    if (e.keyCode == 83) { 
+        $('#toggleNav').click();
+    } 
 });
-
-
-/* Query a correr
-SELECT fp.the_geom_webmercator, fp.id_fraccion, fe.puntaje_ranking FROM fracciones_poligonos as fp
-inner join fracciones_estadistica as fe on fp.id_fraccion = fe.fraccion_id
-inner join tercera on fp.campo = tercera.campo
-*/
