@@ -28,7 +28,7 @@ module.exports = function(app){
 
 	app.get('/index', isLoggedIn, function(req, res){
 	  res.render('index', {
-	  	title: 'Mapa de cortes de luz - v0.1',
+	  	title: 'Mapa de cortes de luz',
 	  });
 	});
 
@@ -38,7 +38,7 @@ module.exports = function(app){
 	
 	app.get('/algo', function(req, res){
 	  res.render('algo', {
-	  	title: 'Mapa de cortes de luz - v0.1',
+	  	title: 'Mapa de cortes de luz',
 	  });
 	});
 	
@@ -48,7 +48,7 @@ module.exports = function(app){
 	
 	app.get('/mapa', isLoggedIn, function(req, res){
 	  res.render('mapa', {
-	  	title: 'Mapa de cortes de luz - v0.1',
+	  	title: 'Mapa de cortes de luz',
 	  });
 	});
 
