@@ -52,6 +52,11 @@ function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados
 	else {
 		$puntaje_ranking = (($percentil_edad*0.25)+($percentil_pisos*0.35)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
 	}
+	
+	if ($puntaje_ranking > 100) {
+		$puntaje_ranking = 100;
+	}
+
 	return $puntaje_ranking;
 }
 
