@@ -34,7 +34,7 @@ function calcularTiempoSinLuz($fraccion_id) {
 
 function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados, $tiempo_horas) {
     // Ponderación en base a hace cuánto tiempo la fracción no tiene luz
-    if ($tiempo_horas < 5) {
+    if ($tiempo_horas <= 6) {
     	$rk_tiempo_luz = 0;
     }
     else {
