@@ -16,3 +16,4 @@ app/public/stylesheets/style.css
 .sass-cache/
 assets/
 data/luminarias.json
+scripts/lastRevision.txt
