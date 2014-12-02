@@ -30,7 +30,8 @@ $('input:checkbox').change(
 
 $(document).ready(function() {
     $("#barrios").chosen({
-        allow_single_deselect: true
+        allow_single_deselect: true,
+        no_results_text: "No existen barrios con el criterio: "
     });
 
     $(document).keyup(function(e) {
@@ -40,7 +41,7 @@ $(document).ready(function() {
     });
 
     $(document).keydown(function(e) {
-        if (e.keyCode === 27 || e.keyCode === 13) { // "Esc" || "Enter"
+        if (e.keyCode === 27 ) { // "Esc" || "Enter"
           console.log("hago foco en el body")
           $("button").focus();
         }
