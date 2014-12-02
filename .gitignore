@@ -6,9 +6,13 @@
 /node_modules
 app/node_modules
 config.php
+app/config.json
+.sass-cache/
+dashboard/Gemfile.lock
 /app/config.json
 app/run-app.sh
 app/public/components
 app/public/stylesheets/style.css
 .sass-cache/
 assets/
+data/luminarias.json
