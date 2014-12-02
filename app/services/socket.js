@@ -35,7 +35,7 @@ var client = new CartoDB({
 */
 var report = function(socket, err){
 	socket.emit("error", err);
-	console.log(err);
+	//console.log(err);
 	save_err(err);
 }
 //
@@ -73,7 +73,7 @@ var asd = function(err, cb){
 
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
-	"puntos_luminarias" : "SELECT id_fraccion, status, lat, long, external_id, tiempo_sin_luz, cartodb_id, updated_at FROM status_luminarias ",
+	"puntos_luminarias" : "SELECT * FROM status_luminarias ",
 	"fracciones_estadistica" : "SELECT * FROM fracciones_estadistica  ",
 	"status_informantes":"SELECT * FROM status_informantes ",
 	"interval": "current_timestamp-interval'60 minute'"
@@ -99,7 +99,6 @@ var get_informantes = function(){
 				"updated_at": FormatDate(elem.updated_at)
 			}).save()
 		}))
-		//socket.emit("update", data);
 		console.log("updated emited puntos nagios");
 	});
 }
@@ -117,7 +116,6 @@ var get_nagios = function(){
 				"long":elem.long
 			}).save()
 		}))
-		//socket.emit("update", data);
 		console.log("updated emited puntos nagios");
 	});
 }
@@ -136,7 +134,6 @@ var get_festadistica = function(){
 				"updated_at": FormatDate(elem.updated_at)
 			}).save()
 		}))
-		//socket.emit("update", data);
 		console.log("updated emited fracciones estadistica");
 	});
 }
@@ -159,8 +156,8 @@ var get_luminarias = function(cb){
 				}).save()
 			}))
 			// emite los segmentos traidos de la api de cartodb al cliente
-			cb(data)
 			console.log("updated emited puntos luminarias");
+			cb(data)
 		});
 	});
 }
@@ -172,26 +169,36 @@ var emit_hr = function(socket){
 	socket.emit("time", hr);
 }
 
-
 module.exports = function(io) {
 	io.sockets.on('connection', function(socket){
 		socket.emit('connected');
 		setInterval(function(){
 			get_luminarias(function(data){
-				//console.log(data)
-				socket.emit("update", data);
+				var len = data.rows.length;
+				var send = []
+				for (var i=0 ;i<len ;i++){
+					var newdata = {};
+					if(data.rows[i].status == 0){
+						console.log(data.rows[i])
+						newdata['id_fraccion'] = data.rows[i].id_fraccion
+						newdata['status'] = data.rows[i].status
+						newdata['tiempo_sin_luz'] = data.rows[i].tiempo_sin_luz
+						send.push(newdata)
+					}
+				}
+				socket.emit("update", send);
 			});
 			get_informantes();
 			get_nagios();
 			get_festadistica();
 			try {
 				client.connect()
-				process.on('uncaughtException', function(e){
-					console.log(e);
+				process.on('uncaughtException', function(err){
+					report(socket, err)
 				})
 			} catch (err) {
-				report(socket, err)
+				//console.log(err);
 			}
-		}, interval);
+		}, calinterval(65));
 	})
 }

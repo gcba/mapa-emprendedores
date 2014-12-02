@@ -15,11 +15,27 @@ exports.getall = function(req, res) {
 exports.rangofecha = function(req, res) {
 	var start = FormatDate(req.params.start)
 	var end = FormatDate(req.params.end)
+	console.log(start)
+	console.log(end)
 	Luminarias.find({updated_at: {$gte: start, $lte: end}},  function(err, luminarias) {
+		str = "";
 		if (err)
 			res.send(err);
-
-		res.json(luminarias);
+		luminarias.forEach(function(lumi){
+			str += lumi.id_fraccion;
+			str += "; " + lumi.status;
+			str += "; " + lumi.lat; 
+			str += "; " + lumi.long;
+			str += "; " + lumi.external_id;
+			str += "; " + lumi.tiempo_sin_luz;
+			str += "; " + lumi.cartodb_id;
+			str += "; " + lumi.updated_at;
+			str += "\n"; 
+		});
+		//console.log(str);
+		res.header('Content-type', 'text/csv');
+		res.send(str);
+		str = "";
 	});	
 }
 
