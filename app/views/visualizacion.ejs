@@ -61,16 +61,145 @@
 </div>
 
 
+<script type="cartocss/html" id="ranking_css">
+
+/** Choropleth del Ranking */
+  #poligonos{
+      polygon-fill: #FFFFB2;
+      polygon-opacity: 0.8;
+      line-color: #000000;
+      line-width: 0.5;
+      line-opacity: 0.1;
+  }
+   #poligonos::labels {
+      text-name: [puntaje_ranking] + ' p';
+      text-face-name: 'Open Sans Regular';
+      text-size: 8;
+      text-label-position-tolerance: 0;
+      text-fill: #000;
+      text-halo-fill: #FFF;
+      text-halo-radius: 0;
+      text-dy: 0;
+      text-allow-overlap: true;
+      text-placement: interior;
+      text-placement-type: dummy;
+  }
+  #poligonos [ puntaje_ranking <= 99] {
+    polygon-fill: #B10026;
+  }
+  #poligonos [ puntaje_ranking <= 80] {
+    polygon-fill: #E31A1C;
+  }
+  #poligonos [ puntaje_ranking <= 70] {
+       polygon-fill: #FC4E2A;
+  }
+  #poligonos [ puntaje_ranking <= 60] {
+    polygon-fill: #FD8D3C;
+  }
+  #poligonos [ puntaje_ranking <= 50] {
+       polygon-fill: #FEB24C;
+  }
+  #poligonos [ puntaje_ranking <= 40] {
+    polygon-fill: #FED976;
+  }
+  #poligonos [ puntaje_ranking <= 20] {
+       polygon-fill: #FFFFB2;
+  }
+  #poligonos [ puntaje_ranking <= 0] {
+    polygon-fill: transparent;
+     polygon-opacity: 0;
+  }
+  #poligonos [ puntaje_ranking <= 0]::labels {
+      text-fill:transparent;
+  }
+
+  
+    
+</script>
+<script type="cartocss/html" id="porcentaje_css">
+  #poligonos{polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}
+</script>
+
+<script type="cartocss/html" id="tiempo_css">
+  #poligonos{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}
+</script>
 
 
 <script>
-var capas, map;
+var capas, map, sql, polygon;
+
       
+      /* 
+
+      // Modificar features visuales de un poligono dado, desde una visualizacion con capas en CartoDB
+
+      var polygons = {};
+
+      function geometryHover(username, map, layer, options) {
+
+        options = options || {}
+        var HIGHLIGHT_STYLE = {
+          weight: 3,
+          color: '#FFFFFF',
+          opacity: 1,
+          fillColor: '#FFFFFF',
+          fillOpacity: 0.3
+        };
+        style = options.style || HIGHLIGHT_STYLE;
+        var polygonsHighlighted = [];
+
+
+        // fetch the geometry
+        var sql = new cartodb.SQL({ user: username, format: 'geojson' });
+        sql.execute("select cartodb_id, ST_Simplify(the_geom, 0.1) as the_geom from poligonos as _wrap").done(function(geojson) {
+          var features = geojson.features;
+          for(var i = 0; i < features.length; ++i) {
+            var f = geojson.features[i];
+            var key = f.properties.cartodb_id
+
+            // console.log(features[1].geometry);
+
+            // generate geometry
+            var geo = L.GeoJSON.geometryToLayer(features[i].geometry);
+
+            geo.setStyle(style);
+
+            // add to polygons
+            polygons[key] = polygons[key] ||  [];
+            polygons[key].push(geo);
+          }
+        });
+
+        function featureOver(e, pos, latlng, data) {
+          featureOut();
+          var pol = polygons[data.cartodb_id] || [];
+          for(var i = 0; i < pol.length; ++i) {
+            map.addLayer(pol[i]);
+            polygonsHighlighted.push(pol[i]);
+          }
+        }
+
+        function featureOut() {
+          var pol = polygonsHighlighted;
+          for(var i = 0; i < pol.length; ++i) {
+            map.removeLayer(pol[i]);
+          }
+          polygonsHighlighted = [];
+        }
+
+        layer.on('featureOver', featureOver);
+        layer.on('featureOut', featureOut);
+        layer.setInteraction(true);
+
+      }
+
+      */
+
+
 
       var styles = {}, selectedStyle;
       // create layer selector
       function createSelector(layer) {
-        var sql = new cartodb.SQL({ user: 'baemprende' });
 
         var $barrios = $('#layer_selector li');
         $barrios.click(function(e) {
@@ -93,12 +222,14 @@ var capas, map;
         cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
         .done(function(vis, layers) {
 
+
+
           map = vis.getNativeMap();
           capas = layers;
 
-          var ranking_css =  "#poligonos{  polygon-fill: #FFFFB2;  polygon-opacity: 0.8;  line-color: #000000;  line-width: 0.5;  line-opacity: 0.1;} #poligonos::labels {  text-name: [puntaje_ranking] + ' p';  text-face-name: 'Open Sans Regular';  text-size: 8;  text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ puntaje_ranking <= 99] {polygon-fill: #B10026;}#poligonos [ puntaje_ranking <= 80] {polygon-fill: #E31A1C;}#poligonos [ puntaje_ranking <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ puntaje_ranking <= 60] {polygon-fill: #FD8D3C;}#poligonos [ puntaje_ranking <= 50] {   polygon-fill: #FEB24C;}#poligonos [ puntaje_ranking <= 40] {polygon-fill: #FED976;}#poligonos [ puntaje_ranking <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ puntaje_ranking <= 0] {polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ puntaje_ranking <= 0]::labels {  text-fill:transparent;}";
-          var porcentaje_css = "#poligonos{polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}";
-          var tiempo_css =  "#poligonos{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}";
+          var ranking_css =  $('#ranking_css').html();
+          var porcentaje_css = $('#porcentaje_css').html();
+          var tiempo_css = $('#tiempo_css').html();
 
           // create a new assoc array of styles
           styles['ranking-li'] = styles['ranking-label'] = styles['ranking-radio'] = styles['ranking-span'] = ranking_css;
@@ -111,11 +242,20 @@ var capas, map;
           layers[1].getSubLayer(2).hide();
           layers[1].getSubLayer(3).hide();
 
+          // geometryHover('baemprende', map, layers[1].getSubLayer(1));
+
+          // layers[1].getSubLayer(0).setInteraction(true);
+          // layers[1].getSubLayer(0).on('featureOver', function(e, pos, latlng, data) {
+          //   console.log(data.cartodb_id);
+          // });
+
+
+
 
           // defino limites de la visualizacion.
         capas[0].leafletMap.setMaxBounds([
-          [-34.459798, -58.731060], //top left
-          [-34.731109, -58.181057] //bottom right
+          [-34.419386, -58.759144], //top left
+          [-34.783370, -58.047779] //bottom right
         ])
 
         })

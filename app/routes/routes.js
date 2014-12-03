@@ -60,7 +60,6 @@ module.exports = function(app){
 	app.get('/api/:start/:end', isLoggedIn, luminarias.rangofecha);
 	app.get('/api/:id_calle', isLoggedIn, luminarias.idfraccion);
 	app.get('/api/:fraccion_id/:start/:end', isLoggedIn, fraccion.filtroestadisticas);
-
 }
 
 
