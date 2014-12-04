@@ -36,8 +36,8 @@ module.exports = function(app){
 	 * GET mapa page.
 	 */
 	
-	app.get('/algo', function(req, res){
-	  res.render('algo', {
+	app.get('/reporte', function(req, res){
+	  res.render('reporte', {
 	  	title: 'Mapa de cortes de luz',
 	  });
 	});

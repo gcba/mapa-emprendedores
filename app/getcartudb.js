@@ -25,25 +25,34 @@ var calinterval = function(min){
 
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
-	"puntos_luminarias" : "SELECT id_fraccion, status, lat, long, external_id, tiempo_sin_luz, updated_at FROM status_luminarias",
+	"puntos_luminarias" : "SELECT id_fraccion, status, lat, long, external_id, tiempo_sin_luz, updated_at FROM status_luminarias ",
 	"fracciones_estadistica" : "SELECT cartodb_id, cantidad_luminarias, fraccion_id, porcentaje_sin_luz, puntaje_ranking, tiempo_sin_luz, updated_at FROM fracciones_estadistica ",
-	"status_informantes":"SELECT * FROM status_informantes"
+	"status_informantes":"SELECT * FROM status_informantes "
+}
+
+var rowsLength = function(err, data) {
+  console.log(data.rows.length);
+};
+
+ var asd = function(err, data){
+	console.log("emit update... puntos_luminarias")
+	var len = data.rows.length;
+	console.log(len)
+	//console.log(data)
+	for(var i=0;i<len;i++){
+		if(data.rows[i].status == "i"){
+			console.log(data.rows[i])
+			// 'CastError: Cast to number failed for value "i" at path "status'
+		}
+	}
 }
 
 setInterval(function(){
 	client.on('connect', function(){
-		client.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
-			console.log("emit update... puntos_luminarias")
-			var len = data.rows.length;
-			console.log(len)
-			//console.log(data)
-			for(var i=0;i<len;i++){
-				if(data.rows[i].status == "i"){
-					console.log(data.rows[i])
-					// 'CastError: Cast to number failed for value "i" at path "status'
-				}
-			}
-		});
+		client
+			.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
+			.query(getQuery['fracciones_estadistica'] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
+			.query(getQuery['puntos_nagios'] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
 	});
 	client.connect()
-}, calinterval(1));
+}, calinterval(5));
