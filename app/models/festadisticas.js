@@ -11,7 +11,12 @@ var fracciones_estadistica =  new mongoose.Schema({
 	porcentaje_sin_luz : Number,
 	puntaje_ranking : Number,
 	tiempo_sin_luz : Number,
-	updated_at: Date
+	updated_at: {
+		type: Date,
+		index: {
+			unique: true
+		}
+	}
 });
 
 var fracciones_estadistica = mongoose.model('fracciones_estadistica', fracciones_estadistica);

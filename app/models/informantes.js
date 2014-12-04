@@ -16,7 +16,12 @@ var informantes = new mongoose.Schema({
 	ubicacion: String,
 	ultimo_estado: Number,
 	user_id : Number,
-	updated_at: Date
+	updated_at: {
+		type: Date,
+		index: {
+			unique: true
+		}
+	}
 });
 
 
