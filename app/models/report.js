@@ -6,7 +6,12 @@ var config = require('../config');
 // modelo para guardar los errores que puede generar cartodb, con fecha ocasionado
 var report =  new mongoose.Schema({
 	type: String,
-	updated_at: Date
+	updated_at: {
+		type: Date,
+		index: {
+			unique: true
+		}
+	}
 });
 
 var report = mongoose.model('reporterror', report);

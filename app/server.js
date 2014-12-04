@@ -16,7 +16,7 @@ var io = require('socket.io').listen(server);
 // models y connect db
 require('./lib/passport')(passport); 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name)) ; 
-mongoose.set('debug', true)
+mongoose.set('debug', false)
 // all environments
 app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
@@ -77,9 +77,4 @@ require('./routes/routes.js')(app);
 // inicio server
 server.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
-});
-
-io.configure(function () { 
-    io.set("transports", ["xhr-polling"]); 
-    io.set("polling duration", 10); 
 });
