@@ -171,12 +171,13 @@ var emit_hr = function(socket){
 
 module.exports = function(io) {
 	io.sockets.on('connection', function(socket){
+		console.log("lolo connect");
 		socket.emit('connected');
 		setInterval(function(){
 			get_luminarias(function(data){
 				var len = data.rows.length;
 				var send = []
-				for (var i=0 ;i<len ;i++){
+				for (var i=0; i<len ;i++){
 					var newdata = {};
 					if(data.rows[i].status == 0){
 						console.log(data.rows[i])
@@ -199,6 +200,6 @@ module.exports = function(io) {
 			} catch (err) {
 				//console.log(err);
 			}
-		}, calinterval(65));
+		}, 3900000);
 	})
 }

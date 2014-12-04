@@ -34,16 +34,16 @@ setInterval(function(){
 	client.on('connect', function(){
 		client.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
 			console.log("emit update... puntos_luminarias")
-			console.log(data)
+			var len = data.rows.length;
+			console.log(len)
+			//console.log(data)
+			for(var i=0;i<len;i++){
+				if(data.rows[i].status == "i"){
+					console.log(data.rows[i])
+					// 'CastError: Cast to number failed for value "i" at path "status'
+				}
+			}
 		});
-		client.query(getQuery["puntos_nagios"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
-			console.log("emit update... puntos_nagios")
-			console.log(data)
-		});
-		client.query(getQuery["fracciones_estadistica"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, function(err, data){
-			console.log("emit update... fracciones_estadistica")
-			console.log(data)
-		});		
 	});
 	client.connect()
 }, calinterval(1));
