@@ -22,29 +22,27 @@ private = 'pkt3KFvbNTFeijsOQb3tll3hr6ijQulML5u72DhWrV4mXxpH'
 
 client = Client(url, username=public, password=private)
 
-file_revision = open('/home/pili/datos-luminarias/scripts/lastRevision.txt', 'r+')
-ultima_revision = file_revision.read()
-
 # GetFaults desde la ultima revision
-result = client.service.GetFaults(ultima_revision)
+result = client.service.GetFaults(0)
 fault_items = result.FaultItems
 
-file_revision.seek(0)
-file_revision.write(str(result.Revision))
-
-file_faults = open('/home/pili/datos-luminarias/scripts/faults.txt', 'w')
+file_faults = open('/home/pili/datos-luminarias/data/faults.csv', 'w')
 file_faults.seek(0)
+file_faults.write("fault_id, category_key, asset_external_id, creation_timestamp, is_active\n")
 
 if (fault_items is not None):
+    # Truncate tabla de fallas
+    truncate_query = ("TRUNCATE TABLE fallas_philips")
+    try:
+        cursor.execute(truncate_query)
+    except:
+        print("No se pudo vaciar la tabla de fallas")
+
     for fault_item in fault_items:
         for fault in fault_item[1]:
-            
-            file_faults.write("Fault ---------------- \n")
-            file_faults.write("FaultId: " + str(fault.FaultId) + "\n")
-            file_faults.write("CategoryKey: " + fault.CategoryKey + "\n")
-            file_faults.write("AssetExternalId: " + fault.AssetExternalId + "\n")
-            file_faults.write("CreationTimestamp: " + str(fault.CreationTimestamp) + "\n")
-            file_faults.write("IsActive: " + str(fault.IsActive) + "\n")
+
+            # Guardar fallas en un CSV para Marto :)            
+            file_faults.write(str(fault.FaultId) + "," + fault.CategoryKey + "," + fault.AssetExternalId + "," + str(fault.CreationTimestamp) + "," + str(fault.IsActive) + "\n")
 
             if (fault.CategoryKey == 'Unreachable'):
                 fault_id = int(fault.FaultId)
@@ -58,18 +56,8 @@ if (fault_items is not None):
                         cursor.execute(insert_query, (fault_id, asset_external_id, creation_timestamp))                    
                     except:
                         print("No se pudo agregar falla " + fault_id)
-                else:
-                    delete_query = ("DELETE FROM fallas_philips "
-                                     "WHERE falla_id = %s")
-                    try:
-                        cursor.execute(delete_query, (falla_id))
-                    except:
-                        print("No se pudo borrar falla inactiva " + str(fault_id))
-else:
-    print("No hay nuevas fallas desde la ultima vez que se corrio el script")
 
 cnx.commit()
-file_faults.close()
-file_revision.close()
+file_faults.close() 
 cursor.close()
 cnx.close()
