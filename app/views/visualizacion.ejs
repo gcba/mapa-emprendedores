@@ -64,54 +64,56 @@
 <script type="cartocss/html" id="ranking_css">
 
 /** Choropleth del Ranking */
-  #poligonos{
-      polygon-fill: #FFFFB2;
-      polygon-opacity: 0.8;
-      line-color: #000000;
-      line-width: 0.5;
-      line-opacity: 0.1;
-  }
-   #poligonos::labels {
-      text-name: [puntaje_ranking] + ' p';
-      text-face-name: 'Open Sans Regular';
-      text-size: 8;
-      text-label-position-tolerance: 0;
-      text-fill: #000;
-      text-halo-fill: #FFF;
-      text-halo-radius: 0;
-      text-dy: 0;
-      text-allow-overlap: true;
-      text-placement: interior;
-      text-placement-type: dummy;
-  }
-  #poligonos [ puntaje_ranking <= 99] {
-    polygon-fill: #B10026;
-  }
-  #poligonos [ puntaje_ranking <= 80] {
-    polygon-fill: #E31A1C;
-  }
-  #poligonos [ puntaje_ranking <= 70] {
-       polygon-fill: #FC4E2A;
-  }
-  #poligonos [ puntaje_ranking <= 60] {
-    polygon-fill: #FD8D3C;
-  }
-  #poligonos [ puntaje_ranking <= 50] {
-       polygon-fill: #FEB24C;
-  }
-  #poligonos [ puntaje_ranking <= 40] {
-    polygon-fill: #FED976;
-  }
-  #poligonos [ puntaje_ranking <= 20] {
-       polygon-fill: #FFFFB2;
-  }
-  #poligonos [ puntaje_ranking <= 0] {
-    polygon-fill: transparent;
-     polygon-opacity: 0;
-  }
-  #poligonos [ puntaje_ranking <= 0]::labels {
-      text-fill:transparent;
-  }
+
+#poligonos{
+    polygon-fill: #FFFFB2;
+    polygon-opacity: 0.8;
+    line-color: #000000;
+    line-width: 0.5;
+    line-opacity: 0.1;
+}
+ #poligonos::labels {
+    text-name: [puntaje_ranking] + ' p';
+    text-face-name: 'Open Sans Regular';
+    text-size: 8;
+    text-label-position-tolerance: 0;
+    text-fill: #000;
+    text-halo-fill: #FFF;
+    text-halo-radius: 0;
+    text-dy: 0;
+    text-allow-overlap: true;
+    text-placement: interior;
+    text-placement-type: dummy;
+}
+#poligonos [ puntaje_ranking <= 99] {
+  polygon-fill: #B10026;
+}
+#poligonos [ puntaje_ranking <= 80] {
+  polygon-fill: #E31A1C;
+}
+#poligonos [ puntaje_ranking <= 70] {
+     polygon-fill: #FC4E2A;
+}
+#poligonos [ puntaje_ranking <= 60] {
+  polygon-fill: #FD8D3C;
+}
+#poligonos [ puntaje_ranking <= 50] {
+     polygon-fill: #FEB24C;
+}
+#poligonos [ puntaje_ranking <= 40] {
+  polygon-fill: #FED976;
+}
+#poligonos [ puntaje_ranking <= 20] {
+     polygon-fill: #FFFFB2;
+}
+#poligonos [ puntaje_ranking <= 0] {
+  polygon-fill: transparent;
+   polygon-opacity: 0;
+}
+#poligonos [ puntaje_ranking <= 0]::labels {
+    text-fill:transparent;
+}
+
 
   
     
@@ -127,75 +129,6 @@
 
 <script>
 var capas, map, sql, polygon;
-
-      
-      /* 
-
-      // Modificar features visuales de un poligono dado, desde una visualizacion con capas en CartoDB
-
-      var polygons = {};
-
-      function geometryHover(username, map, layer, options) {
-
-        options = options || {}
-        var HIGHLIGHT_STYLE = {
-          weight: 3,
-          color: '#FFFFFF',
-          opacity: 1,
-          fillColor: '#FFFFFF',
-          fillOpacity: 0.3
-        };
-        style = options.style || HIGHLIGHT_STYLE;
-        var polygonsHighlighted = [];
-
-
-        // fetch the geometry
-        var sql = new cartodb.SQL({ user: username, format: 'geojson' });
-        sql.execute("select cartodb_id, ST_Simplify(the_geom, 0.1) as the_geom from poligonos as _wrap").done(function(geojson) {
-          var features = geojson.features;
-          for(var i = 0; i < features.length; ++i) {
-            var f = geojson.features[i];
-            var key = f.properties.cartodb_id
-
-            // console.log(features[1].geometry);
-
-            // generate geometry
-            var geo = L.GeoJSON.geometryToLayer(features[i].geometry);
-
-            geo.setStyle(style);
-
-            // add to polygons
-            polygons[key] = polygons[key] ||  [];
-            polygons[key].push(geo);
-          }
-        });
-
-        function featureOver(e, pos, latlng, data) {
-          featureOut();
-          var pol = polygons[data.cartodb_id] || [];
-          for(var i = 0; i < pol.length; ++i) {
-            map.addLayer(pol[i]);
-            polygonsHighlighted.push(pol[i]);
-          }
-        }
-
-        function featureOut() {
-          var pol = polygonsHighlighted;
-          for(var i = 0; i < pol.length; ++i) {
-            map.removeLayer(pol[i]);
-          }
-          polygonsHighlighted = [];
-        }
-
-        layer.on('featureOver', featureOver);
-        layer.on('featureOut', featureOut);
-        layer.setInteraction(true);
-
-      }
-
-      */
-
-
 
       var styles = {}, selectedStyle;
       // create layer selector
@@ -213,50 +146,33 @@ var capas, map, sql, polygon;
           }
         });
       }
-
       function main() {
         // get the currently selected style
         selectedStyle = $('li.selected').attr('id');
-
-
         cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
         .done(function(vis, layers) {
+            map = vis.getNativeMap();
+            capas = layers;
+            var ranking_css =  $('#ranking_css').html();
+            var porcentaje_css = $('#porcentaje_css').html();
+            var tiempo_css = $('#tiempo_css').html();
 
+            // creo los estilos de css
+            styles['ranking-li'] = styles['ranking-label'] = styles['ranking-radio'] = styles['ranking-span'] = ranking_css;
+            styles['porcentaje-li'] = styles['ranking-label'] = styles['porcentaje-radio'] = styles['porcentaje-span'] = porcentaje_css;
+            styles['tiempo-li'] = styles['tiempo-label'] = styles['tiempo-radio'] = styles['tiempo-span'] = tiempo_css;
 
+            var subLayer = layers[1].getSubLayer(0);
+            createSelector(subLayer);
+            layers[1].getSubLayer(1).hide();
+            layers[1].getSubLayer(2).hide();
+            layers[1].getSubLayer(3).hide();
 
-          map = vis.getNativeMap();
-          capas = layers;
-
-          var ranking_css =  $('#ranking_css').html();
-          var porcentaje_css = $('#porcentaje_css').html();
-          var tiempo_css = $('#tiempo_css').html();
-
-          // create a new assoc array of styles
-          styles['ranking-li'] = styles['ranking-label'] = styles['ranking-radio'] = styles['ranking-span'] = ranking_css;
-          styles['porcentaje-li'] = styles['ranking-label'] = styles['porcentaje-radio'] = styles['porcentaje-span'] = porcentaje_css;
-          styles['tiempo-li'] = styles['tiempo-label'] = styles['tiempo-radio'] = styles['tiempo-span'] = tiempo_css;
-
-          var subLayer = layers[1].getSubLayer(0);
-          createSelector(subLayer);
-          layers[1].getSubLayer(1).hide();
-          layers[1].getSubLayer(2).hide();
-          layers[1].getSubLayer(3).hide();
-
-          // geometryHover('baemprende', map, layers[1].getSubLayer(1));
-
-          // layers[1].getSubLayer(0).setInteraction(true);
-          // layers[1].getSubLayer(0).on('featureOver', function(e, pos, latlng, data) {
-          //   console.log(data.cartodb_id);
-          // });
-
-
-
-
-          // defino limites de la visualizacion.
-        capas[0].leafletMap.setMaxBounds([
-          [-34.419386, -58.759144], //top left
-          [-34.783370, -58.047779] //bottom right
-        ])
+            // defino limites de la visualizacion via cartoDB
+            capas[0].leafletMap.setMaxBounds([
+                [-34.511226, -58.574735], //top left
+                [-34.727366, -58.261625] //bottom right
+            ])
 
         })
 
@@ -265,7 +181,6 @@ var capas, map, sql, polygon;
         });
 
         // Cambio posicion y zoom del mapa en funcion de los barrios
-      
 
         $('select').change(function(){
           var selected = $(this).find('option:selected');
@@ -283,55 +198,12 @@ var capas, map, sql, polygon;
            });
 
 
+        setInterval(function () {
+          capas[1].redraw();
+        }, 5000);
+
       }
 
       window.onload = main;
-
-
-
-/*
-
-	$('#map').css('cursor', 'progress');
-	var tiempo_de_refresh = 1000 * 60; //1 minuto
-
-	var map = new L.Map('map', {
-		zoomControl: false,
-		center: [-34.620, -58.444],
-		zoom: 13
-	});
-
-    L.tileLayer('https://a.tiles.mapbox.com/v3/gcbadata.acde275e/{z}/{x}/{y}.png', {
-    	attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
-    }).addTo(map);
-    var styles = {}, selectedStyle;
-    cartodb.createLayer(map, 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json',{ refreshTime: tiempo_de_refresh })
-	 	.addTo(map)
-	 	.on('done', function(layer){
-          styles['red'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ puntaje_ranking <= 60] {polygon-fill: #B10026;}#fracciones_poligonos [ puntaje_ranking <= 50] {polygon-fill: #E31A1C;}#fracciones_poligonos [ puntaje_ranking <= 40] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ puntaje_ranking <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ puntaje_ranking <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ puntaje_ranking <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ puntaje_ranking <= 0] {polygon-opacity: 0;}";
-          styles['bw'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ tiempo_sin_luz <= 420]{polygon-fill: #B10026;}#fracciones_poligonos [ tiempo_sin_luz <= 360] {polygon-fill: #E31A1C;}#fracciones_poligonos [ tiempo_sin_luz <= 240] {polygon-fill: #FC4E2A;}#fracciones_poligonos [ tiempo_sin_luz <= 180]{polygon-fill: #FD8D3C;}#fracciones_poligonos [ tiempo_sin_luz <= 120]{polygon-fill: #FEB24C;}#fracciones_poligonos [ tiempo_sin_luz <= 60] { polygon-fill: #FED976;}#fracciones_poligonos [ tiempo_sin_luz <= 0] {  polygon-opacity: 0;}";
-          styles['area'] = "#fracciones_poligonos{polygon-fill: #000000;polygon-opacity: 0.8;line-color: #000000;line-width: 0.3;line-opacity: 0.3;}#fracciones_poligonos [ porcentaje_sin_luz <= 60]{polygon-fill: #B10026;}#fracciones_poligonos [porcentaje_sin_luz <= 50]{polygon-fill: #E31A1C;}#fracciones_poligonos [ porcentaje_sin_luz <= 40]{polygon-fill: #FC4E2A;}#fracciones_poligonos [ porcentaje_sin_luz <= 30] {polygon-fill: #FD8D3C;}#fracciones_poligonos [ porcentaje_sin_luz <= 20] {polygon-fill: #FEB24C;}#fracciones_poligonos [ porcentaje_sin_luz <= 10] {polygon-fill: #FED976;}#fracciones_poligonos [ porcentaje_sin_luz <= 0] {polygon-opacity: 0;}";
-
-
-	 	sublayer = layer.getSubLayer(0);
-//	 	layer.getSubLayer(1).hide();
-// 	 	layer.getSubLayer(2).hide();
-// 	 	layer.getSubLayer(3).hide();
- 	 	
- 		$('#map').css('cursor', 'pointer');
-		
-		layer.setInteraction(true);
-
-
-
-		layer.on('error', function(err) {
-			console.log("Error de capa: " +  err)
-	    });
-
-
-	}).on('error', function() {
-		console.log("Ocurrió un error al cargar el mapa");
-	});
-
-*/
 
 </script>
