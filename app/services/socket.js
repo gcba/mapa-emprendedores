@@ -198,6 +198,6 @@ module.exports = function(io) {
 			} catch (err) {
 				//console.log(err);
 			}
-		}, 3900000);
+		}, 4200000));
 	})
 }

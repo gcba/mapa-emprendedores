@@ -19,7 +19,7 @@ var informantes = new mongoose.Schema({
 	updated_at: {
 		type: Date,
 		index: {
-			unique: true
+			unique: false
 		}
 	}
 });

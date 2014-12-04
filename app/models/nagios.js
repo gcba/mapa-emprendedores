@@ -10,7 +10,7 @@ var puntos_nagios =  new mongoose.Schema({
 	updated_at: {
 		type: Date,
 		index: {
-			unique: true
+			unique: false
 		}
 	},
 	lat : Number,
