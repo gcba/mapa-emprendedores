@@ -6,7 +6,7 @@ var config = require('../config');
 // puntos luminarias
 var puntos_luminarias = new mongoose.Schema({
 	id_fraccion : String,
-	status : Number,
+	status : String,
 	lat: Number,
 	long: Number,
 	external_id : String,
@@ -16,6 +16,6 @@ var puntos_luminarias = new mongoose.Schema({
 });
 
 
-var puntos_luminarias = mongoose.model('puntos_luminarias2', puntos_luminarias);
+var puntos_luminarias = mongoose.model('puntos_luminarias', puntos_luminarias);
 
 module.exports = puntos_luminarias;
