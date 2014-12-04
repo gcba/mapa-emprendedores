@@ -7,12 +7,7 @@ var config = require('../config');
 var puntos_nagios =  new mongoose.Schema({
 	id_nagio: Number,
 	status: Number,
-	updated_at: {
-		type: Date,
-		index: {
-			unique: false
-		}
-	},
+	updated_at: Date,
 	lat : Number,
 	long : Number
 });

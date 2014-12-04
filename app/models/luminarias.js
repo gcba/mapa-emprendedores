@@ -12,12 +12,7 @@ var puntos_luminarias = new mongoose.Schema({
 	external_id : String,
 	tiempo_sin_luz : Number,
 	cartodb_id: Number,
-	updated_at: {
-		type: Date,
-		index: {
-			unique: false
-		}
-	}
+	updated_at: Date
 });
 
 
