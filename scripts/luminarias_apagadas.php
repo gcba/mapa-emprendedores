@@ -20,10 +20,13 @@ while ($row = mysql_fetch_array($result)) {
     $external_id = $row[1];
 
     $creation_timestamp = strtotime($row[2]);
-	$current_timestamp = time(); 
 
-	// Tiempo sin luz en minutos
-    $tiempo_sin_luz = ($current_timestamp - $creation_timestamp) / 60; 
+    date_default_timezone_set('Europe/Amsterdam');    
+    $now = new DateTime();
+    $current_date = $now->getTimestamp();
+
+    // Tiempo sin luz en minutos
+    $tiempo_sin_luz = ($current_date - $creation_timestamp) / 60; 
 
     $update_query = "UPDATE luminarias SET status = 0, tiempo_sin_luz = {$tiempo_sin_luz} WHERE external_id = '{$row[1]}'";
     mysql_query($update_query) or die(mysql_error());

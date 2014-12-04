@@ -2,7 +2,7 @@
 include 'config.php';
 
 function calcularPorcentajeSinLuz($fraccion_id, $cantidad_luminarias) {
-	$count_apagadas_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = 0";
+	$count_apagadas_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = '0'";
 	$count_apagadas_result = mysql_query($count_apagadas_query) or die(mysql_error());
 	$count_apagadas = mysql_fetch_array($count_apagadas_result);
 	$luminarias_apagadas = $count_apagadas[0];
@@ -23,7 +23,7 @@ function calcularPorcentajeSinLuz($fraccion_id, $cantidad_luminarias) {
 
 function calcularTiempoSinLuz($fraccion_id) {
 	$tiempos_array = array();
-	$tiempo_query = "SELECT tiempo_sin_luz FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = 0";
+	$tiempo_query = "SELECT tiempo_sin_luz FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = '0'";
 	$tiempo_result = mysql_query($tiempo_query) or die(mysql_error());
 	while ($row_tiempo = mysql_fetch_array($tiempo_result)) {
 		array_push($tiempos_array, $row_tiempo[0]);
