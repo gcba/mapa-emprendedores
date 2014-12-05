@@ -14,6 +14,7 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 // models y connect db
+// {auto_reconnect: true, poolSize: 20}
 require('./lib/passport')(passport); 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name)) ; 
 mongoose.set('debug', false)

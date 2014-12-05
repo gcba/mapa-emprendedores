@@ -71,6 +71,16 @@ var asd = function(err, cb){
 
 */
 
+// manejador de resultado al guardar
+var lolo = function(error, result, count){
+	// console.log(error)
+	// if ("[Error: ya existe el objeto]"){
+	// 	console.log("lolo")
+	// }
+	// console.log(result)
+	// console.log(count)
+}
+
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
 	"puntos_luminarias" : "SELECT * FROM status_luminarias ",
@@ -97,7 +107,7 @@ var get_informantes = function(){
 				"ultimo_estado": elem.ultimo_estado,
 				"user_id" : elem.user_id,
 				"updated_at": FormatDate(elem.updated_at)
-			}).save()
+			}).save(lolo)
 		}))
 	});
 }
@@ -113,7 +123,7 @@ var get_nagios = function(){
 				"updated_at": FormatDate(elem.updated_at),
 				"lat":elem.lat,
 				"long":elem.long
-			}).save()
+			}).save(lolo)
 		}))
 	});
 }
@@ -130,7 +140,7 @@ var get_festadistica = function(){
 				"puntaje_ranking" : elem.puntaje_ranking,
 				"tiempo_sin_luz" : elem.tiempo_sin_luz,
 				"updated_at": FormatDate(elem.updated_at)
-			}).save()
+			}).save(lolo)
 		}))
 	});
 }
@@ -149,7 +159,7 @@ var get_luminarias = function(cb){
 				"tiempo_sin_luz":elem.tiempo_sin_luz,
 				"cartodb_id":  elem.cartodb_id,
 				"updated_at": FormatDate(elem.updated_at)
-			}).save()
+			}).save(lolo)
 		}))
 		// emite los segmentos traidos de la api de cartodb al cliente
 		cb(data)
