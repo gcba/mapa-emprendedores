@@ -2,7 +2,7 @@ require 'mysql2'
 
 SCHEDULER.every '10s' do
 	begin
-  		client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"5Gonz4lol")
+  		client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"password")
 		client.query("USE emergencias")
 		result = client.query("SELECT SUM(fc.total_personas*fe.porcentaje_sin_luz/100) as personas_afectadas 
 										   FROM fracciones_estadistica as fe 

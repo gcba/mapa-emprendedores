@@ -2,7 +2,7 @@ require 'mysql2'
 
 SCHEDULER.every '10s' do
 	begin
-  		client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"5Gonz4lol")
+  		client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"password")
 		client.query("USE emergencias")
 		result = client.query("SELECT fe.puntaje_ranking, fb.esquina 
 										   FROM fracciones_estadistica AS fe 
