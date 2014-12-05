@@ -2,13 +2,18 @@
 include 'config.php';
 
 function calcularPorcentajeSinLuz($fraccion_id, $cantidad_luminarias) {
-	$count_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = 0";
-	$count_result = mysql_query($count_query) or die(mysql_error());
-	$count = mysql_fetch_array($count_result);
-	$luminarias_apagadas = $count[0];
+	$count_apagadas_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = '0'";
+	$count_apagadas_result = mysql_query($count_apagadas_query) or die(mysql_error());
+	$count_apagadas = mysql_fetch_array($count_apagadas_result);
+	$luminarias_apagadas = $count_apagadas[0];
+
+	$count_inactivas_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = 'inactiva'";
+	$count_inactivas_result = mysql_query($count_inactivas_query) or die(mysql_error());
+	$count_inactivas = mysql_fetch_array($count_inactivas_result);
+	$luminarias_inactivas = $count_inactivas[0];
 
 	if ($cantidad_luminarias) {
-		$porcentaje = round($luminarias_apagadas * 100 / $cantidad_luminarias);
+		$porcentaje = round($luminarias_apagadas * 100 / ($cantidad_luminarias - $luminarias_inactivas));
 		return $porcentaje;
 	} 
 	else {
@@ -18,7 +23,7 @@ function calcularPorcentajeSinLuz($fraccion_id, $cantidad_luminarias) {
 
 function calcularTiempoSinLuz($fraccion_id) {
 	$tiempos_array = array();
-	$tiempo_query = "SELECT tiempo_sin_luz FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = 0";
+	$tiempo_query = "SELECT tiempo_sin_luz FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = '0'";
 	$tiempo_result = mysql_query($tiempo_query) or die(mysql_error());
 	while ($row_tiempo = mysql_fetch_array($tiempo_result)) {
 		array_push($tiempos_array, $row_tiempo[0]);
@@ -34,7 +39,7 @@ function calcularTiempoSinLuz($fraccion_id) {
 
 function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados, $tiempo_horas) {
     // Ponderación en base a hace cuánto tiempo la fracción no tiene luz
-    if ($tiempo_horas < 5) {
+    if ($tiempo_horas <= 6) {
     	$rk_tiempo_luz = 0;
     }
     else {
@@ -45,8 +50,18 @@ function calcularRanking($percentil_edad, $percentil_pisos, $porcentaje_apagados
     $rk_porcentaje_luz = -0.0059*($porcentaje_apagados)^2 + 1.562*($porcentaje_apagados) + 2.278;
 
     // Ranking de criticidad:
-    // ((EDAD * 0.35) + (PISOS * 0.25) + (%SIN LUZ * 0.4)) * (TIEMPO SIN LUZ) 
-	$puntaje_ranking = (($percentil_edad*0.35)+($percentil_pisos*0.25)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
+    // ((EDAD * 0.25) + (PISOS * 0.35) + (%SIN LUZ * 0.4)) * (TIEMPO SIN LUZ) 
+    if ($porcentaje_apagados <= 5) {
+		$puntaje_ranking = 0;
+	}
+	else {
+		$puntaje_ranking = (($percentil_edad*0.25)+($percentil_pisos*0.35)+($rk_porcentaje_luz*0.4))*$rk_tiempo_luz;
+	}
+	
+	if ($puntaje_ranking > 100) {
+		$puntaje_ranking = 100;
+	}
+
 	return $puntaje_ranking;
 }
 
@@ -80,7 +95,7 @@ while ($row = mysql_fetch_array($result)) {
 	mysql_query($update_query) or die(mysql_error());
 }
 
-$file_fracciones = fopen("/var/www/html/repositorio/fracciones_estadistica.csv", "w");
+$file_fracciones = fopen("/home/luis/Dropbox/fracciones_estadistica.csv", "w");
 fseek($file_fracciones, 0);
 
 $columnas = array("fraccion_id","cantidad_luminarias","percentil_edad","percentil_pisos","porcentaje_sin_luz","tiempo_sin_luz", "puntaje_ranking");

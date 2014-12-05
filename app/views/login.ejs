@@ -1,41 +1,88 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
+	<title>Mapa de Apagones</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
-		body 		{ padding-top:80px; }
+body {
+  padding-top: 200px;
+  padding-bottom: 40px;
+  background-color: #eee;
+  background: url(img/bsaslight.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.form-signin {
+  background-color: #fff;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  border-radius: 3px;
+
+-webkit-box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.5);  
+}
+.form-signin .form-signin-heading{
+  margin-top: 0px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
 	</style>
 </head>
 <body>
-<div class="container">
-<div class="col-sm-6 col-sm-offset-3">
 
-	<h1><span class="fa fa-sign-in"></span> Login</h1>
+ <div class="container">
 
-	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
-	<% } %>
+		<% if (message.length > 0) { %>
+			<div class="alert alert-danger"><%= message %></div>
+		<% } %>
 
-	<!-- LOGIN FORM -->
-	<form action="/" method="post">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" class="form-control" name="email">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password">
-		</div>
+      <form class="form-signin" role="form" action="/" method="post">
+        <h2 class="form-signin-heading">Ingreso</h2>
+        <label for="inputEmail" class="sr-only">Usuario</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Contraseña</label>
+        <input name="password"  type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+      </form>
 
-		<button type="submit" class="btn btn-warning btn-lg">Login</button>
-	</form>
-
-	<hr>
+    </div> <!-- /container -->
 
 
-</div>
 </div>
 </body>
 </html>
+
+
+
+

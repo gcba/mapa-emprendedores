@@ -1,38 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="app">
+
   <head>
 	<title><%= title %></title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-	<script src="http://d3js.org/queue.v1.min.js"></script>
-	<script src="http://d3js.org/topojson.v1.min.js"></script>			
-	<style>
+	<link rel="stylesheet" href="/components/chosen_v1.2.0/chosen.css">
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/components/jquery/dist/jquery.min.js"></script>
+	<script src="/components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+	<script src="/components/chosen_v1.2.0/chosen.jquery.min.js"></script>
+	<script src="/javascripts/cartodb.js"></script>
 
-		.calle {
+	<script type="text/javascript">
+
+		var socket = io.connect();
+
+		socket.on('connected', function(){
+			console.log("conectado");
+		});
+
+		socket.on('update', function(data){
+			console.log(data);
+		});
 			
-		  stroke: #333;
-		  fill: none;
-		  stroke-width: 1.01px;
-		  stroke-linejoin: round;
-		  stroke-linecap: round;
-		}
+		socket.on('time', function(t){
+			console.log(t);
+		});
 
-		.barrio {
-		  fill: #fff;
-		  stroke: red;
-		  opacity: 0.5;
-		}
+		socket.on('disconnect', function () {
+			console.log('Desconectado!');
+		});
 
-		.background {
-		  fill: none;
-		  pointer-events: all;
-		}
+	</script>
+	
 
-	</style>
+
   </head>
-  <body>
+  <body ng-controller="infoCtrl">
+
+  	<% include sidebar %>
+  	<% include visualizacion %>
+
+    <script src="/javascripts/manejoSidebar.js"></script>
+
   </body>
-	<script src="javascripts/init-app.js" type="text/javascript"></script>
+
 </html>

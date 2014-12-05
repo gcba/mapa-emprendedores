@@ -1,0 +1,41 @@
+<nav class="active navmenu navmenu-default navmenu-fixed-left">
+	<div class="container-fluid map-selector">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-2">
+				<h2>Vistas</h2>
+				<span id="layer_selector">
+					<ul>
+						<li class="luminarias overcursor" id="ranking-li">
+							<label id="ranking-label" for="ranking-radio" >Ranking</label>
+							<input id="ranking-radio" checked type="radio" name="vistas"/>
+							<span id="ranking-span"></span>
+						</li>
+						<li class="luminarias overcursor" id="porcentaje-li">
+							<label id="porcentaje-li" for="porcentaje-radio">% luminarias apagadas</label>
+							<input id="porcentaje-radio" type="radio" name="vistas"/>
+							<span id="porcentaje-span"></span>
+						</li>
+						<li class="luminarias overcursor" id="tiempo-li">
+							<label id="tiempo-label" for="tiempo-radio">Tiempo sin luz</label>
+							<input id="tiempo-radio" type="radio" name="vistas"/>
+							<span id="tiempo-span"></span>
+						</li>
+					</ul>
+			    </span>
+				<h2>Sensores</h2>
+				<ul>
+					<li class="luminarias"><label for="luminarias">Luminarias LED</label><input type="checkbox" id="luminarias" /><span></span></li>
+					<li class="nagios"><label for="nagios">Sis. NAGIOS, ASI</label><input type="checkbox" id="nagios" /><span></span></li>
+					<li class="informantes-voluntarios disabled"><label for="voluntarios">Informantes Voluntarios</label><input type="checkbox" id="voluntarios" /><span></span></li>
+				</ul>
+				
+
+			</div>
+		</div>
+	</div>
+	<div class="static">
+		<div class="logo"><span class="icon-gcba"></span></div>
+		<div class="version" data-version="Version 0.2">v0.2</div>
+		<h1>Mapa de cortes de luz</h1>
+	</div>
+</nav>
