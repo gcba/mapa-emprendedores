@@ -135,6 +135,8 @@ var get_festadistica = function(){
 			EstadisticasSave = new Estadisticas({
 				"cartodb_id" : elem.cartodb_id,
 				"cantidad_luminarias": elem.cantidad_luminarias,
+				"percentil_edad": elem.percentil_edad,
+				"percentil_pisos": elem.percentil_pisos,
 				"fraccion_id" : elem.fraccion_id,
 				"porcentaje_sin_luz" : elem.porcentaje_sin_luz,
 				"puntaje_ranking" : elem.puntaje_ranking,

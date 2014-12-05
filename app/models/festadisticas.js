@@ -2,11 +2,13 @@ var mongoose = require('mongoose');
 var config = require('../config');
 
 //mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
-
+// fraccion_id,cantidad_luminarias,percentil_edad,percentil_pisos,porcentaje_sin_luz,tiempo_sin_luz,puntaje_ranking/
 // fracciones estadistica
 var fracciones_estadistica =  new mongoose.Schema({
 	cartodb_id : Number,
 	cantidad_luminarias: Number,
+	percentil_edad: Number,
+	percentil_pisos: Number,
 	fraccion_id : String,
 	porcentaje_sin_luz : Number,
 	puntaje_ranking : Number,
