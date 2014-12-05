@@ -119,7 +119,7 @@ if($iactuales[$json_parsed[$i]['id_ubicacion']] == null)
 		{
 			die ('Cant insert: ' . mysql_error());
 		}
-$url = "http://baemprende.cartodb.com/api/v2/sql?q=INSERT INTO status_informantes (id_ubicacion,titulo,descripcion,user_id,fecha_alta,fecha_actualizacion,ubicacion,lat,long,ultimo_estado) VALUES ('{$json_parsed[$i]['id_ubicacion']}','{$json_parsed[$i]['titulo']}','{$json_parsed[$i]['descripcion']}','{$json_parsed[$i]['user_id']}','{$json_parsed[$i]['fecha_alta']}','{$json_parsed[$i]['fecha_actualizacion']}','{$json_parsed[$i]['ubicacion']}','{$latlong_json['resultado']['y']}','{$latlong_json['resultado']['x']}','{$json_parsed[$i]['ultimo_estado']}')&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
+$url = "http://baemprende.cartodb.com/api/v2/sql?q=INSERT INTO status_informantes (id_ubicacion,titulo,descripcion,user_id,fecha_alta,fecha_actualizacion,ubicacion,lat,long,ultimo_estado,the_geom) VALUES ('{$json_parsed[$i]['id_ubicacion']}','{$json_parsed[$i]['titulo']}','{$json_parsed[$i]['descripcion']}','{$json_parsed[$i]['user_id']}','{$json_parsed[$i]['fecha_alta']}','{$json_parsed[$i]['fecha_actualizacion']}','{$json_parsed[$i]['ubicacion']}','{$latlong_json['resultado']['y']}','{$latlong_json['resultado']['x']}','{$json_parsed[$i]['ultimo_estado']}',ST_SetSRID(ST_MakePoint({$latlong_json['resultado']['x']}, {$latlong_json['resultado']['y']}), 4326))&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
 $url = preg_replace("/ /", "%20", $url);
 file_get_contents($url);
 echo $url;
