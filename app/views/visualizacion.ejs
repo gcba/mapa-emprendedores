@@ -149,7 +149,7 @@ var capas, map, sql, polygon;
       function main() {
         // get the currently selected style
         selectedStyle = $('li.selected').attr('id');
-        cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/7a4141b8-6f77-11e4-b3f5-0e4fddd5de28/viz.json')
+        cartodb.createVis('map', 'http://baemprende.cartodb.com/api/v2/viz/db305dd8-7cb0-11e4-aba4-0e018d66dc29/viz.json')
         .done(function(vis, layers) {
             map = vis.getNativeMap();
             capas = layers;
