@@ -12,9 +12,9 @@ var newUser = new User();
 newUser.local.email = "soporte@mapacucc.com";
 newUser.local.password = newUser.generateHash("mapacucc");
 newUser.save(function(err) {
-	if (err)
-		return console.log(err);
-	mongoose.disconnect();
+ 	if (err)
+ 		return console.log(err);
+ 	mongoose.disconnect();
 });
 
 // var info = new dump({
