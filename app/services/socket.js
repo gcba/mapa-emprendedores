@@ -34,7 +34,7 @@ var client = new CartoDB({
 	guardan cualquier error que pueda generar cartodb y lo emite al cliente con socket
 */
 var report = function(socket, err){
-	socket.emit("error", err);
+	//socket.emit("error", err);
 	//console.log(err);
 	save_err(err);
 }
@@ -169,6 +169,7 @@ module.exports = function(io) {
 		socket.emit('connected');
 		setInterval(function(){
 			client.on('connect', function(){
+				console.log("algo)")
 				get_luminarias(function(data){
 					var len = data.rows.length;
 					var send = []
@@ -184,7 +185,9 @@ module.exports = function(io) {
 					}
 					//console.log(send)
 					socket.emit("time", new Date().toLocaleString())
-					socket.emit("update", send);
+					if (send.length){
+						socket.emit("update", send)
+					}
 				});
 				get_informantes();
 				get_nagios();
@@ -198,6 +201,6 @@ module.exports = function(io) {
 			} catch (err) {
 				//console.log(err);
 			}
-		}, 3900000);
+		}, 4200000);
 	})
 }

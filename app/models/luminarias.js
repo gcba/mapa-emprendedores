@@ -12,12 +12,21 @@ var puntos_luminarias = new mongoose.Schema({
 	external_id : String,
 	tiempo_sin_luz : Number,
 	cartodb_id: Number,
-	updated_at: {
-		type: Date,
-		index: {
-			unique: true
-		}
-	}
+	updated_at: Date
+});
+
+puntos_luminarias.pre("save", function(next){
+    var self = this;
+    puntos_luminarias.findOne({updated_at : this.updated_at}, 'updated_at', function(err, results) {
+        if(err){
+            next(err);
+        } else if(results){
+        	//console.log("ya existe")
+        	next(new Error("ya existe el objeto"));
+        } else {
+            next()
+        }
+    });
 });
 
 
