@@ -21,8 +21,7 @@ fracciones_estadistica.pre("save", function(next){
             next(err);
         } else if(results){
         	//console.log("ya existe")
-        	//next(new Error("no guardar nada"));
-        	next()
+			next(new Error("ya existe el objeto"));
         } else {
             next()
         }

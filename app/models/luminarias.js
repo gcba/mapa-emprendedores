@@ -22,7 +22,7 @@ puntos_luminarias.pre("save", function(next){
             next(err);
         } else if(results){
         	//console.log("ya existe")
-        	next();
+        	next(new Error("ya existe el objeto"));
         } else {
             next()
         }

@@ -19,8 +19,7 @@ puntos_nagios.pre("save", function(next){
             next(err);
         } else if(results){
         	//console.log("ya existe")
-        	//next(new Error("no guardar nada"));
-        	next()
+        	next(new Error("no guardar nada"));
         } else {
             next()
         }
