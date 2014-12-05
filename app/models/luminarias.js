@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 
 //mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
-
+// id_fraccion,status,lat,long,external_id,tiempo_sin_luz
 // puntos luminarias
 var puntos_luminarias = new mongoose.Schema({
 	id_fraccion : String,

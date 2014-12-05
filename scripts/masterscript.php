@@ -1,7 +1,5 @@
 <?php
 
-require_once "../dropbox-sdk/Dropbox/autoload.php";
-
 // Master script!
 system('python /home/pili/datos-luminarias/scripts/conexionluminarias.py', $retval);
 echo("Se actualizaron las fallas de luminarias de Philips \n");
