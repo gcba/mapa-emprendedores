@@ -35,20 +35,63 @@
 
 
 	*/
-//seteo los campos para armar el csv
-$voluntarios = "id_ubicacion;titulo;descripcion;user_id;fecha_alta;fecha_actualizacion;ubicacion;lat;long;ultimo_estado\n";
 
-$query = mysql_query("delete from informantes");
+$postdata = http_build_query(
+    array(
+        'var1' => 'contenido',
+        'var2' => 'doh'
+    )
+);
+
+$opts = array('http' =>
+    array(
+        'method'  => 'GET',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => $postdata
+    )
+);
+
+$context = stream_context_create($opts);
+
+
+$query_chequeo = mysql_query("select * from informantes");
+while($informantes_actuales = mysql_fetch_array($query_chequeo))
+{
+	$iactuales[$informantes_actuales['id_ubicacion']] = $informantes_actuales['ultimo_estado'];
+	//echo $iactuales[$informantes_actuales['id_ubicacion']]; echo $informantes_actuales['ultimo_estado']; echo "\n";
+}
+
+//die(print_r($iactuales));
+//seteo los campos para armar el csv
+$voluntarios = '"id_ubicacion";"titulo";"descripcion";"user_id";"fecha_alta";"fecha_actualizacion";"ubicacion";"lat";"long";"ultimo_estado"'; $voluntarios .= "\n";
+
+//$query = mysql_query("delete from informantes");
+
+
 	// Realizar insert en la tabla a partir del contenido del JSON
 	$array_length = sizeof($json_parsed);
-	for ($i = 0; $i < $array_length; $i++ ) {
+	for ($i = 0; $i < $array_length; $i++ ) 
+	{
 
 		$latlong = file_get_contents("http://ws.usig.buenosaires.gob.ar/rest/convertir_coordenadas?x=".$json_parsed[$i]['posx']."&y=".$json_parsed[$i]['posy']."&output=lonlat");
 		$latlong_json = json_decode($latlong, true);
 		//echo $latlong_json['resultado']['x'];
 		//die(print_r($latlong_json));
-$voluntarios .= $json_parsed[$i]['id_ubicacion'].";".$json_parsed[$i]['titulo'].";".$json_parsed[$i]['descripcion'].";".$json_parsed[$i]['user_id'].";".$json_parsed[$i]['fecha_alta'].";".$json_parsed[$i]['fecha_actualizacion'].";".$json_parsed[$i]['ubicacion'].";".$latlong_json['resultado']['y'].";".$latlong_json['resultado']['x'].";".$json_parsed[$i]['ultimo_estado']."\n"; 
+//oluntarios .= "'".$json_parsed[$i]['id_ubicacion']."','".$json_parsed[$i]['titulo']."','".$json_parsed[$i]['descripcion']."','".$json_parsed[$i]['user_id']."','".$json_parsed[$i]['fecha_alta']."','".$json_parsed[$i]['fecha_actualizacion']."','".$json_parsed[$i]['ubicacion']."','".$latlong_json['resultado']['y']."','".$latlong_json['resultado']['x']."','".$json_parsed[$i]['ultimo_estado']."'\n"; 
+
+if(($json_parsed[$i]['fecha_alta'] != "0000-00-00 00:00:00") and ($json_parsed[$i]['fecha_actualizacion'] != "0000-00-00 00:00:00"))
+{
+
+$voluntarios .= '"'.$json_parsed[$i]['id_ubicacion'].'";"'.$json_parsed[$i]['titulo'].'";"'.$json_parsed[$i]['descripcion'].'";"'.$json_parsed[$i]['user_id'].'";"'.$json_parsed[$i]['fecha_alta'].'";"'.$json_parsed[$i]['fecha_actualizacion'].'";"'.$json_parsed[$i]['ubicacion'].'";"'.$latlong_json['resultado']['y'].'";"'.$latlong_json['resultado']['x'].'";"'.$json_parsed[$i]['ultimo_estado'].'"'; $voluntarios .= "\n";
+
+
+
+if($iactuales[$json_parsed[$i]['id_ubicacion']] == null)
+{
 		//die($latlong);
+	echo "inserto";
+
+
 		$result = mysql_query("INSERT INTO `informantes` (
 				`id_ubicacion`,
 				`titulo`,
@@ -72,12 +115,32 @@ $voluntarios .= $json_parsed[$i]['id_ubicacion'].";".$json_parsed[$i]['titulo'].
 				'{$latlong_json['resultado']['y']}',
 				'{$json_parsed[$i]['ultimo_estado']}'
 				)");
-		
-		
 		if (!$result) 
 		{
 			die ('Cant insert: ' . mysql_error());
 		}
+$url = "http://baemprende.cartodb.com/api/v2/sql?q=INSERT INTO status_informantes (id_ubicacion,titulo,descripcion,user_id,fecha_alta,fecha_actualizacion,ubicacion,lat,long,ultimo_estado) VALUES ('{$json_parsed[$i]['id_ubicacion']}','{$json_parsed[$i]['titulo']}','{$json_parsed[$i]['descripcion']}','{$json_parsed[$i]['user_id']}','{$json_parsed[$i]['fecha_alta']}','{$json_parsed[$i]['fecha_actualizacion']}','{$json_parsed[$i]['ubicacion']}','{$latlong_json['resultado']['y']}','{$latlong_json['resultado']['x']}','{$json_parsed[$i]['ultimo_estado']}')&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
+$url = preg_replace("/ /", "%20", $url);
+file_get_contents($url);
+echo $url;
+}
+
+	
+	if($json_parsed[$i]['ultimo_estado'] != $iactuales[$json_parsed[$i]['id_ubicacion']] and $iactuales[$json_parsed[$i]['id_ubicacion']] != null)
+	{
+		// hacer update
+		echo "updateo";
+		$url = "http://baemprende.cartodb.com/api/v2/sql?q=update status_informantes set ultimo_estado=".$json_parsed[$i]['ultimo_estado']." where id_ubicacion = ".$json_parsed[$i]['id_ubicacion']."&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
+		$url = preg_replace("/ /", "%20", $url);
+		file_get_contents($url);
+		
+		echo $url;
+mysql_query("update informantes set ultimo_estado=".$json_parsed[$i]['ultimo_estado']." where id_ubicacion = ".$json_parsed[$i]['id_ubicacion']);
+echo "update informantes set ultimo_estado=".$json_parsed[$i]['ultimo_estado']." where id_ubicacion = ".$json_parsed[$i]['id_ubicacion']; echo "\n";
+	}
+//die();
+}		
+		
 	}
 	
 	// Cerrar conexion a MySQL
@@ -88,3 +151,9 @@ $voluntarios .= $json_parsed[$i]['id_ubicacion'].";".$json_parsed[$i]['titulo'].
 	fwrite($fp,$voluntarios);
 	fclose($fp);
 ?>
+
+
+
+
+
+
