@@ -16,7 +16,7 @@ $query = "SELECT falla_id, asset_external_id, creation_timestamp FROM fallas_phi
 $result = mysql_query($query) or die(mysql_error());
 
 // Resetear todas las luminarias a prendidas antes de actualizar de acuerdo a las fallas
-$reset_query = "UPDATE luminarias SET status = '1', tiempo_sin_luz = 0"
+$reset_query = "UPDATE luminarias SET status = '1', tiempo_sin_luz = 0";
 mysql_query($reset_query) or die(mysql_error());
 
 while ($row = mysql_fetch_array($result)) {
