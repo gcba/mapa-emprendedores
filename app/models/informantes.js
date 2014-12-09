@@ -26,8 +26,7 @@ informantes.pre("save", function(next){
             next(err);
         } else if(results){
         	//console.log("ya existe")
-        	//next(new Error("ya existe el objeto"));
-        	next()	
+        	next(new Error("ya existe el objeto"));
         } else {
             next()
         }
