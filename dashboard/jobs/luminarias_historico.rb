@@ -21,7 +21,6 @@ SCHEDULER.every '5m' do
 
             result.each do |row|
                     numero_luminarias = row["numero_luminarias"]
-                    puts numero_luminarias
             end
 
             points << { x: i, y: numero_luminarias }
