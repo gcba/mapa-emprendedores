@@ -23,9 +23,10 @@ while ($row = mysql_fetch_array($rows)) {
     $select_result = mysql_query($select_query);
 
     if (mysql_num_rows($select_result)==0) {
-            $insert_query = "INSERT INTO luminarias_historico (hora, external_id, status) VALUES ({$hora}, '{$row[4]}', '{$row[1]}')";
-    		mysql_query($insert_query) or die(mysql_error());
-	}
+        $fecha = $now->format('Y-m-d H:i:s');
+        $insert_query = "INSERT INTO luminarias_historico (fecha, hora, external_id, status) VALUES ('{$fecha}', {$hora}, '{$row[4]}', '{$row[1]}')";
+        mysql_query($insert_query) or die(mysql_error());
+    }
 }
 
 // Cerrar conexion a MySQL
