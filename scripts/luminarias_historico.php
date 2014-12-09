@@ -18,7 +18,9 @@ $rows = mysql_query("SELECT * FROM luminarias");
 
 while ($row = mysql_fetch_array($rows)) {
 	$hora = $now->format('H');
-	$insert_query = "IF NOT EXISTS (SELECT * FROM luminarias_historico WHERE hora = {hora} AND external_id = '{$row[4]}') BEGIN INSERT INTO luminarias_historico (hora, external_id, status) VALUES ({$hora}, '{$row[4]}', '{$row[1]}') END";
+	$insert_query = "IF NOT EXISTS (SELECT * FROM luminarias_historico WHERE hora = {$hora} AND external_id = '{$row[4]}') 
+						INSERT INTO luminarias_historico (hora, external_id, status) VALUES ({$hora}, '{$row[4]}', '{$row[1]}') 
+					END IF";
     mysql_query($insert_query) or die(mysql_error());
 }
 
