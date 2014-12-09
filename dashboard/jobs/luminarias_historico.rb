@@ -13,7 +13,7 @@ SCHEDULER.every '5m' do
   			time_greater_than = current_time - i*60*60 # bottom of timeframe
   			time_less_than = time_greater_than + 1*60*60 # top of timeframe
 
-  			result = client.query("SELECT COUNT(*) AS numero_luminarias FROM luminarias_historico WHERE status = 0 AND fecha < #{time_less_than} AND fecha > #{time_greater_than}")
+  			result = client.query("SELECT COUNT(*) AS numero_luminarias FROM luminarias_historico WHERE status = 0 AND fecha < '#{time_less_than}' AND fecha > '#{time_greater_than}'")
 
   			numero_luminarias = 0
 
