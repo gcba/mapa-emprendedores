@@ -18,11 +18,14 @@ $now = new DateTime();
 $rows = mysql_query("SELECT * FROM luminarias");
 
 while ($row = mysql_fetch_array($rows)) {
-	$hora = (int) $now->format('H');
-	$insert_query = "IF NOT EXISTS (SELECT * FROM luminarias_historico WHERE hora = {$hora} AND external_id = '{$row[4]}') 
-						INSERT INTO luminarias_historico (hora, external_id, status) VALUES ({$hora}, '{$row[4]}', '{$row[1]}') 
-					END IF";
-    mysql_query($insert_query) or die(mysql_error());
+    $hora = (int) $now->format('H');
+    $select_query = "SELECT * FROM luminarias_historico WHERE hora = {$hora} AND external_id = '{$row[4]}'";
+    $select_result = mysql_query($select_query);
+
+    if (mysql_num_rows($select_result)==0) {
+            $insert_query = "INSERT INTO luminarias_historico (hora, external_id, status) VALUES ({$hora}, '{$row[4]}', '{$row[1]}')";
+    		mysql_query($insert_query) or die(mysql_error());
+	}
 }
 
 // Cerrar conexion a MySQL
