@@ -11,6 +11,8 @@ if (!$db_selected) {
     die ('Can\'t use database : ' . mysql_error());
 }	
 
+$now = new DateTime();
+
 // Actualizar historico de luminarias
 $rows = mysql_query("SELECT * FROM luminarias");
 
