@@ -42,11 +42,11 @@ fseek($file_luminarias, 0);
 $columnas = array("id_fraccion","status","lat","long","external_id","tiempo_sin_luz");
 fputcsv($file_luminarias, $columnas);
 
-// Escribir a archivo CSV para el drive
+// Escribir a archivo CSV para Dropbox
 $rows = mysql_query("SELECT * FROM luminarias");
 
 while ($row = mysql_fetch_assoc($rows)) {
-	fputcsv($file_luminarias, $row);
+    fputcsv($file_luminarias, $row);
 }
 
 // Cerrar conexion a MySQL
