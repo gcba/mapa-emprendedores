@@ -1,31 +1,34 @@
-require 'mongo'
-
-include Mongo
+require 'mysql2'
+require 'active_support/time'
 
 SCHEDULER.every '5m' do
-	begin
-  		mongo_db = MongoClient.new("localhost", 27017).db("visualizacion-cucc")
-		coll = mongo_db.collection("puntos_luminarias")
+    begin    	
+        client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"password")
+        client.query("USE emergencias")
 
-		current_time = Time.new
-		
-		points = []
+        current_time = Time.new
+        current_time = current_time.in_time_zone("Europe/Amsterdam")
 
-  		for i in 1..48
-  			time_greater_than = current_time - i*60*60 # bottom of timeframe
-  			time_less_than = time_greater_than + 1*60*60 # top of timeframe
-  			
-  			hora = time_greater_than
+        points = []
 
-  			result_distinct = coll.distinct("external_id", {"status" => 0, "updated_at" => {"$gt" =>  time_greater_than,"$lt" => time_less_than}})
-			numero_luminarias = result_distinct.length
-			
-			points << { x: i, y: numero_luminarias }
-  		end
+        for i in 1..48
+            time_greater_than = current_time - i*60*60 # bottom of timeframe
+            time_less_than = time_greater_than + 1*60*60 # top of timeframe
 
-  		send_event('luminarias_historico', { points: points })
+            result = client.query("SELECT COUNT(*) AS numero_luminarias FROM luminarias_historico WHERE status = 0 AND fecha < '#{time_less_than}' AND fecha > '#{time_greater_than}'")
 
-	rescue Exception => e
-		puts e.message
-	end  	
-end 	
+            numero_luminarias = 0
+
+            result.each do |row|
+                    numero_luminarias = row["numero_luminarias"]
+            end
+
+            points << { x: i, y: numero_luminarias }
+        end
+
+        send_event('luminarias_historico', { points: points })
+
+    rescue Exception => e
+        puts e.message
+    end
+end
