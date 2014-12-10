@@ -36,7 +36,7 @@ module.exports = function(app){
 	 * GET mapa page.
 	 */
 	
-	app.get('/reporte', function(req, res){
+	app.get('/reporte', isLoggedIn, function(req, res){
 	  res.render('reporte', {
 	  	title: 'Mapa de cortes de luz',
 	  });

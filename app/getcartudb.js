@@ -26,12 +26,17 @@ var calinterval = function(min){
 var getQuery = {
 	"puntos_nagios": "SELECT id_nagio, status, updated_at FROM puntos_nagios ",
 	"puntos_luminarias" : "SELECT id_fraccion, status, lat, long, external_id, tiempo_sin_luz, updated_at FROM status_luminarias ",
+	"puntos_luminarias2" : "SELECT * FROM status_luminarias ",
 	"fracciones_estadistica" : "SELECT cartodb_id, cantidad_luminarias, fraccion_id, porcentaje_sin_luz, puntaje_ranking, tiempo_sin_luz, updated_at FROM fracciones_estadistica ",
 	"status_informantes":"SELECT * FROM status_informantes "
 }
 
 var rowsLength = function(err, data) {
   console.log(data.rows.length);
+  var len = data.rows.length;
+  for(var i=0;i<len;i++){
+	console.log(data.rows[i].updated_at)
+  }
 };
 
  var asd = function(err, data){
@@ -50,9 +55,9 @@ var rowsLength = function(err, data) {
 setInterval(function(){
 	client.on('connect', function(){
 		client
-			.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
-			.query(getQuery['fracciones_estadistica'] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
-			.query(getQuery['puntos_nagios'] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
+			.query(getQuery["puntos_luminarias2"] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'140 minute'"}, rowsLength)
+			//.query(getQuery['fracciones_estadistica'] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
+			//.query(getQuery['puntos_nagios'] + " WHERE {interval} < updated_at", {interval: "current_timestamp-interval'60 minute'"}, rowsLength)
 	});
 	client.connect()
-}, calinterval(5));
+}, calinterval(1));

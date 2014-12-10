@@ -59,7 +59,7 @@ var forEach = function(data, cb){
 
 var asd = function(err, cb){
 	if (err){
-		report(socket, err);
+		save_err(err);
 	} else {
 		cb
 	}
@@ -74,10 +74,10 @@ var asd = function(err, cb){
 // manejador de resultado al guardar
 var lolo = function(error, result, count){
 	// console.log(error)
-	// if ("[Error: ya existe el objeto]"){
-	// 	console.log("lolo")
-	// }
-	// console.log(result)
+	if ("[Error: ya existe el objeto]"){
+		save_err(error)
+	}
+	//console.log(result)
 	// console.log(count)
 }
 
@@ -86,7 +86,7 @@ var getQuery = {
 	"puntos_luminarias" : "SELECT * FROM status_luminarias ",
 	"fracciones_estadistica" : "SELECT * FROM fracciones_estadistica  ",
 	"status_informantes":"SELECT * FROM status_informantes ",
-	"interval": "current_timestamp-interval'60 minute'"
+	"interval": "current_timestamp-interval'60 minute' "
 }
 
 
@@ -148,18 +148,17 @@ var get_festadistica = function(){
 }
 
 var get_luminarias = function(cb){
-	console.log("updated emited puntos luminarias");
 	client.query(getQuery["puntos_luminarias"] + " WHERE {interval} < updated_at", {interval: getQuery["interval"]}, function(err, data){
-		console.log("emit update...")
+		console.log("updated emited puntos luminarias");
 		asd(err, forEach(data, function(elem){
 			LuminariasSave = new Luminarias({
-				"id_fraccion" : elem.id_fraccion,
+				"id_fraccion": elem.id_fraccion,
 				"status": elem.status,
-				"lat":elem.lat,
-				"long":elem.long,
+				"lat": elem.lat,
+				"long": elem.long,
 				"external_id": elem.external_id,
-				"tiempo_sin_luz":elem.tiempo_sin_luz,
-				"cartodb_id":  elem.cartodb_id,
+				"tiempo_sin_luz": elem.tiempo_sin_luz,
+				"cartodb_id": elem.cartodb_id,
 				"updated_at": FormatDate(elem.updated_at)
 			}).save(lolo)
 		}))
@@ -181,7 +180,7 @@ module.exports = function(io) {
 		socket.emit('connected');
 		setInterval(function(){
 			client.on('connect', function(){
-				console.log("algo)")
+				console.log("connect cartodb")
 				get_luminarias(function(data){
 					var len = data.rows.length;
 					var send = []
@@ -195,10 +194,11 @@ module.exports = function(io) {
 							send.push(newdata)
 						}
 					}
-					//console.log(send)
 					socket.emit("time", new Date().toLocaleString())
 					if (send.length){
 						socket.emit("update", send)
+					} else {
+						socket.emit("update", "segmentos no actualizados")
 					}
 				});
 				get_informantes();
@@ -208,7 +208,7 @@ module.exports = function(io) {
 			try {
 				client.connect()
 				process.on('uncaughtException', function(err){
-					report(socket, err)
+					save_err(err)
 				})
 			} catch (err) {
 				//console.log(err);

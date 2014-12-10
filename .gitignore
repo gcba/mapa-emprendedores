@@ -18,3 +18,4 @@ assets/
 data/luminarias.json
 data/faults.csv
 scripts/lastRevision.txt
+app/cachefiles/*
