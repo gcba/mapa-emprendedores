@@ -41,6 +41,9 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 //
+app.use(express.directory('public'))
+app.use(express.static('public'))
+
 app.all('/*', function(req, res, next) {
     res.header('accept-encoding', 'gzip,deflate');
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');

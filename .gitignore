@@ -20,3 +20,4 @@ data/luminarias.json
 data/faults.csv
 scripts/lastRevision.txt
 dashboard/Gemfile.lock
+app/cachefiles/*

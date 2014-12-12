@@ -3,6 +3,7 @@ var fspath = require('path');
 var FormatDate = require('../services/formatdate');
 var Luminarias = require('../models/luminarias');
 var fs = require('fs');
+
 // extraigo todos los segmentos de la base de datos, que esten "prendidos con status:1"
 exports.getall = function(req, res) {
 	Luminarias.find({ status: "1" }, function(err, luminarias) {
@@ -23,6 +24,7 @@ var build_str = function(){
 	str += "; " + "tiempo_sin_luz";
 	str += "; " + "cartodb_id";
 	str += "; " + "updated_at";
+	str += "\n";
 }
 
 // example  http://localhost:3001/api/2014-12-01T20:45:19.0Z/2014-12-01T20:45:23.0Z
@@ -30,10 +32,11 @@ exports.rangofecha = function(req, res) {
 	var start = FormatDate(req.params.start)
 	var end = FormatDate(req.params.end)
 	var name = new Date(start).toJSON() +"__"+ new Date(end).toJSON() + ".csv"
-	var pathsavefile = fspath.dirname(__dirname) + "/cachefiles/" + name;
-	// console.log(start)
-	// console.log(end)
-	// console.log(pathsavefile)
+	//var pathsavefile = fspath.dirname(__dirname) + "/cachefiles/" + name;
+	var pathsavefile = __dirname + "/" + name
+	console.log(start)
+	console.log(end)
+	console.log(pathsavefile)
 	Luminarias.find({updated_at: {$gte: start, $lte: end}},  function(err, luminarias) {
 		build_str()
 		if (err)
@@ -54,7 +57,7 @@ exports.rangofecha = function(req, res) {
 		fs.writeFile(pathsavefile, buffstr, {encoding: 'utf8'}, function(err){
 			if (err) throw err;
 			console.log('It\'s saved! en ' + pathsavefile);
-			res.download(pathsavefile);
+			res.send(pathsavefile);
 		});
 	});
 	//res.header('Content-type', 'text/csv');

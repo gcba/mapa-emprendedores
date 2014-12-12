@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/components/moment/moment.js"></script>
+  <script type="text/javascript" src="/components/fileDownload.js"></script>
 	<script type="text/javascript" src="/components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
@@ -81,15 +82,16 @@
                     $.ajax({
                       url:"/api/"+new Date(start)+"/"+new Date(end),
                       type: "GET",
-                      dataType: "JSON",
-                      success : function(json){
-                        console.log(json);
-                      },
+                      success : function(text){
+                        $.fileDownload(text)
+                      }, 
                       error: function(xhr, status, errorThrown){
-                        console.log(status)
+                        console.log(xhr)
+                        // consol.log(errorThrown)
+                        // console.log(status)
                       },
                       complete:function(c){
-                        //console.log(c)                      
+                        // console.log(c)
                       }
                     });
                   });
