@@ -1,9 +1,10 @@
 from suds.client import Client
+import config
 import mysql.connector
 from mysql.connector import errorcode
 
 try:
-    cnx = mysql.connector.connect(user='root', password='password',
+    cnx = mysql.connector.connect(user=config.mysql['user'], password=config.mysql['password'],
                                   host='localhost',
                                   database='emergencias')
     cursor = cnx.cursor()
@@ -16,7 +17,7 @@ except mysql.connector.Error as err:
         print(err)
     exit(0)
 
-url = 'file:///home/pili/datos-luminarias/scripts/AssetLink.wsdl'
+url = config.philips['wsdl_url']
 public = 'f3ea773e-e5be-4f8d-ab7f-77f9ae9198cd_00puwFYd39xuOPMOGC0SSIFr'
 private = 'pkt3KFvbNTFeijsOQb3tll3hr6ijQulML5u72DhWrV4mXxpH'
 
@@ -26,7 +27,7 @@ client = Client(url, username=public, password=private)
 result = client.service.GetFaults(0)
 fault_items = result.FaultItems
 
-file_faults = open('/home/pili/datos-luminarias/data/faults.csv', 'w')
+file_faults = open(config.philips['file_faults_url'], 'w')
 file_faults.seek(0)
 file_faults.write("fault_id, category_key, asset_external_id, creation_timestamp, is_active\n")
 
