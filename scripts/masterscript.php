@@ -17,4 +17,7 @@ echo("Se actualizaron las estadisticas de las fracciones en base a los cambios a
 include('luminarias_historico.php');
 echo("Se guardo el numero de luminarias apagadas a esta hora \n");
 
+include('informantes_historico.php');
+echo("Se guardo el numero de informantes apagados a esta hora \n");
+
 ?>
