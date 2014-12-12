@@ -95,7 +95,7 @@ while ($row = mysql_fetch_array($result)) {
 	mysql_query($update_query) or die(mysql_error());
 }
 
-$file_fracciones = fopen("/home/luis/Dropbox/fracciones_estadistica.csv", "w");
+$file_fracciones = fopen($file_fracciones_url, "w");
 fseek($file_fracciones, 0);
 
 $columnas = array("fraccion_id","cantidad_luminarias","percentil_edad","percentil_pisos","porcentaje_sin_luz","tiempo_sin_luz", "puntaje_ranking");

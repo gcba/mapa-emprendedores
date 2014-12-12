@@ -11,11 +11,11 @@ if (!$db_selected) {
     die ('Can\'t use database : ' . mysql_error());
 }	
 
-// Update las luminarias cuando estan apagadas hace mas de 720 horas
-$query = "UPDATE luminarias SET status = 'inactiva' WHERE tiempo_sin_luz > 720";
+// Update las luminarias cuando estan apagadas hace mas de 720 horas (43200 minutos)
+$query = "UPDATE luminarias SET status = 'i' WHERE tiempo_sin_luz > 43200";
 $result = mysql_query($query) or die(mysql_error());
 
-$file_luminarias = fopen("/var/www/html/repositorio/status_luminarias.csv", "w");
+$file_luminarias = fopen($file_luminarias_url, "w");
 fseek($file_luminarias, 0);
 
 $columnas = array("id_fraccion","status","lat","long","external_id","tiempo_sin_luz");

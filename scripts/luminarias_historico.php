@@ -15,16 +15,17 @@ date_default_timezone_set('Europe/Amsterdam');
 $now = new DateTime();
 
 // Actualizar historico de luminarias
-$rows = mysql_query("SELECT * FROM luminarias");
+$rows = mysql_query("SELECT COUNT(*) AS luminarias_apagadas FROM luminarias WHERE status = '0'");
 
-while ($row = mysql_fetch_array($rows)) {
-    $hora = (int) $now->format('H');
-    $select_query = "SELECT * FROM luminarias_historico WHERE hora = {$hora} AND external_id = '{$row[4]}'";
+while ($row = mysql_fetch_array($rows)) {    
+    $fecha = $now->format('Y-m-d H:00:00');
+
+    $select_query = "SELECT * FROM luminarias_historico WHERE fecha = '{$fecha}'";
     $select_result = mysql_query($select_query);
 
     if (mysql_num_rows($select_result)==0) {
-        $fecha = $now->format('Y-m-d H:i:s');
-        $insert_query = "INSERT INTO luminarias_historico (fecha, hora, external_id, status) VALUES ('{$fecha}', {$hora}, '{$row[4]}', '{$row[1]}')";
+        
+        $insert_query = "INSERT INTO luminarias_historico (fecha, luminarias_apagadas) VALUES ('{$fecha}', '{$row[0]}')";
         mysql_query($insert_query) or die(mysql_error());
     }
 }
