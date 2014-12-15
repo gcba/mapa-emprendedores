@@ -132,7 +132,9 @@
 
 
 <script>
-var nana;
+
+
+var refresh_time 1000 * 30; //30 segundos cada refresco
 var capas, map, sql, polygon;
 
       var styles = {}, selectedStyle;
@@ -201,14 +203,10 @@ var capas, map, sql, polygon;
 
            });
 
-
-        nana = capas; 
         setInterval(function () {
-          
-          
           capas[0].redraw();
           capas[1].redraw();
-        }, 5000);
+        }, refresh_time);
 
       }
 
