@@ -54,7 +54,6 @@
                       $.ajax({
                         url:"/api/"+new Date(start)+"/"+new Date(end),
                         type: "GET",
-                        target="_blank",
                         success : function(text){
                           $.fileDownload(text)
                         }, 
