@@ -95,6 +95,8 @@ $id_ubicacion = 	mysql_real_escape_string($json_parsed[$i]['id_ubicacion']);
 $titulo = 		mysql_real_escape_string($json_parsed[$i]['titulo']);
 $descripcion = 		mysql_real_escape_string($json_parsed[$i]['descripcion']);
 
+$ubicacion = 		mysql_real_escape_string($json_parsed[$i]['ubicacion']);
+
 $titulo = str_replace("'", "", $titulo);
 $descripcion = str_replace("'", "", $descripcion);
 $ubicacion = str_replace("'", "", $ubicacion);
@@ -107,7 +109,7 @@ $ubicacion = str_replace('"', "", $ubicacion);
 $user_id = 		$json_parsed[$i]['user_id'];
 $fecha_alta = 		$json_parsed[$i]['fecha_alta'];
 $fecha_actualizacion = 	$json_parsed[$i]['fecha_actualizacion'];
-$ubicacion = 		mysql_real_escape_string($json_parsed[$i]['ubicacion']);
+
 $lat = 			$latlong_json['resultado']['x'];
 $long = 		$latlong_json['resultado']['y'];
 $ultimo_estado = 	$json_parsed[$i]['ultimo_estado'];
