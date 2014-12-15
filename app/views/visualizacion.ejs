@@ -71,6 +71,10 @@
     line-color: #000000;
     line-width: 0.5;
     line-opacity: 0.1;
+    marker-fill-opacity: 0;
+    marker-line-color: #FFF;
+    marker-line-width: 0;
+    marker-line-opacity: 0;    
 }
  #poligonos::labels {
     text-name: [puntaje_ranking] + ' p';
@@ -119,16 +123,18 @@
     
 </script>
 <script type="cartocss/html" id="porcentaje_css">
-  #poligonos{polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}
+  #poligonos{marker-fill-opacity: 0; marker-line-color: #FFF; marker-line-width: 0; marker-line-opacity: 0; polygon-fill: #FFFFB2;polygon-opacity: 0.8;line-color: #000000;line-width:0.5;line-opacity:0.1;}#poligonos::labels{text-name:[porcentaje_sin_luz] + '%';text-face-name:'Open Sans Regular';text-size:8;text-label-position-tolerance: 0;  text-fill: #000;  text-halo-fill: #FFF;  text-halo-radius: 0;  text-dy: 0;  text-allow-overlap: true;  text-placement: interior;  text-placement-type: dummy;}#poligonos [ porcentaje_sin_luz <= 99] {   polygon-fill: #B10026;}#poligonos [ porcentaje_sin_luz <= 80] {   polygon-fill: #E31A1C;}#poligonos [ porcentaje_sin_luz <= 70] {   polygon-fill: #FC4E2A;}#poligonos [ porcentaje_sin_luz <= 60] {   polygon-fill: #FD8D3C;}#poligonos [ porcentaje_sin_luz <= 50] {   polygon-fill: #FEB24C;}#poligonos [ porcentaje_sin_luz <= 40] {   polygon-fill: #FED976;}#poligonos [ porcentaje_sin_luz <= 20] {   polygon-fill: #FFFFB2;}#poligonos [ porcentaje_sin_luz <= 0] { polygon-fill: transparent; polygon-opacity: 0;}#poligonos [ porcentaje_sin_luz <= 0]::labels {text-fill:transparent;}
 </script>
 
 <script type="cartocss/html" id="tiempo_css">
-  #poligonos{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}
+  #poligonos{marker-fill-opacity: 0; marker-line-color: #FFF; marker-line-width: 0; marker-line-opacity: 0; polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #000000; line-width: 0.5; line-opacity: 0.1;} #poligonos::labels { text-name: [tiempo_sin_luz] + ' h'; text-face-name: 'Open Sans Regular'; text-size: 8; text-label-position-tolerance: 0; text-fill: #000; text-halo-fill: #FFF; text-halo-radius: 0; text-dy: 0; text-allow-overlap: true; text-placement: interior; text-placement-type: dummy;}#poligonos [ tiempo_sin_luz <= 120] {polygon-fill: #B10026;}#poligonos [ tiempo_sin_luz <= 96] { polygon-fill: #E31A1C;}#poligonos [ tiempo_sin_luz <= 72] { polygon-fill: #FC4E2A;}#poligonos [ tiempo_sin_luz <= 48] {polygon-fill: #FD8D3C;}#poligonos [ tiempo_sin_luz <= 24] {  polygon-fill: #FEB24C;} #poligonos [ tiempo_sin_luz <= 12] { polygon-fill: #FED976;}#poligonos [ tiempo_sin_luz <= 6] { polygon-fill: #FFFFB2;}#poligonos [ tiempo_sin_luz <= 0] {polygon-fill: transparent;polygon-opacity: 0;}#poligonos [ tiempo_sin_luz <= 0]::labels {text-fill:transparent;}
 </script>
 
 
 <script>
-var nana;
+
+
+var refresh_time 1000 * 30; //30 segundos cada refresco
 var capas, map, sql, polygon;
 
       var styles = {}, selectedStyle;
@@ -147,6 +153,7 @@ var capas, map, sql, polygon;
           }
         });
       }
+
       function main() {
         // get the currently selected style
         selectedStyle = $('li.selected').attr('id');
@@ -196,14 +203,10 @@ var capas, map, sql, polygon;
 
            });
 
-
-        nana = capas; 
         setInterval(function () {
-          
-          
           capas[0].redraw();
           capas[1].redraw();
-        }, 5000);
+        }, refresh_time);
 
       }
 
