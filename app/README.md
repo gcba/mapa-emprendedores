@@ -112,7 +112,7 @@ ps aux | grep -i "getcartudb.js"
 ===
 
 
-INSTRUCCIONES PARA HACER PULL A HEROKU
+INSTRUCCIONES PARA HACER PUSH A HEROKU
 
 REALIZO EL LOGIN
 heroku login
