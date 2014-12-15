@@ -32,7 +32,7 @@ exports.rangofecha = function(req, res) {
 	var start = FormatDate(req.params.start)
 	var end = FormatDate(req.params.end)
 	var name = new Date(start).toJSON() +"__"+ new Date(end).toJSON() + ".csv"
-	var pathsavefile = fspath.resolve('../app/public/img/') + "/" + name;
+	var pathsavefile = fspath.resolve('../app/public/historico/') + "/" + name;
 	console.log(start + "  " + "  " + end)
 	console.log(pathsavefile)
 	Luminarias.find({updated_at: {$gte: start, $lte: end}},  function(err, luminarias) {
@@ -58,7 +58,7 @@ exports.rangofecha = function(req, res) {
 			}
 			console.log('It\'s saved! en ' + pathsavefile);
 			res.header('Content-type', 'text/csv');
-			res.send("/archivoscsv/"+name);
+			res.send("/historico/"+name);
 		});
 	});
 }
