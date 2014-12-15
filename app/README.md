@@ -107,3 +107,29 @@ forever stop $ID_GETCARTODB
 
 VERIFICAMOS QUE YA NO EXISTA Y SI EXISTE LO ELIMINAMOS CON "kill -9 NUMERO_PID"
 ps aux | grep -i "getcartudb.js"
+
+
+===
+
+
+INSTRUCCIONES PARA HACER PUSH A HEROKU
+
+REALIZO EL LOGIN
+heroku login
+
+REVISO QUE APPLICACIONES TENGO
+heroku list
+
+HAGO EL PUSH
+git add --all
+git commit -m "actualizo app en heroku"
+git push heroku master
+
+STOP LA APLICACION
+heroku ps:scale web=0 --app mapacucc-beta
+
+START LA APLICACION
+heroku ps:scale web=1 --app mapacucc-beta
+
+REVISO LOGS
+heroku logs --app mapacucc-beta
