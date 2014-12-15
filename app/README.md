@@ -86,20 +86,24 @@ SOLUCION:
 
 ====
 
-ARRANCAR LA DAEMON PARA HACER HISTORICO, IR DENTRO DE /APP
+ARRANCAR LA DAEMON DE HISTORICO, IR DENTRO DE /APP
 forever start getcartudb.js
-
-PARA EL DEMONIO
-ID_GETCARTODB=$(forever list | grep -i "getcartudb.js" | awk '{print $2}')
-forever stop $ID_GETCARTODB
 
 VER LOGS
 forever list | grep -i "getcartodb.js" | awk '{print $8}'
 tail -f /root/.forever/"NOMBRE".log
 
+PARAR EL DEMONIO
+ID_GETCARTODB=$(forever list | grep -i "getcartudb.js" | awk '{print $2}')
+forever stop $ID_GETCARTODB
+
+VERIFICAMOS QUE YA NO EXISTA Y SI EXISTE LO ELIMINAMOS CON "kill -9"
+ps aux | grep -i "getcartudb.js"
+
+
 ====
 
-PARA ELIMINAR EL PROCESSO DE LA APP AVERIGUAMOS CUAL ES SU "PID" CON EL SIGUIENTE COMANDO
+ELIMINAR EL PROCESSO DE LA APP AVERIGUAMOS CUAL ES SU "PID" CON EL SIGUIENTE COMANDO
 ps aux | grep -i "node"
 
 MATAMOS LA APP CON KILL
