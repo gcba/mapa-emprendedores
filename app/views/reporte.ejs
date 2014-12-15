@@ -71,31 +71,33 @@
                /*
                   funcion en jquery, que efectua la consulta ajax a la api, segun le fecha brindada y devuelve un historico de la base de datos, de las luminarias.
                */
-               $(document).ready(function(){
-                  $('#reservationtime').daterangepicker({
-                    timePicker: true,
-                    timePickerIncrement: 1,
-                    format: 'MM/DD/YYYY h:mm A'
-                  }, function(start, end, label){
-                    start = start.format('MM/DD/YYYY h:mm A')
-                    end = end.format('MM/DD/YYYY h:mm A')
-                    $.ajax({
-                      url:"/api/"+new Date(start)+"/"+new Date(end),
-                      type: "GET",
-                      success : function(text){
-                        $.fileDownload(text)
-                      }, 
-                      error: function(xhr, status, errorThrown){
-                        console.log(xhr)
-                        // consol.log(errorThrown)
-                        // console.log(status)
-                      },
-                      complete:function(c){
-                        // console.log(c)
-                      }
+                 $(document).ready(function(){
+                    $('#reservationtime').daterangepicker({
+                      timePicker: true,
+                      timePickerIncrement: 1,
+                      format: 'MM/DD/YYYY h:mm A'
+                    }, function(start, end, label){
+                      start = start.format('MM/DD/YYYY h:mm A')
+                      end = end.format('MM/DD/YYYY h:mm A')
+                      $.ajax({
+                        url:"/api/"+new Date(start)+"/"+new Date(end),
+                        type: "GET",
+                        target="_blank",
+                        success : function(text){
+                          $.fileDownload(text)
+                        }, 
+                        error: function(xhr, status, errorThrown){
+                          console.log(xhr)
+                          // console.log(errorThrown)
+                          // console.log(status)
+                        },
+                        complete:function(c){
+                          // console.log(c)
+                        }
+                      });
                     });
-                  });
-               });
+                 });
+
                </script>
 
             </div>            

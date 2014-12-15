@@ -32,10 +32,8 @@ exports.rangofecha = function(req, res) {
 	var start = FormatDate(req.params.start)
 	var end = FormatDate(req.params.end)
 	var name = new Date(start).toJSON() +"__"+ new Date(end).toJSON() + ".csv"
-	//var pathsavefile = fspath.dirname(__dirname) + "/cachefiles/" + name;
-	var pathsavefile = __dirname + "/" + name
-	console.log(start)
-	console.log(end)
+	var pathsavefile = fspath.resolve('../app/public/img/') + "/" + name;
+	console.log(start + "  " + "  " + end)
 	console.log(pathsavefile)
 	Luminarias.find({updated_at: {$gte: start, $lte: end}},  function(err, luminarias) {
 		build_str()
@@ -52,15 +50,17 @@ exports.rangofecha = function(req, res) {
 			str += "; " + lumi.updated_at;
 			str += "\n";
 		});
-		//console.log(str);
 		var buffstr = new Buffer(str);
 		fs.writeFile(pathsavefile, buffstr, {encoding: 'utf8'}, function(err){
-			if (err) throw err;
+			if (err){
+				//console.log(err);
+				throw err;
+			}
 			console.log('It\'s saved! en ' + pathsavefile);
-			res.send(pathsavefile);
+			res.header('Content-type', 'text/csv');
+			res.send("/archivoscsv/"+name);
 		});
 	});
-	//res.header('Content-type', 'text/csv');
 }
 
 // extraigo todos los luminarias de la base de datos, que correspondan a un id correspondiente"

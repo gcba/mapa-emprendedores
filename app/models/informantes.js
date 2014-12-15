@@ -33,6 +33,6 @@ var informantes = new mongoose.Schema({
 //     });
 // });
 
-var informantes = mongoose.model('informantes1', informantes);
+var informantes = mongoose.model('informantes', informantes);
 
 module.exports = informantes;

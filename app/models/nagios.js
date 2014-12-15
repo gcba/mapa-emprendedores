@@ -26,6 +26,6 @@ var puntos_nagios =  new mongoose.Schema({
 //     });
 // });
 
-var puntos_nagios = mongoose.model('puntos_nagios1', puntos_nagios);
+var puntos_nagios = mongoose.model('puntos_nagios', puntos_nagios);
 
 module.exports = puntos_nagios;

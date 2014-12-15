@@ -39,8 +39,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.directory('public'))
-app.use(express.static('public'))
 
 app.all('/*', function(req, res, next) {
     res.header('accept-encoding', 'gzip,deflate');
@@ -78,7 +76,7 @@ var initServices = function(){
     require('./services/socket.js')(io);
 };
 
-initServices();
+//initServices();
 
 // require rutas
 require('./routes/routes.js')(app);
