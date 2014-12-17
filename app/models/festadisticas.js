@@ -30,6 +30,6 @@ var fracciones_estadistica =  new mongoose.Schema({
 //     });
 // });
 
-var fracciones_estadistica = mongoose.model('fracciones_estadistica1', fracciones_estadistica);
+var fracciones_estadistica = mongoose.model('fracciones_estadistica', fracciones_estadistica);
 
 module.exports = fracciones_estadistica;

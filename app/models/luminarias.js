@@ -34,6 +34,6 @@ var puntos_luminarias = new mongoose.Schema({
 // });
 
 
-var puntos_luminarias = mongoose.model('puntos_luminarias1', puntos_luminarias);
+var puntos_luminarias = mongoose.model('puntos_luminarias', puntos_luminarias);
 
 module.exports = puntos_luminarias;

@@ -95,8 +95,8 @@ var getQuery = {
 
 var get_informantes = function(err, data, cb){
 	var cb = null;
-	// console.log("updated emited puntos informantes");
-	// console.log(data.rows.length);
+	console.log("updated emited puntos informantes");
+	console.log(data.rows.length);
 	asd(err, forEach(data, function(elem){
 		Informante.findOne({updated_at: FormatDate(elem.updated_at)}, function(a, result, c){
 			if(result == null){
@@ -126,8 +126,8 @@ var get_informantes = function(err, data, cb){
 
 var get_nagios = function(err, data, cb){
 	var cb = null;
-	// console.log("updated emited puntos nagios");
-	// console.log(data.rows.length);
+	console.log("updated emited puntos nagios");
+	console.log(data.rows.length);
 	asd(err, forEach(data, function(elem){
 		Nagios.findOne({updated_at: FormatDate(elem.updated_at)}, function(a, result, c){
 			if(result == null){
@@ -149,8 +149,8 @@ var get_nagios = function(err, data, cb){
 
 var get_festadistica = function(err, data, cb){
 	var cb = null;
-	// console.log("updated emited fracciones estadistica");
-	// console.log(data.rows.length);
+	console.log("updated emited fracciones estadistica");
+	console.log(data.rows.length);
 	asd(err, forEach(data, function(elem){
 		Estadisticas.findOne({updated_at: FormatDate(elem.updated_at)}, function(a, result, c){
 			if(result == null){
@@ -176,8 +176,8 @@ var get_festadistica = function(err, data, cb){
 
 var get_luminarias = function(err, data, cb){
 	var cb = null;
-	// console.log("updated emited puntos luminarias");
-	// console.log(data.rows.length);
+	console.log("updated emited puntos luminarias");
+	console.log(data.rows.length);
 	asd(err, forEach(data, function(elem){
 		Luminarias.findOne({updated_at: FormatDate(elem.updated_at)}, function(a, result, c){
 			if(result == null){
@@ -200,16 +200,6 @@ var get_luminarias = function(err, data, cb){
 	if('function' == typeof cb)
 		cb(data)
 }
-
-
-var rowsLength = function(err, data, cb) {
-  console.log(data.rows.length);
- //  var len = data.rows.length;
- //  for(var i=0;i<len;i++){
-	// console.log(data.rows[i].updated_at)
- //  }
-};
-
 
 setInterval(function(){
 	client.on('connect', function(){
