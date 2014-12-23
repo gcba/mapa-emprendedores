@@ -12,19 +12,19 @@ var puntos_nagios =  new mongoose.Schema({
 	long : Number
 });
 
-puntos_nagios.pre("save", function(next){
-    var self = this;
-    puntos_nagios.findOne({updated_at : this.updated_at}, 'updated_at', function(err, results) {
-        if(err){
-            next(err);
-        } else if(results){
-        	//console.log("ya existe")
-        	next(new Error("no guardar nada"));
-        } else {
-            next()
-        }
-    });
-});
+// puntos_nagios.pre("save", function(next){
+//     var self = this;
+//     puntos_nagios.findOne({updated_at : this.updated_at}, 'updated_at', function(err, results) {
+//         if(err){
+//             next(err);
+//         } else if(results){
+//         	//console.log("ya existe")
+//         	next(new Error("no guardar nada"));
+//         } else {
+//             next()
+//         }
+//     });
+// });
 
 var puntos_nagios = mongoose.model('puntos_nagios', puntos_nagios);
 

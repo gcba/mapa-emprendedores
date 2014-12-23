@@ -14,7 +14,6 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 // models y connect db
-// {auto_reconnect: true, poolSize: 20}
 require('./lib/passport')(passport); 
 mongoose.connect(config.db.url || ('mongodb://' + config.db.host + '/'+ config.db.name));
 mongoose.set('debug', false)
@@ -40,9 +39,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-//
-app.use(express.directory('public'))
-app.use(express.static('public'))
 
 app.all('/*', function(req, res, next) {
     res.header('accept-encoding', 'gzip,deflate');
@@ -80,7 +76,7 @@ var initServices = function(){
     require('./services/socket.js')(io);
 };
 
-initServices();
+//initServices();
 
 // require rutas
 require('./routes/routes.js')(app);
