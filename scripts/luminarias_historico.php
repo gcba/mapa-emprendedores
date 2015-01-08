@@ -21,10 +21,9 @@ while ($row = mysql_fetch_array($rows)) {
     $fecha = $now->format('Y-m-d H:00:00');
 
     $select_query = "SELECT * FROM luminarias_historico WHERE fecha = '{$fecha}'";
-    $select_result = mysql_query($select_query);
+    $select_result = mysql_query($select_query) or die(mysql_error());
 
-    if (mysql_num_rows($select_result)==0) {
-        
+    if (mysql_num_rows($select_result) == 0) {
         $insert_query = "INSERT INTO luminarias_historico (fecha, luminarias_apagadas) VALUES ('{$fecha}', '{$row[0]}')";
         mysql_query($insert_query) or die(mysql_error());
     }

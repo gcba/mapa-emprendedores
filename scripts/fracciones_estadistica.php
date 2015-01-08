@@ -2,18 +2,14 @@
 include 'config.php';
 
 function calcularPorcentajeSinLuz($fraccion_id, $cantidad_luminarias) {
+	// Solo tomamos en consideración las luminarias apagadas (las inactivas y aisladas NO)
 	$count_apagadas_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = '0'";
 	$count_apagadas_result = mysql_query($count_apagadas_query) or die(mysql_error());
 	$count_apagadas = mysql_fetch_array($count_apagadas_result);
 	$luminarias_apagadas = $count_apagadas[0];
 
-	$count_inactivas_query = "SELECT COUNT(*) FROM luminarias WHERE fraccion_id = '{$fraccion_id}' AND status = 'inactiva'";
-	$count_inactivas_result = mysql_query($count_inactivas_query) or die(mysql_error());
-	$count_inactivas = mysql_fetch_array($count_inactivas_result);
-	$luminarias_inactivas = $count_inactivas[0];
-
 	if ($cantidad_luminarias) {
-		$porcentaje = round($luminarias_apagadas * 100 / ($cantidad_luminarias - $luminarias_inactivas));
+		$porcentaje = round($luminarias_apagadas * 100 / $cantidad_luminarias);
 		return $porcentaje;
 	} 
 	else {

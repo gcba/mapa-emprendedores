@@ -11,7 +11,7 @@ if (!$db_selected) {
     die ('Can\'t use database : ' . mysql_error());
 }	
 
-// Update las luminarias cuando estan apagadas hace mas de 20 dias, (192 horas) ( minutos)
+// Update las luminarias cuando estan apagadas hace mas de 8 dias, (192 horas) ( minutos)
 $query = "UPDATE luminarias SET status = 'i' WHERE tiempo_sin_luz > 11520";
 $result = mysql_query($query) or die(mysql_error());
 

@@ -18,8 +18,8 @@ except mysql.connector.Error as err:
     exit(0)
 
 url = config.philips['wsdl_url']
-public = 'f3ea773e-e5be-4f8d-ab7f-77f9ae9198cd_00puwFYd39xuOPMOGC0SSIFr'
-private = 'pkt3KFvbNTFeijsOQb3tll3hr6ijQulML5u72DhWrV4mXxpH'
+public = config.philips['public_key']
+private = config.philips['private_key']
 
 client = Client(url, username=public, password=private)
 
