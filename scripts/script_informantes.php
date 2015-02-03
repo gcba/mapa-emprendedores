@@ -141,7 +141,7 @@ $ultimo_estado = 	$json_parsed[$i]['ultimo_estado'];
 		{
 			die ('Cant insert: ' . mysql_error());
 		}
-$url = "http://baemprende.cartodb.com/api/v2/sql?q=INSERT INTO status_informantes (id_ubicacion,titulo,descripcion,user_id,fecha_alta,fecha_actualizacion,ubicacion,lat,long,ultimo_estado,the_geom) VALUES ('{$json_parsed[$i]['id_ubicacion']}','{$titulo}','{$descripcion}','{$json_parsed[$i]['user_id']}','{$json_parsed[$i]['fecha_alta']}','{$json_parsed[$i]['fecha_actualizacion']}','{$ubicacion}','{$latlong_json['resultado']['y']}','{$latlong_json['resultado']['x']}','{$json_parsed[$i]['ultimo_estado']}',ST_SetSRID(ST_MakePoint({$latlong_json['resultado']['x']}, {$latlong_json['resultado']['y']}), 4326))&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
+$url = "http://gcba.cartodb.com/api/v2/sql?q=INSERT INTO status_informantes (id_ubicacion,titulo,descripcion,user_id,fecha_alta,fecha_actualizacion,ubicacion,lat,long,ultimo_estado,the_geom) VALUES ('{$json_parsed[$i]['id_ubicacion']}','{$titulo}','{$descripcion}','{$json_parsed[$i]['user_id']}','{$json_parsed[$i]['fecha_alta']}','{$json_parsed[$i]['fecha_actualizacion']}','{$ubicacion}','{$latlong_json['resultado']['y']}','{$latlong_json['resultado']['x']}','{$json_parsed[$i]['ultimo_estado']}',ST_SetSRID(ST_MakePoint({$latlong_json['resultado']['x']}, {$latlong_json['resultado']['y']}), 4326))&api_key=ce2f2314ed406edcbf6e627992531e21e396f062";
 $url = preg_replace("/ /", "%20", $url);
 file_get_contents($url);
 echo $url;
@@ -152,7 +152,7 @@ echo $url;
 	{
 		// hacer update
 		echo "updateo";
-		$url = "http://baemprende.cartodb.com/api/v2/sql?q=update status_informantes set ultimo_estado=".$json_parsed[$i]['ultimo_estado']." where id_ubicacion = ".$json_parsed[$i]['id_ubicacion']."&api_key=f2d531bee1002c47a2bcc52f2262c3c28d6ef311";
+		$url = "http://gcba.cartodb.com/api/v2/sql?q=update status_informantes set ultimo_estado=".$json_parsed[$i]['ultimo_estado']." where id_ubicacion = ".$json_parsed[$i]['id_ubicacion']."&api_key=ce2f2314ed406edcbf6e627992531e21e396f062";
 		$url = preg_replace("/ /", "%20", $url);
 		file_get_contents($url);
 		
