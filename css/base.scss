@@ -130,6 +130,24 @@ html, body {
     width: $width-sidebar * 4;
     height: 100%;
     display: block;
+
+    label{
+        width: 100%;
+    }
+
+
+    .asterisco{
+        cursor: help;
+    }
+
+    .definition{
+        display: none;
+    }
+
+    .asterisco:hover + .definition{
+        display: inline;
+    }
+
     h1{
         font-size: 0.9em;
     }
@@ -243,7 +261,7 @@ html, body {
 
         .cartelMinimapa{
             font-size: 0.7em;
-            text-align: right;
+            text-align: center;
         }
 
         .siguiente {

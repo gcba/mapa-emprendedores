@@ -88,6 +88,23 @@ function validoPaso(nro) {
             pantallaValidada.push(false);
             $('#mailRes_frm').addClass("alert-danger");
         }
+
+        dato = $("#resp_frm").val();
+        if (dato.length != "") {
+            pantallaValidada.push(true);
+        } else {
+            pantallaValidada.push(false);
+            $('#resp_frm').addClass("alert-danger");
+        }
+        dato = $("#mailRes_frm").val();
+        if (dato.length != "") {
+            pantallaValidada.push(true);
+        } else {
+            pantallaValidada.push(false);
+            $('#mailRes_frm').addClass("alert-danger");
+        }
+
+
         validarFormulario(pantallaValidada, "#paso3");
         nuevoCaptcha();
     }

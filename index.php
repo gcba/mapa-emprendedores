@@ -143,22 +143,25 @@
                         </div>
                     </div>
 
+
+
+
                     <div id="crear">
                             <form id="alta_frm"  method="POST" action="">
 
                                 <div id="paso1" class="pasoActivo">  <!-- Paso 1 - Información Básica -->
                                     <div class="form-group">
-                                        <label for="nombre_frm">Nombre</label>
+                                        <label for="nombre_frm">Nombre <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <input type="text" name="nombre_frm" id="nombre_frm" class="form-control" placeholder="Nombre del emprendimiento" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="desc_frm">Descripción</label>
+                                        <label for="desc_frm">Descripción <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <textarea class="form-control" rows="3" id="desc_frm" name="desc_frm"> </textarea>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="acti_frm">Inicio de actividades</label>
+                                        <label for="acti_frm">Inicio de actividades <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <input type="text" id="acti_frm" name="acti_frm" class="form-control" placeholder="Año de inicio (Ej. 1990)" >
                                     </div>
 
@@ -168,7 +171,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="tipo_frm">Tipo</label>
+                                        <label for="tipo_frm">Tipo  <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <select class="form-control" id="tipo_frm" name="tipo_frm">
                                             <option value="Seleccione" selected>Seleccione el tipo</option>
                                             <option value="ACE">Aceleradora</option>
@@ -184,7 +187,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="sector_frm">Sector</label>
+                                        <label for="sector_frm">Sector <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <select class="form-control" id="sector_frm" name="sector_frm">
                                             <option value="Seleccione" selected>Seleccione su sector</option>
                                             <option value="INDU">Productos Industriales</option>
@@ -213,7 +216,7 @@
 
                                 <div id="paso2" class="pasoNoActivo"><!-- Paso 2 - Ubicacion -->
                                     <div class="form-group">
-                                        <label for="direccion_frm">Dirección</label>
+                                        <label for="direccion_frm">Dirección <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <input type="text" id="direccion_frm" name="direccion_frm" class="form-control" placeholder="Calle, Ciudad, Provincia">
                                         <div class="btn btn-danger validar" onclick="buscarDireccion()"> Validar la dirección </div>
                                     </div>
@@ -227,7 +230,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <p class="cartelMinimapa"> Aquí se verá ubicado su emprendimiento</p>
+                                        <p class="cartelMinimapa"> Aquí se verá ubicado su emprendimiento <br> Por favor verifique que se corresponda con su domicilio </p>
                                         <div class="minimapa" id="minimapa"> </div>
                                     </div>
 
@@ -236,7 +239,8 @@
                                         <div class="btn btn-default siguiente" onclick="validoPaso(2)"> Siguiente </div>
                                     </div>
 
-                                    <span class="aviso paso2"> Por favor complete la direccion y luego valídela</span>
+                                    <span class="aviso paso2">Complete la direccion y luego valídela</span>
+
 
                                 </div>
                                 
@@ -257,12 +261,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="resp_frm">Responsable del proyecto</label>
+                                        <label for="resp_frm">Persona de contacto <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <input type="text" id="resp_frm" name="resp_frm" class="form-control" placeholder="Nombre y apellido">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="mailRes_frm">Mail del responsable</label>
+                                        <label for="mailRes_frm">Mail de contacto <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <input type="email" class="form-control" id="mailRes_frm" name="mailRes_frm" placeholder="ejemplo@ejemplo.com">
                                     </div>
 

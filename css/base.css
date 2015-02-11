@@ -5318,6 +5318,14 @@ html, body {
   width: 1420px;
   height: 100%;
   display: block; }
+  #paneles label {
+    width: 100%; }
+  #paneles .asterisco {
+    cursor: help; }
+  #paneles .definition {
+    display: none; }
+  #paneles .asterisco:hover + .definition {
+    display: inline; }
   #paneles h1 {
     font-size: 0.9em; }
   #paneles h5 {
@@ -5397,7 +5405,7 @@ html, body {
       cursor: pointer; }
     #paneles #crear .cartelMinimapa {
       font-size: 0.7em;
-      text-align: right; }
+      text-align: center; }
     #paneles #crear .siguiente {
       cursor: pointer;
       float: right; }
