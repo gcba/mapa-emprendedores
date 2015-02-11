@@ -109,7 +109,7 @@
                     <div id="filtrar"> <!-- bind en init -->
                         <div class="btn-group">
                             <div id="industria_ftr">
-                                <span> Por tipo de industria </span>
+                                <span> Por tipo de organización </span>
                                 <button type="button" value="TIN" id="todosIndustria_btn" class="btn btn-default activo">Ver Todos</button>
                                 <button type="button" value="ACE" class="btn btn-default">Aceleradora</button>
                                 <button type="button" value="EMP" class="btn btn-default">Emprendimiento</button>
