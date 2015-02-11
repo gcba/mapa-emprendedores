@@ -112,13 +112,14 @@
                                 <span> Por tipo de organización </span>
                                 <button type="button" value="TIN" id="todosIndustria_btn" class="btn btn-default activo">Ver Todos</button>
                                 <button type="button" value="ACE" class="btn btn-default">Aceleradora</button>
+                                <button type="button" value="ACA" class="btn btn-default">Academia</button>
                                 <button type="button" value="EMP" class="btn btn-default">Emprendimiento</button>
-                                <button type="button" value="ESP" class="btn btn-default">Espacio de Coworking</button>
-                                <button type="button" value="GOB" class="btn btn-default">Gobierno Nacional</button>
+                                <button type="button" value="ESP" class="btn btn-default">Espacio de Trabajo Colaborativo</button>
+                                <button type="button" value="GOB" class="btn btn-default">Programas Públicos</button>
                                 <button type="button" value="INC" class="btn btn-default">Incubadora</button>
                                 <button type="button" value="INV" class="btn btn-default">Inversor</button>
-                                <button type="button" value="MAR" class="btn btn-default">Makerspace</button>
-                                <button type="button" value="ORG" class="btn btn-default">Organización</button>
+                                <button type="button" value="MAR" class="btn btn-default">Espacio de Cocreación</button>
+                                <button type="button" value="ORG" class="btn btn-default">Institución</button>
                                 <button type="button" value="UNI" class="btn btn-default">Universidad</button>
                             </div>
                             <div id="sector_ftr">
@@ -171,17 +172,18 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="tipo_frm">Tipo  <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
+                                        <label for="tipo_frm">Industria  <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <select class="form-control" id="tipo_frm" name="tipo_frm">
                                             <option value="Seleccione" selected>Seleccione el tipo</option>
                                             <option value="ACE">Aceleradora</option>
+                                            <option value="ACA">Academia</option>
                                             <option value="EMP">Emprendimiento</option>
-                                            <option value="ESP">Espacio de Coworking</option>
-                                            <option value="GOB">Gobierno Nacional</option>
+                                            <option value="ESP">Espacio de Trabajo Colaborativo</option>
+                                            <option value="GOB">Programas Públicos</option>
                                             <option value="INC">Incubadora</option>
                                             <option value="INV">Inversor</option>
-                                            <option value="MAR">Makerspace</option>
-                                            <option value="ORG">Organización</option>
+                                            <option value="MAR">Espacio de Cocreación</option>
+                                            <option value="ORG">Institución</option>
                                             <option value="UNI">Universidad</option>
                                         </select>
                                     </div>
