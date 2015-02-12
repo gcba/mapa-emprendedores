@@ -205,6 +205,7 @@ function resetAllFields (){
     $("#captcha_txt").val("");
     $("#lat_frm").val("");
     $("#lon_frm").val("");
+    $("#latlon_frm").val("");
 }
 
 /**

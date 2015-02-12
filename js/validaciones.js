@@ -164,9 +164,9 @@ function buscarDireccion() {
                 map: minimapa,
                 position: results[0].geometry.location
             });
-            $("#latlon_frm").val(marker.position.B + "," + marker.position.k);
-            $("#lat_frm").val(marker.position.B);
-            $("#lon_frm").val(marker.position.k);
+            $("#latlon_frm").val(marker.position.lat() + "," + marker.position.lng());
+            $("#lat_frm").val(marker.position.lat());
+            $("#lon_frm").val(marker.position.lng());
         } else {
             console.log('No se pudo geocodificar la direccion. Error : ' + status);
         }
