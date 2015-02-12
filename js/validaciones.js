@@ -164,7 +164,7 @@ function buscarDireccion() {
                 map: minimapa,
                 position: results[0].geometry.location
             });
-            $("#latlon_frm").val(marker.position.lat() + "," + marker.position.lng());
+            $("#latlon_frm").val(marker.position.lng() + "," + marker.position.lat());
             $("#lat_frm").val(marker.position.lat());
             $("#lon_frm").val(marker.position.lng());
         } else {
