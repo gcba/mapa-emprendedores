@@ -159,7 +159,7 @@ var capas, map, sql, polygon;
         selectedStyle = $('li.selected').attr('id');
         
         cartodb.createVis('map', 'http://gcba.cartodb.com/api/v2/viz/7d452b14-9bef-11e4-a0aa-0e853d047bba/viz.json')
-        .done(function(vis, layers) {
+          .done(function(vis, layers) {
             map = vis.getNativeMap();
             capas = layers;
             var ranking_css =  $('#ranking_css').html();
