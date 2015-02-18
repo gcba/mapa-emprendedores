@@ -239,8 +239,8 @@ function armoFiltrado ( listaIND , columnaIND , listaSEC , columnaSEC ){
         }
         retorno_consulta = retorno_consulta.substring(0, retorno_consulta.length-1) + ")";
     }
-
-    return retorno_consulta;
+console.log(retorno_consulta);
+    return retorno_consulta + ";";
 }
 
 /**
