@@ -87,3 +87,13 @@ function init() {
 }
 
 google.maps.event.addDomListener(window, 'load', init);
+
+//init tooltipster
+$(document).ready(function() {
+
+    $('.tt').tooltipster({
+        theme: 'tooltipster-light'
+    });
+
+
+});

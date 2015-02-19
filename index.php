@@ -11,10 +11,14 @@
     <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
     <![endif]-->
+    
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/tooltipster.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/tooltipster-light.css">
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
     <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
@@ -111,17 +115,23 @@
                             <div id="industria_ftr">
                                 <span> Por tipo de organización </span>
                                 <button type="button" value="TIN" id="todosIndustria_btn" class="btn btn-default activo">Ver Todos</button>
-                                <button type="button" value="ACE" class="btn btn-default">Aceleradora</button>
-                                <button type="button" value="ACA" class="btn btn-default">Academia</button>
+                                <button type="button" value="ACE" class="btn btn-default tt" title="Empresa que acelera el crecimiento de proyectos en marcha por medio de tutor&iacute;as, capital y ofreci&eacute;ndoles espacio f&iacute;sico.">Aceleradora</button>
+                                <button type="button" value="ACA" class="btn btn-default tt" title="Programa p&uacute;blico y gratuito del Gobierno de la Ciudad de Buenos Aires que acerca a individuos, universidades, empresas e instituciones, las herramientas prácticas para el desarrollo de habilidades emprendedoras y el comienzo de nuevos emprendimientos.">Academia</button>
                                 <button type="button" value="EMP" class="btn btn-default">Emprendimiento</button>
-                                <button type="button" value="ESP" class="btn btn-default">Espacio de Trabajo Colaborativo</button>
-                                <button type="button" value="GOB" class="btn btn-default">Programas Públicos</button>
-                                <button type="button" value="INC" class="btn btn-default">Incubadora</button>
+                                <button type="button" value="ESP" class="btn btn-default tt" title="Espacio en el que trabajadores, entre ellos emprendedores, de diversos sectores, pueden trabajar de manera independiente a la vez que hacerlo en proyectos conjuntos.">Espacio de Trabajo Colaborativo</button>
+                                <button type="button" value="GOB" class="btn btn-default tt" title="Políticas públicas de apoyo al emprendedor y su ecosistema.">Programas Públicos</button>
+                                <button type="button" value="INC" class="btn btn-default tt" title="Organización que brinda apoyo a proyectos emprendedores desde sus fases iniciales en forma de asesoría, capacitación, infraestructura, red de contactos, entre otros.">Incubadora</button>
                                 <button type="button" value="INV" class="btn btn-default">Inversor</button>
-                                <button type="button" value="MAR" class="btn btn-default">Espacio de Cocreación</button>
+                                <button type="button" value="MAR" class="btn btn-default tt" title="Espacio inspirador diseñado para que emprendedores, freelancers, startups y pymes se encuentren y trabajen colaborativamente. Promueve además, entre sus miembros la innovación y la realización de proyectos conjuntos.">Espacio de Cocreación</button>
                                 <button type="button" value="ORG" class="btn btn-default">Institución</button>
                                 <button type="button" value="UNI" class="btn btn-default">Universidad</button>
                             </div>
+
+
+
+
+
+                            
                             <div id="sector_ftr">
                                 <span> Por sector </span>
                                 <button type="button" value="TSEC" id="todosSector_btn" class="btn btn-default activo">Ver Todos</button>
