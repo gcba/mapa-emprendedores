@@ -182,7 +182,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="tipo_frm">Industria  <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
+                                        <label for="tipo_frm">Tipo de Organización <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
                                         <select class="form-control" id="tipo_frm" name="tipo_frm">
                                             <option value="Seleccione" selected>Seleccione el tipo</option>
                                             <option value="ACE">Aceleradora</option>
