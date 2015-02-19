@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "Mapa-de-Emprendedores",
   "version": "0.0.2",
   "main": "css/main.css",
@@ -21,3 +22,20 @@
 }
 
 
+=======
+  "name": "dashboard",
+  "version": "0.0.1",
+  "description": "Prototipo de Dashboard",
+  "repository": {
+    "type": "git",
+    "url": "git@git.gcba.gob.ar:vmartemianov/datos-luminarias.git"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-jasmine": "^0.8.1",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
+>>>>>>> f17898d59b9cfb0c142b24e6dd19081b7caa6686

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 src/
 libs/cartodb.config.php
 .git/
@@ -7,3 +8,27 @@ node_modules/
 bower_components/
 testing/
 css/bootstrap.css
+=======
+app/config.json
+/dl
+/src
+/public/components/
+/references
+.DS_Store
+/node_modules
+app/node_modules
+config.php
+config.py
+.sass-cache/
+dashboard/Gemfile.lock
+app/run-app.sh
+app/public/components
+app/public/stylesheets/style.css
+.sass-cache/
+assets/
+data/luminarias.json
+data/faults.csv
+scripts/lastRevision.txt
+dashboard/Gemfile.lock
+app/cachefiles/*
+>>>>>>> f17898d59b9cfb0c142b24e6dd19081b7caa6686
