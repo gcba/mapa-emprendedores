@@ -117,6 +117,7 @@
                                 <button type="button" value="TIN" id="todosIndustria_btn" class="btn btn-default activo">Ver Todos</button>
                                 <button type="button" value="ACE" class="btn btn-default tt" title="Empresa que acelera el crecimiento de proyectos en marcha por medio de tutor&iacute;as, capital y ofreci&eacute;ndoles espacio f&iacute;sico.">Aceleradora</button>
                                 <button type="button" value="ACA" class="btn btn-default tt" title="Programa p&uacute;blico y gratuito del Gobierno de la Ciudad de Buenos Aires que acerca a individuos, universidades, empresas e instituciones, las herramientas prácticas para el desarrollo de habilidades emprendedoras y el comienzo de nuevos emprendimientos.">Academia</button>
+                                <button type="button" value="BIT" class="btn btn-default tt" title="Bitcoin.">Bitcoin</button>
                                 <button type="button" value="EMP" class="btn btn-default">Emprendimiento</button>
                                 <button type="button" value="ESP" class="btn btn-default tt" title="Espacio en el que trabajadores, entre ellos emprendedores, de diversos sectores, pueden trabajar de manera independiente a la vez que hacerlo en proyectos conjuntos.">Espacio de Trabajo Colaborativo</button>
                                 <button type="button" value="GOB" class="btn btn-default tt" title="Políticas públicas de apoyo al emprendedor y su ecosistema.">Programas Públicos</button>
@@ -167,7 +168,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="desc_frm">Descripción <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
+                                        <label for="desc_frm">Descripción <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span><span class="aclaracion">máximo 300 caracteres</span></label>
                                         <textarea class="form-control" rows="3" id="desc_frm" name="desc_frm"> </textarea>
                                     </div>
 
@@ -187,6 +188,7 @@
                                             <option value="Seleccione" selected>Seleccione el tipo</option>
                                             <option value="ACE">Aceleradora</option>
                                             <option value="ACA">Academia</option>
+                                            <option value="BIT">Bitcoin</option>
                                             <option value="EMP">Emprendimiento</option>
                                             <option value="ESP">Espacio de Trabajo Colaborativo</option>
                                             <option value="GOB">Programas Públicos</option>
@@ -229,7 +231,7 @@
                                 <div id="paso2" class="pasoNoActivo"><!-- Paso 2 - Ubicacion -->
                                     <div class="form-group">
                                         <label for="direccion_frm">Dirección <span class="asterisco">(*)</span> <span class="definition">Campo obligatorio</span></label>
-                                        <input type="text" id="direccion_frm" name="direccion_frm" class="form-control" placeholder="Calle, Ciudad, Provincia">
+                                        <input type="text" id="direccion_frm" name="direccion_frm" class="form-control" placeholder="Ej: Algarrobo 1041, CABA">
                                         <div class="btn btn-danger validar" onclick="buscarDireccion()"> Validar la dirección </div>
                                     </div>
 

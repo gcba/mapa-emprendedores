@@ -27,7 +27,7 @@ function validoPaso(nro) {
             $('#nombre_frm').addClass("alert-danger");
         }
         dato = $("#desc_frm").val();
-        if (dato.length > 10 && dato.length < 145) {
+        if (dato.length > 10 && dato.length < 300) { //para que no se escriban la biblia lo limitamos
             pantallaValidada.push(true);
         } else {
             pantallaValidada.push(false);

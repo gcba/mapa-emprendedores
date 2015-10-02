@@ -135,7 +135,9 @@ html, body {
         width: 100%;
     }
 
-
+    .aclaracion{
+        float: right;
+    }
     .asterisco{
         cursor: help;
     }
@@ -338,6 +340,13 @@ html, body {
 
 
 //cambio de lugar los controles de zoom de cartodb
+
+.cartodb-searchbox{
+    top: 0px !important;
+    left: 130px !important;
+    position: absolute !important;
+    bottom: 0px !important;
+}
 
 .cartodb-zoom{
     margin-bottom: 50px !important;   
